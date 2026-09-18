@@ -192,4 +192,28 @@ Requer opt-in. Template HSM aprovado fora da janela 24h; quando o cliente respon
 
 ---
 
+## 12. PROTOCOLO DE DADOS — TRÁFEGO PAGO (obrigatório)
+
+> **Regra dura: toda análise, relatório ou decisão de otimização puxa as TRÊS fontes, sempre, na mesma janela de datas. NUNCA decidir olhando só o Meta.**
+
+| Fonte | Papel | O que é |
+|---|---|---|
+| **Shopify** | **VERDADE** | Faturamento e pedidos reais. É o placar do negócio. |
+| **Meta** | Mídia | Gasto, entrega, criativo, frequência. O pixel **subreporta** na VermeFree. |
+| **Utmify** | Atribuição | Liga a venda ao objeto (campanha/conjunto/anúncio) via UTM. |
+
+### Como cruzar
+- **ROAS blended = Shopify ÷ gasto total de mídia.** É esse número que manda na decisão.
+- **ROAS do Meta** serve pra comparar criativo entre si — não é o placar do negócio.
+- **Utmify** só vale quando a cobertura de UTM está alta. **Sempre reportar a taxa de rastreio** (pedidos rastreados ÷ total). Cobertura baixa = Utmify inutilizável pra decisão.
+- Os três números têm que bater entre si: gasto do Meta = gasto do Utmify; compras do pixel = `salesFromFacebook`. Se não bater, investigar antes de concluir.
+
+### Regras de higiene
+- **Mesma janela de datas nas três fontes.** Nunca misturar dado de puxada antiga com dado novo sem avisar explicitamente.
+- **Sempre isolar dias de evento** (Dia D, Semana do Cliente, lives) do baseline — eles inflam a média e escondem a queda do dia normal.
+- Ao reportar, **dizer de qual fonte veio cada número**.
+- Puxar sempre ao vivo. Não reaproveitar número de conversa anterior sem re-verificar.
+
+---
+
 *Documento vivo — atualizar conforme a marca evoluir. Dúvidas de estratégia: falar com o Gabriel.*
