@@ -216,4 +216,77 @@ Requer opt-in. Template HSM aprovado fora da janela 24h; quando o cliente respon
 
 ---
 
+## 13. SISTEMA DE TESTE & ESCALA — TRÁFEGO PAGO
+
+> **Regra-mãe: anúncio não se julga por DIA, se julga por GASTO.** Três dias não é critério — três dias com R$30/dia é R$90, e R$90 não compra decisão nenhuma numa conta com CPA mediano de R$150.
+
+### 13.1 O gate de R$450
+O corte é **3× o CPA mediano dos anúncios bons** (~R$150). Antes disso, não existe dado — existe ruído.
+
+| Gasto acumulado do anúncio | Ação |
+|---|---|
+| < R$150 | **Não olhar.** Não existe dado. |
+| R$150–450 | Só mata com sinal forte de rejeição (ver 13.3) |
+| ≥ R$450 · 0 vendas | **MATA** |
+| ≥ R$450 · CPA ≤ R$150 | **GRADUA** pra campanha de escala |
+| ≥ R$450 · CPA R$150–200 | **Zona cinza** — segue até R$900 e decide lá |
+| ≥ R$450 · CPA > R$200 | **MATA** |
+
+**Por que existe essa regra:** o AD_TD_JATOMEI_02 foi declarado morto com ROAS 1,18 / CPA R$280 numa leitura de 2 dias. Ele se recuperou pra **ROAS 5,26 com 24 vendas**. Era um vale, não o fim. Criativo tem vale de aprendizagem — matar cedo é jogar fora campeão.
+
+### 13.2 Faixas de CPA (calibradas com dados reais da conta)
+| Faixa | Classificação | Exemplos reais |
+|---|---|---|
+| ≤ R$90 | **Campeão** → escala | DUVIDAS R$37 · JULIANA_UNBOX R$44 · 12SINAIS R$52 · ROTINA_CICLOS R$60 · UNBOX_02 R$80 |
+| R$90–150 | **Saudável** → mantém | SINAIS_01 R$109 · JATOMEI_02 R$117 · KIDS_PET R$126 · KIDS_AMAMENTACAO R$130 |
+| R$150–200 | **Cinza** → observa até R$900 | 3SINAIS R$151 · CUIDADO R$168 |
+| > R$200 | **Corta** | JATOMEI_01/AUTO R$220 · LAL 1% R$411 |
+
+**Julgar criativo por CPA, não por ROAS.** ROAS mistura ticket médio (kit família vs frasco avulso) e polui a comparação entre criativos. CPA isola a eficiência do anúncio.
+
+**O CPA do Meta é pessimista** — o pixel subreporta. CPA real (blended, Shopify) ficou em R$69 contra R$105 do Meta. Ou seja: o anúncio que o Meta mostra em R$180 provavelmente está em ~R$120 de verdade. Não matar no limite sem olhar o blended.
+
+### 13.3 Os três únicos sinais de morte precoce
+Antes de R$450, só mata por:
+1. **CTR < 1,0%** com 2.000+ impressões → o criativo não para o dedo
+2. **Zero ATC** com R$200 gastos → tráfego sem intenção nenhuma
+3. **Rejeitado / WITH_ISSUES** → não está entregando de verdade
+
+Qualquer outro motivo (ROAS baixo no dia 2, "achei fraco", CPA feio na primeira leitura) **não é motivo**.
+
+### 13.4 Estrutura: teste separado de escala
+- **Campanhas de ESCALA** (2): uma de público **ADV/frio aberto**, uma de **QUENTE** (DR, Instagram, site, engajamento). Só entram anúncios **graduados** pelo gate. Orçamento alto, mexer pouco.
+- **Campanhas de TESTE** (2): separadas por **PÚBLICO, não por produto** — ADULTO e KIDS. Estrutura **1-1-x**: 1 campanha, 1 conjunto, x anúncios variados do mesmo público. Orçamento baixo por anúncio, mas suficiente pra cruzar o gate em ~5–7 dias.
+- **Topo de funil** (1): verba pequena e contínua alimentando os públicos quentes de amanhã. Sem ela, o remarketing seca.
+
+**Por que teste por público e não por produto:** o algoritmo otimiza por público. Separar por produto no teste fragmenta o aprendizado e faz cada conjunto demorar mais pra sair do learning.
+
+**Nunca rodar o mesmo anúncio em 3 conjuntos ao mesmo tempo** — eles leiloam entre si, sobe CPM e o dado fica impossível de ler.
+
+### 13.5 Bid cap: quando NÃO usar
+Na VermeFree, **toda campanha com bid cap rodou frequência 2,77–3,58**. As sem bid cap rodaram **1,23–1,35**. Bid cap compra só leilão barato = recicla o mesmo público = satura.
+
+Bid cap só entra em anúncio **já graduado e estável**, com público grande, e com a frequência monitorada. Nunca em teste.
+
+### 13.6 Rotina (o que fazer e quando)
+| Quando | O quê |
+|---|---|
+| **Todo dia (5 min)** | Só checar anomalia: campanha parada, gasto travado, anúncio rejeitado. **Não otimizar.** |
+| **Seg + Qui** | Revisão de gate: quem passou de R$450? Gradua, mata ou segue. |
+| **Segunda** | Leitura completa das 3 fontes (§12) + decisão de orçamento da semana |
+| **Todo mês** | Recalcular as faixas de CPA com o dado do mês fechado |
+
+> **A regra mais difícil de cumprir: nos outros dias, não mexer.** Cada edição em conjunto ativo reinicia aprendizado. A conta perde mais por excesso de mão do que por falta.
+
+### 13.7 Antes de matar qualquer anúncio, responder:
+- [ ] Ele já gastou R$450?
+- [ ] O CPA está acima de R$200 **no Meta** — e no blended também?
+- [ ] Ele está rodando em mais de um conjunto (canibalizando o próprio dado)?
+- [ ] O conjunto onde ele está saiu do aprendizado?
+- [ ] Tem UTM funcionando? (sem UTM, o Utmify não vê a venda dele)
+
+Se qualquer resposta comprometer a leitura, **não mata — corrige e espera o gate**.
+
+---
+
 *Documento vivo — atualizar conforme a marca evoluir. Dúvidas de estratégia: falar com o Gabriel.*
