@@ -8,32 +8,46 @@
 
 ## 1. ESTRUTURA NO AR — 22/09/2026
 
-Verba: **R$2.150/dia**.
+Verba: **R$2.400/dia**.
 
 | Campanha | Estrutura | Verba/dia |
 |---|---|---|
-| **VF \| ESCALA FRIO \| ADV** | CBO · 1 conjunto · campeões | R$750 |
+| **VF \| ESCALA FRIO \| ADV** | CBO · 1 conjunto · 10 campeões | R$750 |
 | **VF \| ESCALA QUENTE** | ABO · 1 conjunto · os mesmos campeões | R$500 |
-| **VF \| TESTE \| SET26 \| ABO** | ABO · 3 conjuntos · inconclusivos | R$600 |
+| **VF \| TESTE 1 \| SET26 \| ABO** | ABO · 2 conjuntos · inconclusivos | R$400 |
+| **VF \| TESTE 2 \| CRIATIVOS NOVOS** | ABO · 3 conjuntos · criativos nunca usados | R$600 |
 | **VF \| TOPO DE FUNIL \| VIDEO VIEW** | CBO · THRUPLAY · frio aberto | R$150 |
-| **VF \| RECONHECIMENTO \| POSTS ENGAJADOS** | CBO · REACH · frio aberto | R$150 |
+| *VF \| RECONHECIMENTO* | *CBO · REACH · pausada, esperando os posts* | *(150)* |
 
-> O plano original era R$2.000. A campanha de reconhecimento foi somada depois, então a conta está **R$150 acima** do teto acordado.
+**Escala R$1.250 · Teste R$1.000 · Topo R$150.** O teste ficou em 42% da verba — alto, mas é a fase: a conta tem 20 criativos sem leitura e só 10 provados.
 
-### Os 3 conjuntos de teste (1-1-x, máximo 3 anúncios cada)
-| Conjunto | Público | R$/dia |
-|---|---|---|
-| **TESTE \| ADV** | Advantage / aberto, mulheres 30–50 | 200 |
-| **TESTE \| ENG IG VERMEFREE + SITE** | ENG 180D @vermefree (89–105 mil) + site | 200 |
-| **TESTE \| LAL 1% CLIENTES 100VERME** | semelhante 1% da lista de clientes | 200 |
+### TESTE 1 — inconclusivos (R$400)
+| Conjunto | Público | R$/dia | Anúncios |
+|---|---|---|---|
+| **ADV** | Advantage / mulheres 30–50 | 200 | 12SINAIS · DUVIDAS · KIDS_PET |
+| **ENG IG VERMEFREE + SITE** | ENG 180D @vermefree (89–105 mil) + site | 200 | JULIANA_UNBOX · UGC_TAYLOU · CUIDADO |
 
-**O conjunto do Dr. William não existe.** Nenhum ativo dele está vinculado a esta conta — só a página VermeFree e o `@vermefree`. O LAL 1% de clientes entrou no lugar, escolhido porque os dois campeões de menor CPA da conta (AD_TD_SINAIS_01 a R$77 e AD_TD_SINAIS_02 a R$36) vinham justamente da Lista 100Verme.
+Conjunto **LAL 1% CLIENTES pausado** no corte de 22/09. Fila: UNBOX_02 (1 venda) · UGC_LUDI (0) · AD_TD_RANGER_02.
+
+### TESTE 2 — criativos novos (R$600)
+| Conjunto | Público | R$/dia | Anúncios |
+|---|---|---|---|
+| **VIDEO VIEW 25%** | 802–944 mil | 200 | Quando foi sua última limpeza natural? · Três sinais pra prestar atenção · Seu corpo pode estar pedindo isso |
+| **HOOK RATE 15D** | 129–152 mil | 200 | Abrindo o kit VermeFree · Suas dúvidas respondidas com calma · O que vem no kit por dentro |
+| **LAL 1% ENG IG 180D** | lookalike | 200 | Desparasitação natural com calma · Por que fazer em ciclos · Cuidar da família de forma natural |
+
+> **Por que TESTE 2 usa públicos diferentes do TESTE 1:** duas campanhas de teste nos mesmos públicos leiloam entre si — CPM sobe e o dado das duas fica impossível de ler. Video View, Hook Rate e o LAL do ENG IG estavam parados e não encostam no TESTE 1.
+
+> **Por que 9 conceitos distintos e não 9 variações:** a biblioteca tem 11 conceitos com 2 a 10 cortes cada. Testar corte antes de saber qual conceito vende é queimar verba na ordem errada. Primeiro o conceito, depois os cortes dele.
+
+**O conjunto do Dr. William não existe.** Nenhum ativo dele está vinculado a esta conta — só a página VermeFree e o `@vermefree`.
 
 ### Regras duras dessa estrutura
-1. **A campanha de teste é ABO — orçamento no conjunto, nunca CBO.** Em CBO o Meta joga quase tudo no conjunto mais barato e os outros dois nunca cruzam o gate.
-2. **Máximo 3 anúncios por conjunto de teste.** Com R$200/dia e 3 anúncios, cada um pega ~R$67/dia e cruza o gate em ~7 dias.
-3. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.** Caiu pra 2, o problema está na esteira de teste.
-4. **Os mesmos campeões rodam nas duas campanhas de escala** — públicos diferentes, leilões diferentes. O que não pode é o mesmo anúncio em dois conjuntos do mesmo público.
+1. **Campanha de teste é ABO, nunca CBO.** Em CBO o Meta joga quase tudo no conjunto mais barato e os outros nunca cruzam o gate.
+2. **Máximo 3 anúncios por conjunto de teste.** Com R$200/dia e 3 anúncios, cada um pega ~R$67/dia e cruza o gate em ~7 dias. Abaixo de R$200/conjunto o ciclo de decisão quebra.
+3. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.**
+4. **Os mesmos campeões rodam nas duas campanhas de escala** — públicos diferentes, leilões diferentes.
+5. **Duas campanhas de teste nunca compartilham público.**
 
 ---
 
@@ -59,8 +73,17 @@ Verba: **R$2.150/dia**.
 ### DESCARTE
 **DIFERENCAS** — R$486 gastos, **0 vendas**. Único descarte limpo pela régua.
 
+### NUNCA USADO → TESTE 2
+Biblioteca de ~65 criativos de **vídeo** criados em 22/09, sem nenhum anúncio associado (confirmado por API). **11 conceitos**, 2 a 10 cortes cada:
+
+`Por que fazer em ciclos` (6) · `Suas dúvidas, respondidas com calma` (10) · `Quando foi sua última limpeza natural?` (9) · `Abrindo o kit VermeFree` (8) · `Desparasitação natural, com calma` (8) · `Seu corpo pode estar pedindo isso` (6) · `O que vem no kit, por dentro` (4) · `Cuidar da família, de forma natural` (4) · `Três sinais pra prestar atenção` (4) · `Cuidar por dentro é rotina` (2) · `Rotina de cuidado pra casa toda` (2)
+
+**São `object_type: VIDEO` — carregam UTM.** Primeiros anúncios da conta que vão aparecer direito no Utmify.
+
+Em teste: 9 conceitos. Fora: `Cuidar por dentro é rotina` e `Rotina de cuidado pra casa toda`.
+
 ### Fila (sem vaga ainda)
-AD_TD_8H01 · AD_TD_RANGER_01 · os dois vídeos novos (adulto e kids) quando vierem montados.
+UNBOX_02 · UGC_LUDI · AD_TD_RANGER_02 · AD_TD_8H01 · AD_TD_RANGER_01 · os cortes alternativos dos 9 conceitos · os dois vídeos novos (adulto e kids) quando vierem montados.
 
 > **Inconclusivo não é ruim — é não-testado.** O caso RANGER_02 prova: CPA R$67 na Lista 100Verme, R$233 em KIDS QUENTE DR, R$370 em KIDS PROSPECT. Mesmo criativo, três estruturas. Criativo julgado em estrutura ruim volta pro teste, não pro lixo.
 
