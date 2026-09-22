@@ -6,31 +6,36 @@
 
 ---
 
-## 1. ESTRUTURA — 2 ESCALA + 4 TESTE
+## 1. ESTRUTURA — 2 ESCALA + 1 TESTE + TOPO
 
-Verba: **R$2.500/dia**.
+Verba: **R$2.000/dia**.
 
-### Escala (só anúncio graduado entra)
-| Campanha | Público | Verba/dia |
+| Campanha | Estrutura | Verba/dia |
 |---|---|---|
-| **ESCALA FRIO** | ADV aberto / Mulheres 30–50 | R$600 |
-| **ESCALA QUENTE** | ENG IG + video view + site + lista | R$400 |
+| **ESCALA FRIO** | 1 campanha · 1 conjunto · X campeões | R$750 |
+| **ESCALA QUENTE** | 1 campanha · 1 conjunto · X campeões | R$500 |
+| **TESTE** | 1 campanha · 3 conjuntos · anúncios novos | R$600 |
+| **TOPO DE FUNIL** | video view — alimenta o público quente de daqui a 30 dias | R$150 |
 
-**Os mesmos criativos campeões rodam nas duas** — pode, porque os públicos são diferentes e não disputam o mesmo leilão. O que **não** pode é o mesmo anúncio em dois conjuntos do **mesmo** público (§13.4).
+**Os mesmos criativos campeões rodam nas duas campanhas de escala.** Pode, porque os públicos são diferentes e não disputam o mesmo leilão. O que **não** pode é o mesmo anúncio em dois conjuntos do **mesmo** público (§13.4 do CLAUDE.md).
 
-### Teste — 1-1-x (1 campanha · 1 conjunto · x anúncios)
-| Campanha | Por quê | Verba/dia |
-|---|---|---|
-| **TESTE ADULTO** | 69% do faturamento. É onde o volume de criativo tem que ser maior. Os UGC de influenciadora entram aqui. | R$400 |
-| **TESTE KIDS** | 2–4 e 5–9 **juntos** — mesma mãe, mesmo criativo, mesma dor. Separar parte o aprendizado e faz as duas leiloarem entre si. | R$250 |
-| **TESTE KIT FAMÍLIA** | AOV R$1.095 contra R$568 da conta. 19 pedidos em 30 dias = subexplorado. Maior alavanca de AOV que existe hoje. | R$200 |
-| **TESTE RECOMPRA / CLIENTES** | Protocolo é feito 2–4x/ano e **não existe campanha nenhuma cuidando disso**. LAL de compradores + lista. | R$150 |
+### Os 3 conjuntos da campanha de teste
+| Conjunto | Público |
+|---|---|
+| **ADV** | Advantage / aberto |
+| **SITE + ENG IG VERMEFREE** | visitantes do site + engajamento do @vermefree |
+| **ENG DR WILLIAM** | engajamento do perfil do Dr. William |
 
-**Sobra R$500/dia.** Sugestão: R$250 em topo de funil (video view — é o que alimenta o público quente de daqui a 30 dias; sem isso a ESCALA QUENTE seca) + R$250 de reserva pra jogar em cima do que estiver voando na semana.
+> O público de engajamento do Dr. William é **objeto de segmentação**, não conteúdo. O nome fica dentro do gerenciador e nunca aparece em anúncio, legenda ou fala — a regra dura do §4 do CLAUDE.md continua valendo integralmente.
 
-**Regra de verba de teste por anúncio:** cada campanha de teste precisa dividir a verba de forma que **cada anúncio cruze o gate de R$450 em 5–7 dias**. Com R$400/dia e 5 anúncios = R$80/dia cada = gate em ~6 dias. Mais de 6 anúncios na mesma campanha de teste = ninguém cruza o gate e o dado nunca fecha.
+### Regras duras dessa estrutura
+1. **A campanha de teste é ABO — orçamento no conjunto, nunca CBO.** Em CBO o Meta joga quase tudo no conjunto mais barato e os outros dois nunca cruzam o gate de R$450. O teste morre sem dado.
+2. **Excluir os públicos quentes do conjunto ADV.** Sem exclusão, o ADV absorve as mesmas pessoas dos outros dois conjuntos e você paga caro por gente que já era sua — e o dado dos três fica impossível de comparar.
+3. **Máximo 3 anúncios por conjunto de teste.** Com R$200/dia e 3 anúncios, cada um pega ~R$67/dia e cruza o gate em ~7 dias. Com 5 anúncios são 13 dias e o ciclo de decisão quebra.
+4. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.** Caiu pra 2, o problema está na esteira de teste, não na escala.
 
----
+### O que o público de site ainda não entrega
+Os públicos de site **não retroagem** — só acumulam a partir da data de criação. O conjunto SITE + ENG IG vai rodar praticamente só com o engajamento do Instagram até os públicos de site encherem. Contar com isso na leitura dos primeiros 30 dias.
 
 ## 2. AS TRÊS DECISÕES E SEUS CRITÉRIOS
 
