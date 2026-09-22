@@ -220,7 +220,11 @@ Requer opt-in. Template HSM aprovado fora da janela 24h; quando o cliente respon
 
 > **Regra-mãe: anúncio não se julga por DIA, se julga por GASTO.** Três dias não é critério — três dias com R$30/dia é R$90, e R$90 não compra decisão nenhuma numa conta com CPA mediano de R$150.
 
-### 13.1 O gate de R$450
+### 13.1 O gate de R$450 — para MATAR
+> **Mata por GASTO. Gradua por CONVERSãO.**
+> Ausência de sinal só é confiável depois de gastar. Presença de sinal se mede em conversão, não em dinheiro queimado — gate de gasto pra graduar pune o anúncio mais eficiente (um ad de CPA R$37 precisaria de 12 vendas pra provar o que um de CPA R$144 prova com 3).
+> **O gate de graduação está no `OPERACAO-TRAFEGO.md` §3.1: ≥5 compras + R$150 gastos + ROAS Meta ≥ 2,2.**
+
 O corte é **3× o CPA mediano dos anúncios bons** (~R$150). Antes disso, não existe dado — existe ruído.
 
 | Gasto acumulado do anúncio | Ação |
@@ -228,7 +232,7 @@ O corte é **3× o CPA mediano dos anúncios bons** (~R$150). Antes disso, não 
 | < R$150 | **Não olhar.** Não existe dado. |
 | R$150–450 | Só mata com sinal forte de rejeição (ver 13.3) |
 | ≥ R$450 · 0 vendas | **MATA** |
-| ≥ R$450 · CPA ≤ R$150 | **GRADUA** pra campanha de escala |
+| ≥ R$450 · CPA ≤ R$150 | Saudável — candidato a escala (gradua pela regra de conversão) |
 | ≥ R$450 · CPA R$150–200 | **Zona cinza** — segue até R$900 e decide lá |
 | ≥ R$450 · CPA > R$200 | **MATA** |
 
