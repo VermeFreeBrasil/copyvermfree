@@ -6,36 +6,65 @@
 
 ---
 
-## 1. ESTRUTURA — 2 ESCALA + 1 TESTE + TOPO
+## 1. ESTRUTURA NO AR — 22/09/2026
 
-Verba: **R$2.000/dia**.
+Verba: **R$2.150/dia**.
 
 | Campanha | Estrutura | Verba/dia |
 |---|---|---|
-| **ESCALA FRIO** | 1 campanha · 1 conjunto · X campeões | R$750 |
-| **ESCALA QUENTE** | 1 campanha · 1 conjunto · X campeões | R$500 |
-| **TESTE** | 1 campanha · 3 conjuntos · anúncios novos | R$600 |
-| **TOPO DE FUNIL** | video view — alimenta o público quente de daqui a 30 dias | R$150 |
+| **VF \| ESCALA FRIO \| ADV** | CBO · 1 conjunto · campeões | R$750 |
+| **VF \| ESCALA QUENTE** | ABO · 1 conjunto · os mesmos campeões | R$500 |
+| **VF \| TESTE \| SET26 \| ABO** | ABO · 3 conjuntos · inconclusivos | R$600 |
+| **VF \| TOPO DE FUNIL \| VIDEO VIEW** | CBO · THRUPLAY · frio aberto | R$150 |
+| **VF \| RECONHECIMENTO \| POSTS ENGAJADOS** | CBO · REACH · frio aberto | R$150 |
 
-**Os mesmos criativos campeões rodam nas duas campanhas de escala.** Pode, porque os públicos são diferentes e não disputam o mesmo leilão. O que **não** pode é o mesmo anúncio em dois conjuntos do **mesmo** público (§13.4 do CLAUDE.md).
+> O plano original era R$2.000. A campanha de reconhecimento foi somada depois, então a conta está **R$150 acima** do teto acordado.
 
-### Os 3 conjuntos da campanha de teste
-| Conjunto | Público |
-|---|---|
-| **ADV** | Advantage / aberto |
-| **SITE + ENG IG VERMEFREE** | visitantes do site + engajamento do @vermefree |
-| **ENG DR WILLIAM** | engajamento do perfil do Dr. William |
+### Os 3 conjuntos de teste (1-1-x, máximo 3 anúncios cada)
+| Conjunto | Público | R$/dia |
+|---|---|---|
+| **TESTE \| ADV** | Advantage / aberto, mulheres 30–50 | 200 |
+| **TESTE \| ENG IG VERMEFREE + SITE** | ENG 180D @vermefree (89–105 mil) + site | 200 |
+| **TESTE \| LAL 1% CLIENTES 100VERME** | semelhante 1% da lista de clientes | 200 |
 
-> O público de engajamento do Dr. William é **objeto de segmentação**, não conteúdo. O nome fica dentro do gerenciador e nunca aparece em anúncio, legenda ou fala — a regra dura do §4 do CLAUDE.md continua valendo integralmente.
+**O conjunto do Dr. William não existe.** Nenhum ativo dele está vinculado a esta conta — só a página VermeFree e o `@vermefree`. O LAL 1% de clientes entrou no lugar, escolhido porque os dois campeões de menor CPA da conta (AD_TD_SINAIS_01 a R$77 e AD_TD_SINAIS_02 a R$36) vinham justamente da Lista 100Verme.
 
 ### Regras duras dessa estrutura
-1. **A campanha de teste é ABO — orçamento no conjunto, nunca CBO.** Em CBO o Meta joga quase tudo no conjunto mais barato e os outros dois nunca cruzam o gate de R$450. O teste morre sem dado.
-2. **Excluir os públicos quentes do conjunto ADV.** Sem exclusão, o ADV absorve as mesmas pessoas dos outros dois conjuntos e você paga caro por gente que já era sua — e o dado dos três fica impossível de comparar.
-3. **Máximo 3 anúncios por conjunto de teste.** Com R$200/dia e 3 anúncios, cada um pega ~R$67/dia e cruza o gate em ~7 dias. Com 5 anúncios são 13 dias e o ciclo de decisão quebra.
-4. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.** Caiu pra 2, o problema está na esteira de teste, não na escala.
+1. **A campanha de teste é ABO — orçamento no conjunto, nunca CBO.** Em CBO o Meta joga quase tudo no conjunto mais barato e os outros dois nunca cruzam o gate.
+2. **Máximo 3 anúncios por conjunto de teste.** Com R$200/dia e 3 anúncios, cada um pega ~R$67/dia e cruza o gate em ~7 dias.
+3. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.** Caiu pra 2, o problema está na esteira de teste.
+4. **Os mesmos campeões rodam nas duas campanhas de escala** — públicos diferentes, leilões diferentes. O que não pode é o mesmo anúncio em dois conjuntos do mesmo público.
 
-### O que o público de site ainda não entrega
-Os públicos de site **não retroagem** — só acumulam a partir da data de criação. O conjunto SITE + ENG IG vai rodar praticamente só com o engajamento do Instagram até os públicos de site encherem. Contar com isso na leitura dos primeiros 30 dias.
+---
+
+## 1.A INVENTÁRIO DE CRIATIVOS — classificado
+
+### CONVERTE → escala
+| Criativo | Vendas (lifetime) | CPA | Tipo |
+|---|---|---|---|
+| AD_TD_SINAIS_01 | 166 · 19 em 30d | R$77 | VIDEO |
+| AD_TD_JATOMEI_01 | 159 | R$77 | VIDEO |
+| AD_TD_JATOMEI_02 | 133 | R$78 | VIDEO |
+| AD_TD_8H02 | 22 | **R$44** | VIDEO |
+| SINAIS_02 | 12 | R$105 | SHARE |
+| 3SINAIS | 12 | R$153 | SHARE |
+| SINAIS_01 | 9 | R$122 | SHARE |
+| ROTINA_CICLOS | 9 | R$54 | SHARE |
+| AD_TD_SINAIS_02 | 8 | **R$36** | VIDEO |
+| KIDS_AMAMENTACAO | 5 | R$130 | SHARE |
+
+### INCONCLUSIVO → teste (menos de 5 vendas)
+12SINAIS (4 · R$57) · JULIANA_UNBOX (4 · R$44) · DUVIDAS (3 · R$52) · KIDS_PET (2 · R$126) · CUIDADO (2 · R$168) · AD_TD_RANGER_02 (5 lifetime · R$67, mas 2 em 30d) · UGC_TAYLOU (1) · UNBOX_02 (1) · UGC_LUDI (0) · AD_TD_8H01 (2) · AD_TD_RANGER_01 (0)
+
+### DESCARTE
+**DIFERENCAS** — R$486 gastos, **0 vendas**. Único descarte limpo pela régua.
+
+### Fila (sem vaga ainda)
+AD_TD_8H01 · AD_TD_RANGER_01 · os dois vídeos novos (adulto e kids) quando vierem montados.
+
+> **Inconclusivo não é ruim — é não-testado.** O caso RANGER_02 prova: CPA R$67 na Lista 100Verme, R$233 em KIDS QUENTE DR, R$370 em KIDS PROSPECT. Mesmo criativo, três estruturas. Criativo julgado em estrutura ruim volta pro teste, não pro lixo.
+
+---
 
 ## 2. O MODELO MENTAL
 
@@ -233,6 +262,13 @@ utm_term={{placement}}
 
 **`utm_source=MetaAds`, nunca `FB`** — é o padrão da Botanika e alinha as duas contas no Utmify. Vale pra todo anúncio novo daqui pra frente.
 
+### Causa raiz da cobertura em 14%
+Os criativos da geração nova (SINAIS_01, SINAIS_02, 3SINAIS, ROTINA_CICLOS, KIDS_AMAMENTACAO, DUVIDAS, 12SINAIS…) são **`object_type: SHARE`** — post impulsionado. **Post impulsionado não carrega `url_tags`**, então a venda nunca chega ao Utmify.
+
+A geração anterior (`AD_TD_*`) é `object_type: VIDEO` e carrega UTM normalmente.
+
+Não dá pra corrigir por API: criativo é imutável na Meta e `url_tags` não é editável. **Para o anúncio ser rastreável ele precisa nascer como criativo de VÍDEO, não como boost de post.**
+
 ---
 
 ## 8. O QUE MUDA DA BOTANIKA PRA VERMEFREE
@@ -265,9 +301,35 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 
 ---
 
-## 10. O QUE AINDA TRAVA A LEITURA
+## 10. O QUE AINDA TRAVA — bloqueios abertos
 
-- **Cobertura de UTM em 14,2%** (413 rastreados / 2.486 não). Até subir, o Utmify só serve como taxa de rastreio — decisão de anúncio sai de Meta + Shopify.
-- **Públicos de site não retroagem** — precisam ser recriados e acumular do zero. Cada dia parado atrasa a ESCALA QUENTE.
-- **Filtro de data do Utmify não está sendo aplicado** nas puxadas via API (devolve lifetime).
-- **Margem de contribuição desconhecida** — sem ela não dá pra fixar o breakeven blended (§3.4).
+| Bloqueio | Efeito | Como destravar |
+|---|---|---|
+| **Termos de público personalizado não aceitos** | `[LISTA] Leads` (46–55 mil) e `[LISTA] Clientes` (13–15 mil) não podem ser usados. O teste roda com o LAL 1% no lugar da lista real. | Aceitar em business.facebook.com/ads/manage/customaudiences/tos/?act=1317272150350067 |
+| **Sem permissão de `instagram_media_id`** | Não dá pra impulsionar post do Instagram pela API. Os boosts antigos foram feitos pelo post do **Facebook** (`object_story_id`), não pela mídia do IG. | Fazer pelo Gerenciador, ou liberar a permissão |
+| **Públicos de site em 20 pessoas** | SITE\|TODOS 7/30/180D, VIU PRODUTO, CHECKOUT, COMPRADORES — todos vazios. Público de site **não retroage**. | Recriar e esperar acumular |
+| **Cobertura de UTM em 14,2%** | Utmify não serve pra decisão de anúncio. Decidir com Meta + Shopify. | Criativos novos como VÍDEO, não como boost (§7) |
+| **COGS vazio no Shopify** | `unitCost` null em todos os produtos → sem breakeven real. | 5 números do §3.6 |
+| **Filtro de data do Utmify não aplica** | Puxadas via API devolvem lifetime. | — |
+
+---
+
+## 11. COMPLIANCE — a régua do §4 vale para post impulsionado
+
+Post orgânico que vira anúncio **é anúncio**. O §4 do `CLAUDE.md` se aplica inteiro à legenda.
+
+Auditoria dos 7 posts mais engajados do `@vermefree` (22/09):
+
+| Post | Engajamento | Veredito |
+|---|---|---|
+| "Criança agitada, irritada, chorosa" (oxiúros) | **283** | ❌ "mais de 100 tipos de parasitas" |
+| "Insônia, bruxismo, vontade de doce" (lua nova) | 147 | ⚠️ afirmação causal + lista de sintomas beirando diagnóstico |
+| "12 sinais" (reels) | 120 | ❌ "agindo contra mais de 100 tipos" |
+| **"Desparasitar é o primeiro passo"** (hábitos + pet) | 112 | ✅ |
+| "Eixo intestino-cérebro" | 77 | ❌ "elimina mais de 100 tipos" |
+| **"Contaminação pelo prato"** (5 cuidados) | 62 | ✅ |
+| "TDAH / estudo" | 57 | ❌ "combate mais de 100 tipos" |
+
+Também reprovados por comparação com farmácia (§4): "3 motivos caminho natural" e "Somos 90% água" — ambos usam *"muito além do vermífugo comum"*.
+
+> **Regra: antes de impulsionar qualquer post, rodar o checklist do §11 do `CLAUDE.md` na legenda.** Os posts que mais engajam organicamente são justamente os de claim mais forte — é o que os torna mais arriscados como anúncio.
