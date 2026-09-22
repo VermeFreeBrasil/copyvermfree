@@ -92,9 +92,42 @@ AOV atual **R$568,73**. O pixel do Meta captura ~74% das vendas reais (188 Shopi
 
 **ROAS 2 no Meta não perde dinheiro, mas não bate a meta 3.** Recalcular esta tabela sempre que o AOV mudar mais de 10%.
 
-> ⚠️ **Falta o breakeven.** Sem a margem de contribuição da VermeFree (custo de produto + frete + taxas) não dá pra dizer onde a conta empata. A Botanika opera com breakeven blended 1,8 (margem ~56%). **Preencher quando o Gabriel passar a margem** — até lá o piso de 2,2 é meta, não guardrail de sobrevivência.
+### 3.5 Guardrails da conta (blended)
 
----
+| Nível | Valor | O que significa |
+|---|---|---|
+| **Alvo** | **4,5** | Onde a conta deve operar. Abaixo disso, revisa o mix de criativo e público |
+| **Piso de ação** | **3,0** | Para de escalar verba e investiga. É a meta declarada da conta |
+| **Breakeven** | *a calcular* | Onde a conta empata — bloqueado pelo COGS ausente (ver abaixo) |
+
+**Por que o piso de ação não é 4,5** (o número da Botanika): blended cai conforme a verba sobe — você compra leilão mais caro na margem. É aritmética de escala, não piora.
+
+| Janela | Gasto/dia | Blended |
+|---|---|---|
+| 30 dias (23/08–21/09) | R$1.504 | 7,84 |
+| Semana 15–21/09 | R$2.529 | 6,04 |
+| 21/09 | R$1.856 | 4,46 |
+
+Um piso em 4,5 teria disparado em 21/09 — e o diagnóstico correto daquele dia era **falta de entrega**, não excesso de gasto: sobraram 7 anúncios rodando, com o CPA no melhor nível do mês. Piso alto demais faz cortar justamente quando o certo é abrir.
+
+### 3.6 ⚠️ Breakeven — bloqueado por dado faltando
+
+O `unitCost` está **`null` em todos os produtos do Shopify**, então `gross_profit` e `cost_of_goods_sold` voltam zero. Sem isso não dá pra dizer onde a conta empata.
+
+**O que o Shopify já entrega** (30 dias, 23/08–21/09):
+
+| Linha | Valor |
+|---|---|
+| Vendas brutas | R$416.045,00 |
+| Descontos | −R$58.514,29 (14,1%) |
+| Devoluções | −R$3.594,22 (**0,86%** — não é linha de preocupação) |
+| Vendas líquidas | R$353.936,49 |
+| Frete cobrado | +R$6.386,73 (1,5% — o resto é frete grátis, custo da casa) |
+| Impostos | R$0 (não configurado no Shopify) |
+
+**Para destravar, faltam 5 números:** custo do kit Adulto · custo Kids 2–4 · custo Kids 5–9 · custo Óleo de Alho · frete médio pago por pedido + taxa de gateway (%) + % de imposto.
+
+Com eles, preencher o `unitCost` de cada produto no Shopify (via API) — aí `gross_profit` e o breakeven passam a sair sozinhos de qualquer consulta, sem depender de planilha paralela. O Kit Família se calcula a partir dos componentes.
 
 ## 4. FADIGA — o campeão que funcionou e caiu
 
