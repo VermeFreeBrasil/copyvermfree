@@ -8,26 +8,27 @@
 
 ## 1. ESTRUTURA NO AR — 22/09/2026
 
-Verba: **R$2.400/dia**.
+Verba: **R$2.575/dia**.
 
 | Campanha | Estrutura | Verba/dia |
 |---|---|---|
 | **VF \| ESCALA FRIO \| ADV** | CBO · 1 conjunto · 10 campeões | R$750 |
 | **VF \| ESCALA QUENTE** | ABO · 1 conjunto · os mesmos campeões | R$500 |
-| **VF \| TESTE 1 \| SET26 \| ABO** | ABO · 2 conjuntos · inconclusivos | R$400 |
+| **VF \| TESTE 1 \| SET26 \| ABO** | ABO · 3 conjuntos · inconclusivos | R$575 |
 | **VF \| TESTE 2 \| CRIATIVOS NOVOS** | ABO · 3 conjuntos · criativos nunca usados | R$600 |
-| **VF \| TOPO DE FUNIL \| VIDEO VIEW** | CBO · THRUPLAY · frio aberto | R$150 |
+| **VF \| TOPO DE FUNIL \| VIDEO VIEWS \| ABO** | ABO · VIDEO_VIEWS · frio aberto | R$150 |
 | *VF \| RECONHECIMENTO* | *CBO · REACH · pausada, esperando os posts* | *(150)* |
 
-**Escala R$1.250 · Teste R$1.000 · Topo R$150.** O teste ficou em 42% da verba — alto, mas é a fase: a conta tem 20 criativos sem leitura e só 10 provados.
+**Escala R$1.250 · Teste R$1.175 · Topo R$150.** O teste ficou em 46% da verba — alto, mas é a fase: a conta tem 20 criativos sem leitura e só 10 provados.
 
-### TESTE 1 — inconclusivos (R$400)
+### TESTE 1 — inconclusivos (R$575)
 | Conjunto | Público | R$/dia | Anúncios |
 |---|---|---|---|
-| **ADV** | Advantage / mulheres 30–50 | 200 | 12SINAIS · DUVIDAS · KIDS_PET |
+| **ADV** | Advantage / mulheres 30–50 | 200 | 12SINAIS · DUVIDAS |
 | **ENG IG VERMEFREE + SITE** | ENG 180D @vermefree (89–105 mil) + site | 200 | JULIANA_UNBOX · UGC_TAYLOU · CUIDADO |
+| **KIDS** | mulheres 28–45 BR | 175 | KIDS_AMAMENTACAO · KIDS_PET · AD_TD_RANGER_02 |
 
-Conjunto **LAL 1% CLIENTES pausado** no corte de 22/09. Fila: UNBOX_02 (1 venda) · UGC_LUDI (0) · AD_TD_RANGER_02.
+Conjunto **LAL 1% CLIENTES pausado** no corte de 22/09. Fila: UNBOX_02 (1 venda) · UGC_LUDI (0).
 
 ### TESTE 2 — criativos novos (R$600)
 | Conjunto | Público | R$/dia | Anúncios |
@@ -48,6 +49,20 @@ Conjunto **LAL 1% CLIENTES pausado** no corte de 22/09. Fila: UNBOX_02 (1 venda)
 3. **Mínimo 3 anúncios com ROAS ≥ 2,2 em cada campanha de escala.**
 4. **Os mesmos campeões rodam nas duas campanhas de escala** — públicos diferentes, leilões diferentes.
 5. **Duas campanhas de teste nunca compartilham público.**
+
+### Kids precisa de conjunto próprio — regra
+
+**Kids é 24% do faturamento** (R$83 mil de R$354 mil em 30 dias). Em 22/09 o conjunto KIDS FRIO foi pausado na reestruturação e a conta ficou **sem nenhum público dedicado a mães** — o KIDS_AMAMENTACAO foi jogado na ESCALA FRIO pra disputar com 9 criativos de adulto e entregou **R$2,27 num dia inteiro**.
+
+Corrigido em 23/09 com o conjunto KIDS no TESTE 1. **Criativo de Kids em conjunto de adulto não entrega** — o algoritmo escolhe o que já converte naquele público, e Kids nunca é.
+
+### Otimização de topo de funil: VIDEO_VIEWS, não THRUPLAY
+
+A primeira campanha de topo (CBO + THRUPLAY + ON_VIDEO) ficou **36 horas ACTIVE sem gastar um centavo**, sem erro reportado por `ads_get_errors`. THRUPLAY exige 15 segundos assistidos; com vídeos de 53 a 100 segundos e R$150/dia em público aberto, a Meta não acha volume e simplesmente não entrega.
+
+Refeita em ABO com **`VIDEO_VIEWS`** (2 segundos), que é o que alimenta os públicos de video view de qualquer forma.
+
+> **CBO trava a otimização:** todos os conjuntos de uma campanha CBO precisam ter o mesmo `optimization_goal`. Pra trocar, só criando campanha nova. Por isso o topo virou ABO.
 
 ---
 
