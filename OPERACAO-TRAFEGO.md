@@ -345,10 +345,33 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 |---|---|---|
 | **Termos de público personalizado não aceitos** | `[LISTA] Leads` (46–55 mil) e `[LISTA] Clientes` (13–15 mil) não podem ser usados. O teste roda com o LAL 1% no lugar da lista real. | Aceitar em business.facebook.com/ads/manage/customaudiences/tos/?act=1317272150350067 |
 | **Sem permissão de `instagram_media_id`** | Não dá pra impulsionar post do Instagram pela API. Os boosts antigos foram feitos pelo post do **Facebook** (`object_story_id`), não pela mídia do IG. | Fazer pelo Gerenciador, ou liberar a permissão |
-| **Públicos de site em 20 pessoas** | SITE\|TODOS 7/30/180D, VIU PRODUTO, CHECKOUT, COMPRADORES — todos vazios. Público de site **não retroage**. | Recriar e esperar acumular |
+| **Públicos de site em 20 pessoas** | SITE\|TODOS, VIU PRODUTO, CHECKOUT, COMPRADORES — **todos** leem 20 pessoas, e o 7D lê igual ao 180D. Vale também pros criados em junho e julho (VISITANTES DO SITE 90D, RMKT KIDS, InitiateCheckout 90D, COMPRADORES DO SITE 60D). Sem público de site, não existe remarketing de site nessa conta. | Ver §10.1 — diagnóstico feito, causa ainda em aberto |
 | **Cobertura de UTM em 14,2%** | Utmify não serve pra decisão de anúncio. Decidir com Meta + Shopify. | Criativos novos como VÍDEO, não como boost (§7) |
 | **COGS vazio no Shopify** | `unitCost` null em todos os produtos → sem breakeven real. | 5 números do §3.6 |
 | **Filtro de data do Utmify não aplica** | Puxadas via API devolvem lifetime. | — |
+
+
+### 10.1 O caso dos públicos de site vazios (25/09)
+
+**O que já foi descartado como causa** — com dado, não com palpite:
+
+| Hipótese | Verificação | Resultado |
+|---|---|---|
+| Pixel parado | `last_fired_time` 25/09 06:17 (web) e 06:13 (servidor) | Vivo |
+| Evento não chega | `ads_get_dataset_stats`, 7 dias. Só na hora das 05:00 de 25/09: PageView 299 · ViewContent 82 · AddToCart 24 · InitiateCheckout 21 · AddPaymentInfo 11 · Purchase 7 | Chega em volume |
+| Nome de evento errado | Os eventos do pixel batem exatamente com os das regras | Bate |
+| Regra malformada | `VISITORS_BY_URL` + filtro `event eq InitiateCheckout` é o padrão documentado pra evento padrão | Regra correta |
+| Casamento ruim (EMQ) | `ads_get_dataset_quality`: Purchase 9,2 · AddPaymentInfo 8,9 · InitiateCheckout 7,2 · ViewContent 6,8 · AddToCart 6,9. `fbp` e `external_id` em **100%** em todos. Upload horário. | Casamento ótimo |
+| Só os públicos novos | Os de junho/julho também estão em 20 | Não é idade do público |
+| Só a leitura da API | Os públicos de IG (PLATFORM, mesmo subtipo) devolvem número real: ENG 180D 90–106 mil, ENG 7D 4,6–5,4 mil | A API reporta de verdade |
+
+**O que sobra:** o evento é aceito pra mensuração mas **não pode ser usado pra montar público**. Isso é o comportamento de consentimento negado pra marketing (LGPD/consent mode — o dataset lista `gtm.init_consent`, ou seja, o GTM roda com consent mode) ou de `data_processing_options: ["LDU"]` sendo enviado junto do evento. Nos dois casos a conversão reporta normal e o público nunca enche — que é exatamente o quadro aqui.
+
+**Isso não se resolve pelo Gerenciador de Anúncios.** É configuração do site: banner de consentimento / Customer Privacy do Shopify / consent mode do GTM.
+
+**Antes de mexer no site, checar 30 segundos no Gerenciador:** Públicos → olhar o tamanho de `VIU PRODUTO | 180D`. Se a interface mostrar número real, o problema é só de leitura da API e o remarketing de site está de pé. Se mostrar "Abaixo de 1.000", está confirmado.
+
+**Enquanto isso:** o remarketing quente da conta se apoia em público de **engajamento de IG e de vídeo**, que enchem normalmente — esses não passam pelo pixel.
 
 ---
 
