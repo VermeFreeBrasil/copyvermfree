@@ -36,6 +36,32 @@ Objetivo Envolvimento · otimização **CONVERSATIONS** · `destination_type: WH
 
 **Fila pra quando a lista destravar:** público de **checkout abandonado do Shopify** — 1.273 abandonos em 180 dias, com nome, e-mail ou telefone. É a versão literal de "preencheu formulário e não comprou", e não depende do pixel. Trava: regra de PII do ambiente + termos de lista de clientes não aceitos.
 
+### Limpeza e graduação de 25/09
+
+**Mortos por sinal precoce (§13.3 — CTR abaixo de 1% com 2.000+ impressões):**
+
+| Anúncio | Gasto | CTR | Impressões |
+|---|---|---|---|
+| N_ABRINDO_KIT | R$154,63 | 0,77% | 12.681 |
+| AD_TD_SINAIS_01 (ESCALA FRIO) | R$102,83 | 0,78% | 2.566 |
+| CUIDADO | R$88,94 | 0,70% | 2.274 |
+| N_O_QUE_VEM_NO_KIT | R$49,46 | 0,63% | 3.996 |
+
+**A régua de CTR não vale pro TOPO DE FUNIL.** O TOPO_AD_TD_8H02 roda CTR 0,39% e está certo — ele é otimizado pra `VIDEO_VIEWS`, clique não é o objetivo. Aplicar §13.3 lá mataria o topo inteiro por engano.
+
+**Canibalização corrigida:** `KIDS_AMAMENTACAO` rodava ao mesmo tempo na ESCALA FRIO e no TESTE|KIDS — leiloando contra si e sujando o dado do teste. Pausado na escala, mantido no teste (§13.4).
+
+**Graduado:** `DUVIDAS` — R$474,95 · 6 compras · CPA R$79 · ROAS Meta 10,97. Passou o gate do §3.1, subiu pra ESCALA FRIO e ESCALA QUENTE e saiu do TESTE|ADV.
+
+**Achado estrutural:** a ESCALA FRIO tinha 9 anúncios e a ESCALA QUENTE 8 — mas **só 3 tinham graduado de verdade**. Os outros entraram sem passar por gate nenhum. O algoritmo concentra sozinho (o JATOMEI_02 comeu R$6,8k), mas isso é sorte, não sistema. A escala só recebe anúncio graduado — revisar na segunda.
+
+**Maior vazamento aberto:** `3SINAIS` na ESCALA QUENTE — **R$2.029,93 com CPA R$169** contra R$72 do JATOMEI_01 ao lado. Já passou 2x o teto de R$900 da zona cinza. Corte proposto pra revisão de gate de segunda.
+
+### Onde entram os criativos novos
+Regra: **criativo novo nunca entra em escala e nunca ganha campanha própria.** Campanha de teste nova exigiria um 7º público distinto — não existe um que seja grande e distinto ao mesmo tempo, e duas campanhas de teste nunca compartilham público (§13.4). Entram nos **slots que a limpeza libera**, todos no **mesmo conjunto**, pra o criativo ser a única variável. Conjunto padrão: **TESTE | ADV** — frio aberto, mesmo público da ESCALA FRIO, então o que graduar transfere sem surpresa.
+
+Subiu em 25/09: `N_A2_DIRETO` (vídeo "AD - A2_ DIRETO", 46s) no TESTE|ADV. Os outros três do lote (A1, A3, A4) ainda não apareceram na conta — vídeo grande demora a processar.
+
 ### TESTE 1 — inconclusivos (R$575)
 | Conjunto | Público | R$/dia | Anúncios |
 |---|---|---|---|

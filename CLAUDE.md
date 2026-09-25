@@ -236,15 +236,17 @@ O corte é **3× o CPA mediano dos anúncios bons** (~R$150). Antes disso, não 
 | ≥ R$450 · CPA R$150–200 | **Zona cinza** — segue até R$900 e decide lá |
 | ≥ R$450 · CPA > R$200 | **MATA** |
 
+> **Recalibrado em 25/09 com o dado real.** Duas correções que valem como lição: o **JATOMEI_01 estava listado como "corta, CPA R$220"** — hoje está em **R$72 com 31 vendas**, ou seja, teria sido morto por engano pela segunda vez. E o **JATOMEI_02** saiu de R$117 pra R$98 com 70 vendas. Faixa de CPA envelhece rápido: conferir antes de matar, sempre.
+
 **Por que existe essa regra:** o AD_TD_JATOMEI_02 foi declarado morto com ROAS 1,18 / CPA R$280 numa leitura de 2 dias. Ele se recuperou pra **ROAS 5,26 com 24 vendas**. Era um vale, não o fim. Criativo tem vale de aprendizagem — matar cedo é jogar fora campeão.
 
 ### 13.2 Faixas de CPA (calibradas com dados reais da conta)
 | Faixa | Classificação | Exemplos reais |
 |---|---|---|
-| ≤ R$90 | **Campeão** → escala | DUVIDAS R$37 · JULIANA_UNBOX R$44 · 12SINAIS R$52 · ROTINA_CICLOS R$60 · UNBOX_02 R$80 |
-| R$90–150 | **Saudável** → mantém | SINAIS_01 R$109 · JATOMEI_02 R$117 · KIDS_PET R$126 · KIDS_AMAMENTACAO R$130 |
-| R$150–200 | **Cinza** → observa até R$900 | 3SINAIS R$151 · CUIDADO R$168 |
-| > R$200 | **Corta** | JATOMEI_01/AUTO R$220 · LAL 1% R$411 |
+| ≤ R$90 | **Campeão** → escala | ROTINA_CICLOS R$51 · 12SINAIS R$64 · AD_TD_RANGER_02 R$71 · JATOMEI_01 R$72 · DUVIDAS R$79 |
+| R$90–150 | **Saudável** → mantém | JATOMEI_02 R$98 · SINAIS_01 R$109 · JULIANA_UNBOX R$121 · AD_TD_8H02 R$143 |
+| R$150–200 | **Cinza** → observa até R$900 | 3SINAIS R$169 |
+| > R$200 | **Corta** | LAL 1% R$411 |
 
 **Julgar criativo por CPA, não por ROAS.** ROAS mistura ticket médio (kit família vs frasco avulso) e polui a comparação entre criativos. CPA isola a eficiência do anúncio.
 
