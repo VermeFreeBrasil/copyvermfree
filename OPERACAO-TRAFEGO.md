@@ -364,6 +364,7 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 | **Cobertura de UTM em 14,2%** | Utmify não serve pra decisão de anúncio. Decidir com Meta + Shopify. | Criativos novos como VÍDEO, não como boost (§7) |
 | **COGS vazio no Shopify** | `unitCost` null em todos os produtos → sem breakeven real. | 5 números do §3.6 |
 | **Filtro de data do Utmify não aplica** | Puxadas via API devolvem lifetime. | — |
+| **`location_types` obsoleto grudado no conjunto** | Todo conjunto criado por API sai com `geo_locations.location_types: ["frequently_in","home"]` — opções que o Meta aposentou. Não atrapalha quem já está no ar, mas **trava a publicação de rascunho** no Gerenciador com o erro **#1870194** ("direcionamento por localização que foi removida"). Reescrever o `targeting` por API **não tira**: o update volta `success: true` e o campo reaparece na releitura. | Só pela interface: abrir o conjunto → Localizações → "Editar" → remover e re-selecionar Brasil → publicar |
 
 
 ### 10.1 O caso dos públicos de site vazios (25/09)
@@ -379,6 +380,7 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 | Casamento ruim (EMQ) | `ads_get_dataset_quality`: Purchase 9,2 · AddPaymentInfo 8,9 · InitiateCheckout 7,2 · ViewContent 6,8 · AddToCart 6,9. `fbp` e `external_id` em **100%** em todos. Upload horário. | Casamento ótimo |
 | Só os públicos novos | Os de junho/julho também estão em 20 | Não é idade do público |
 | Só a leitura da API | Os públicos de IG (PLATFORM, mesmo subtipo) devolvem número real: ENG 180D 90–106 mil, ENG 7D 4,6–5,4 mil | A API reporta de verdade |
+| Criados sem `prefill` | `creation_params` dos públicos lê `{"prefill":"true"}` | Foram criados com backfill ligado |
 
 **O que sobra:** o evento é aceito pra mensuração mas **não pode ser usado pra montar público**. Isso é o comportamento de consentimento negado pra marketing (LGPD/consent mode — o dataset lista `gtm.init_consent`, ou seja, o GTM roda com consent mode) ou de `data_processing_options: ["LDU"]` sendo enviado junto do evento. Nos dois casos a conversão reporta normal e o público nunca enche — que é exatamente o quadro aqui.
 
