@@ -55,7 +55,15 @@ Objetivo Envolvimento · otimização **CONVERSATIONS** · `destination_type: WH
 
 **Achado estrutural:** a ESCALA FRIO tinha 9 anúncios e a ESCALA QUENTE 8 — mas **só 3 tinham graduado de verdade**. Os outros entraram sem passar por gate nenhum. O algoritmo concentra sozinho (o JATOMEI_02 comeu R$6,8k), mas isso é sorte, não sistema. A escala só recebe anúncio graduado — revisar na segunda.
 
-**Cortado 25/09:** `3SINAIS` na ESCALA QUENTE — **R$2.029,93 com CPA R$169** contra R$72 do JATOMEI_01 ao lado, e 2x o teto de R$900 da zona cinza. Pausado só na QUENTE. **O `3SINAIS` da ESCALA FRIO ficou no ar**: R$43,14 gastos, 1 venda, ROAS 25,32 — está abaixo do piso de R$150 do §13.1, então ali não existe dado pra matar. Mesmo criativo, decisões opostas, e as duas certas: o gate é por posição, não por nome de anúncio.
+**`3SINAIS` — cortado e religado no mesmo dia. Fica como lição.**
+
+Eu propus cortar o da ESCALA QUENTE por causa do **CPA de R$169 no Meta**, contra R$72 do JATOMEI_01 no mesmo conjunto. O Pedro questionou, e ele estava certo: **o §13.2 manda não matar no limite sem olhar o blended, e eu não olhei.**
+
+A conta: o pixel está capturando **58% das vendas** (112 compras no Meta contra 193 pedidos na Shopify, semana 18–24/09). Então as 12 vendas que o Meta mostra são provavelmente **~21 de verdade** → **CPA real ≈ R$98**, que é faixa **saudável**, não zona cinza. O ROAS de 4,01 do Meta também está acima do piso de ação de 3,0.
+
+**Os dois `3SINAIS` seguem no ar.** O erro não foi de execução, foi de leitura: usei o número pessimista do Meta como se fosse o real, exatamente o que a régua proíbe.
+
+> **Regra reforçada:** antes de matar por CPA, dividir o CPA do Meta pela cobertura do pixel da semana. Com cobertura em ~58%, o CPA real é cerca de **0,58x** o que o Meta mostra.
 
 **Próximo no gate:** `AD_TD_SINAIS_01` na ESCALA QUENTE — R$409,05 com 1 venda, CPA R$409. Cruza os R$450 nas próximas horas e morre pela regra. Com o 3SINAIS fora, a verba da QUENTE redistribui e ele acelera.
 
