@@ -6,9 +6,9 @@
 
 ---
 
-## 1. ESTRUTURA NO AR — 22/09/2026
+## 1. ESTRUTURA NO AR — 25/09/2026
 
-Verba: **R$2.575/dia**.
+Verba: **R$2.675/dia**.
 
 | Campanha | Estrutura | Verba/dia |
 |---|---|---|
@@ -17,9 +17,24 @@ Verba: **R$2.575/dia**.
 | **VF \| TESTE 1 \| SET26 \| ABO** | ABO · 3 conjuntos · inconclusivos | R$575 |
 | **VF \| TESTE 2 \| CRIATIVOS NOVOS** | ABO · 3 conjuntos · criativos nunca usados | R$600 |
 | **VF \| TOPO DE FUNIL \| VIDEO VIEWS \| ABO** | ABO · VIDEO_VIEWS · frio aberto | R$150 |
+| **[CTWA] RECUPERACAO \| QUASE COMPROU** | ABO · 2 conjuntos · destino WhatsApp | R$100 |
 | *VF \| RECONHECIMENTO* | *CBO · REACH · pausada, esperando os posts* | *(150)* |
 
-**Escala R$1.250 · Teste R$1.175 · Topo R$150.** O teste ficou em 46% da verba — alto, mas é a fase: a conta tem 20 criativos sem leitura e só 10 provados.
+**Escala R$1.250 · Teste R$1.175 · Topo R$150 · Recuperação R$100.** O teste ficou em 46% da verba — alto, mas é a fase: a conta tem 20 criativos sem leitura e só 10 provados.
+
+### CTWA — recuperação pro WhatsApp (R$100) — subiu 25/09
+Objetivo Envolvimento · otimização **CONVERSATIONS** · `destination_type: WHATSAPP` · Advantage+ Audience **desligado** (pra não vazar do público). Sem Direct e sem Messenger.
+
+| Conjunto | Público | R$/dia | Anúncios |
+|---|---|---|---|
+| **A \| SITE — VIU PRODUTO + CHECKOUT 180D** | os dois públicos de pixel, excluindo COMPRADORES 180D | 60 | AD_CTWA_DUVIDAS · AD_CTWA_UNBOX_KIT |
+| **B \| ENG IG VERMEFREE 30D** | ENG 30D + ENG 7D @vermefree (25–29 mil) | 40 | os mesmos dois |
+
+**Por que dois conjuntos:** o A é o público que o Pedro pediu; o B existe porque os públicos de pixel podem estar vazios (§10.1). Se o A não entregar em 48h, a verba dele vai pro B. Mesmo criativo nos dois — assim o público é a única variável.
+
+**O número do WhatsApp não é escolhível por API.** O anúncio usa o número conectado à Página VermeFree (`1077262318812256`). Conferir nas configurações da Página que é o 31 3157-3845 (suporte Poly).
+
+**Fila pra quando a lista destravar:** público de **checkout abandonado do Shopify** — 1.273 abandonos em 180 dias, com nome, e-mail ou telefone. É a versão literal de "preencheu formulário e não comprou", e não depende do pixel. Trava: regra de PII do ambiente + termos de lista de clientes não aceitos.
 
 ### TESTE 1 — inconclusivos (R$575)
 | Conjunto | Público | R$/dia | Anúncios |
@@ -343,7 +358,7 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 
 | Bloqueio | Efeito | Como destravar |
 |---|---|---|
-| **Termos de público personalizado não aceitos** | `[LISTA] Leads` (46–55 mil) e `[LISTA] Clientes` (13–15 mil) não podem ser usados. O teste roda com o LAL 1% no lugar da lista real. | Aceitar em business.facebook.com/ads/manage/customaudiences/tos/?act=1317272150350067 |
+| **Termos de público personalizado não aceitos** | `[LISTA] Leads` (46–55 mil) e `[LISTA] Clientes` (13–15 mil) não podem ser usados. O teste roda com o LAL 1% no lugar da lista real. | Também bloqueia excluir `[LISTA] Clientes` de qualquer conjunto novo (erro 1870092). Aceitar em facebook.com/customaudiences/value_based/tos/?act=1317272150350067 |
 | **Sem permissão de `instagram_media_id`** | Não dá pra impulsionar post do Instagram pela API. Os boosts antigos foram feitos pelo post do **Facebook** (`object_story_id`), não pela mídia do IG. | Fazer pelo Gerenciador, ou liberar a permissão |
 | **Públicos de site em 20 pessoas** | SITE\|TODOS, VIU PRODUTO, CHECKOUT, COMPRADORES — **todos** leem 20 pessoas, e o 7D lê igual ao 180D. Vale também pros criados em junho e julho (VISITANTES DO SITE 90D, RMKT KIDS, InitiateCheckout 90D, COMPRADORES DO SITE 60D). Sem público de site, não existe remarketing de site nessa conta. | Ver §10.1 — diagnóstico feito, causa ainda em aberto |
 | **Cobertura de UTM em 14,2%** | Utmify não serve pra decisão de anúncio. Decidir com Meta + Shopify. | Criativos novos como VÍDEO, não como boost (§7) |
