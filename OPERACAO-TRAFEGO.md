@@ -55,7 +55,9 @@ Objetivo Envolvimento · otimização **CONVERSATIONS** · `destination_type: WH
 
 **Achado estrutural:** a ESCALA FRIO tinha 9 anúncios e a ESCALA QUENTE 8 — mas **só 3 tinham graduado de verdade**. Os outros entraram sem passar por gate nenhum. O algoritmo concentra sozinho (o JATOMEI_02 comeu R$6,8k), mas isso é sorte, não sistema. A escala só recebe anúncio graduado — revisar na segunda.
 
-**Maior vazamento aberto:** `3SINAIS` na ESCALA QUENTE — **R$2.029,93 com CPA R$169** contra R$72 do JATOMEI_01 ao lado. Já passou 2x o teto de R$900 da zona cinza. Corte proposto pra revisão de gate de segunda.
+**Cortado 25/09:** `3SINAIS` na ESCALA QUENTE — **R$2.029,93 com CPA R$169** contra R$72 do JATOMEI_01 ao lado, e 2x o teto de R$900 da zona cinza. Pausado só na QUENTE. **O `3SINAIS` da ESCALA FRIO ficou no ar**: R$43,14 gastos, 1 venda, ROAS 25,32 — está abaixo do piso de R$150 do §13.1, então ali não existe dado pra matar. Mesmo criativo, decisões opostas, e as duas certas: o gate é por posição, não por nome de anúncio.
+
+**Próximo no gate:** `AD_TD_SINAIS_01` na ESCALA QUENTE — R$409,05 com 1 venda, CPA R$409. Cruza os R$450 nas próximas horas e morre pela regra. Com o 3SINAIS fora, a verba da QUENTE redistribui e ele acelera.
 
 ### Onde entram os criativos novos
 Regra: **criativo novo nunca entra em escala e nunca ganha campanha própria.** Campanha de teste nova exigiria um 7º público distinto — não existe um que seja grande e distinto ao mesmo tempo, e duas campanhas de teste nunca compartilham público (§13.4). Entram nos **slots que a limpeza libera**, todos no **mesmo conjunto**, pra o criativo ser a única variável. Conjunto padrão: **TESTE | ADV** — frio aberto, mesmo público da ESCALA FRIO, então o que graduar transfere sem surpresa.
