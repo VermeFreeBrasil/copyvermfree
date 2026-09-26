@@ -396,7 +396,7 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 |---|---|---|
 | **Termos de público personalizado não aceitos** | `[LISTA] Leads` (46–55 mil) e `[LISTA] Clientes` (13–15 mil) não podem ser usados. O teste roda com o LAL 1% no lugar da lista real. | Também bloqueia excluir `[LISTA] Clientes` de qualquer conjunto novo (erro 1870092). Aceitar em facebook.com/customaudiences/value_based/tos/?act=1317272150350067 |
 | **Sem permissão de `instagram_media_id`** | Não dá pra impulsionar post do Instagram pela API. Os boosts antigos foram feitos pelo post do **Facebook** (`object_story_id`), não pela mídia do IG. | Fazer pelo Gerenciador, ou liberar a permissão |
-| **Públicos de site em 20 pessoas** | SITE\|TODOS, VIU PRODUTO, CHECKOUT, COMPRADORES — **todos** leem 20 pessoas, e o 7D lê igual ao 180D. Vale também pros criados em junho e julho (VISITANTES DO SITE 90D, RMKT KIDS, InitiateCheckout 90D, COMPRADORES DO SITE 60D). Sem público de site, não existe remarketing de site nessa conta. | Ver §10.1 — diagnóstico feito, causa ainda em aberto |
+| ~~**Públicos de site em 20 pessoas**~~ **RESOLVIDO 26/09** | SITE\|TODOS, VIU PRODUTO, CHECKOUT, COMPRADORES — **todos** leem 20 pessoas, e o 7D lê igual ao 180D. Vale também pros criados em junho e julho (VISITANTES DO SITE 90D, RMKT KIDS, InitiateCheckout 90D, COMPRADORES DO SITE 60D). Sem público de site, não existe remarketing de site nessa conta. | Ver §10.1 — diagnóstico feito, causa ainda em aberto |
 | **Cobertura de UTM em 14,2%** | Utmify não serve pra decisão de anúncio. Decidir com Meta + Shopify. | Criativos novos como VÍDEO, não como boost (§7) |
 | **COGS vazio no Shopify** | `unitCost` null em todos os produtos → sem breakeven real. | 5 números do §3.6 |
 | ~~**Filtro de data do Utmify não aplica**~~ **RESOLVIDO 25/09** | O `dateRange` **funciona** em `get_meta_ad_objects` quando vai junto com `metaAdAccountIds`. Conferido: 19–25/09 devolveu R$14.287,57 contra R$14.303,02 da API do Meta — 0,1% de diferença. A puxada anterior que voltou lifetime foi feita sem o filtro de conta. | — |
@@ -404,7 +404,18 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 | **`location_types` obsoleto grudado no conjunto** | Todo conjunto criado por API sai com `geo_locations.location_types: ["frequently_in","home"]` — opções que o Meta aposentou. Não atrapalha quem já está no ar, mas **trava a publicação de rascunho** no Gerenciador com o erro **#1870194** ("direcionamento por localização que foi removida"). Reescrever o `targeting` por API **não tira**: o update volta `success: true` e o campo reaparece na releitura. | Só pela interface: abrir o conjunto → Localizações → "Editar" → remover e re-selecionar Brasil → publicar |
 
 
-### 10.1 O caso dos públicos de site vazios (25/09)
+### 10.1 Os públicos de site NÃO estavam vazios — conclusão errada, corrigida em 26/09
+
+> **A entrega derrubou a tese.** O conjunto `A | SITE - VIU PRODUTO + CHECKOUT 180D` da campanha CTWA rodou ~21h e entregou: **R$54,83 gastos, 1.268 impressões, alcance de 662 pessoas.** E rodou com a expansão **desligada** (`targeting_relaxation_types: {lookalike:0, custom_audience:0}` e `advantage_audience: 0`, ambos reconferidos depois da entrega). Sem expansão, o Meta **não pode** entregar fora do público personalizado. Logo: os públicos `VIU PRODUTO | 180D` e `CHECKOUT | INITIATE | 180D` têm gente dentro — no mínimo 662 pessoas alcançáveis, quase certamente muito mais.
+>
+> **O que eu errei:** li `approximate_count_lower_bound/upper_bound = 20` da API como tamanho real e construí em cima disso uma tese de consentimento negado (consent mode / LDU) que mandava mexer no site. **O 20 é placeholder da API, não tamanho.** A pista já estava na mesa e eu não puxei: os lookalikes devolvem `1000/1000`, que é obviamente impossível — se a API inventa número pra um subtipo, inventa pra outro.
+>
+> **Regra que fica:** tamanho de público personalizado **não se lê pela API dessa conta**. Se precisar saber se um público funciona, o teste é **entrega com expansão desligada** — ou o número na interface do Gerenciador.
+>
+> O remarketing de site **está de pé**. Não precisa mexer em consent mode, Customer Privacy do Shopify nem GTM por causa disso.
+
+O diagnóstico abaixo fica registrado porque a parte de saúde do pixel continua válida e útil — o que caiu foi só a conclusão.
+
 
 **O que já foi descartado como causa** — com dado, não com palpite:
 
@@ -419,13 +430,7 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 | Só a leitura da API | Os públicos de IG (PLATFORM, mesmo subtipo) devolvem número real: ENG 180D 90–106 mil, ENG 7D 4,6–5,4 mil | A API reporta de verdade |
 | Criados sem `prefill` | `creation_params` dos públicos lê `{"prefill":"true"}` | Foram criados com backfill ligado |
 
-**O que sobra:** o evento é aceito pra mensuração mas **não pode ser usado pra montar público**. Isso é o comportamento de consentimento negado pra marketing (LGPD/consent mode — o dataset lista `gtm.init_consent`, ou seja, o GTM roda com consent mode) ou de `data_processing_options: ["LDU"]` sendo enviado junto do evento. Nos dois casos a conversão reporta normal e o público nunca enche — que é exatamente o quadro aqui.
-
-**Isso não se resolve pelo Gerenciador de Anúncios.** É configuração do site: banner de consentimento / Customer Privacy do Shopify / consent mode do GTM.
-
-**Antes de mexer no site, checar 30 segundos no Gerenciador:** Públicos → olhar o tamanho de `VIU PRODUTO | 180D`. Se a interface mostrar número real, o problema é só de leitura da API e o remarketing de site está de pé. Se mostrar "Abaixo de 1.000", está confirmado.
-
-**Enquanto isso:** o remarketing quente da conta se apoia em público de **engajamento de IG e de vídeo**, que enchem normalmente — esses não passam pelo pixel.
+**Sobre a saúde do pixel:** tudo acima segue valendo — pixel vivo, eventos em volume, nomes certos, regra no padrão e EMQ de 6,7 a 9,2. Era um pixel saudável o tempo todo, e os públicos estavam cheios.
 
 ---
 
