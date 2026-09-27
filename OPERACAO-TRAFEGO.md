@@ -434,6 +434,82 @@ O diagnóstico abaixo fica registrado porque a parte de saúde do pixel continua
 
 ---
 
+---
+
+## 14. CALENDÁRIO DE VERBA — o mês não é plano
+
+> **Descoberto em 27/09.** A conta vinha gastando o mesmo todo dia do mês. A demanda não é a mesma todo dia do mês. Essa diferença custou caro em setembro.
+
+### 14.1 O caso que abriu os olhos
+
+| | Ago 25–26 | Set 25–26 |
+|---|---|---|
+| Gasto | R$1.413,52 | **R$5.223,17** |
+| Faturamento | R$11.869,94 | **R$10.990,15** |
+| Blended | **8,40** | **2,10** |
+
+**3,7x mais gasto, 7% menos faturamento.** Mesmos dois dias do mês, meses seguidos. O gasto extra comprou faturamento negativo.
+
+### 14.2 O mês por faixa (dias de evento isolados, §12)
+
+**Agosto/26**
+| Faixa | Fat/dia | Gasto/dia | Blended |
+|---|---|---|---|
+| 01–07 | R$13.428 | R$756 | **17,77** |
+| 08–14 | R$12.783 | R$1.546 | 8,27 |
+| 15–21 | R$10.960 | R$871 | **12,58** |
+| **22–28** | **R$6.542** | R$690 | 9,48 |
+| 29–31 | R$7.312 | R$706 | 10,35 |
+
+**Setembro/26 (até dia 26)**
+| Faixa | Fat/dia | Gasto/dia | Blended |
+|---|---|---|---|
+| 01–07 | R$7.366 | R$1.026 | 7,18 |
+| 08–14 | R$7.122 | R$1.809 | 3,94 |
+| 15–21 | **R$16.532** | R$2.356 | 7,02 |
+| **22–28** | R$11.823 | R$2.486 | **4,76** |
+
+### 14.3 O que é sólido e o que não é
+
+**Sólido — vale operar em cima:**
+1. **A última faixa do mês é a mais fraca nos dois meses.** Agosto caiu de R$12.338/dia (01–21) pra R$6.773/dia (22–31) — **45% a menos**. Setembro despencou de R$16.532/dia (15–21) pra R$5.495/dia (25–26) — **67% a menos**.
+2. **Em agosto o gasto ficou plano em ~R$700 o mês inteiro e o blended nunca caiu abaixo de 8.** Em setembro o gasto subiu pra R$2.500 justamente na descida e o blended foi pra 1,55. **Não foi a demanda que quebrou o mês — foi gastar como se ela não tivesse mudado.**
+3. **Dia de evento é onde o dinheiro rende de verdade:**
+
+| Evento | Faturamento | Gasto | **Blended** |
+|---|---|---|---|
+| **09/09 · Dia D** | R$63.984 | R$2.925 | **21,88** |
+| 14/09 · Semana do Cliente | R$31.461 | R$3.072 | 10,24 |
+| 07/08 | R$41.250 | R$5.295 | 7,79 |
+
+O Dia D de 09/09 é **o melhor dia dos dois meses, disparado** — 21,88 de blended com o gasto de um dia normal de setembro.
+
+**Não é sólido — não operar em cima ainda:**
+- **A data exata do corte muda.** Em agosto a queda começa por volta do dia 20–22; em setembro só no dia 25. Não dá pra cravar um dia fixo.
+- **O formato do mês não se repete igual.** Agosto teve pico no 01–07; setembro teve pico no 15–21. São dois meses de amostra — é padrão, não é lei.
+- **A leitura certa é a taxa de carrinho, não o calendário.** Em 26/09 as sessões ficaram iguais (1.187 → 1.213) e o carrinho caiu pela metade (5,6% → 2,5%). **Esse é o gatilho — ele avisa antes do faturamento.**
+
+### 14.4 A regra de operação
+
+**O gatilho não é a data, é a taxa de adicionar ao carrinho.**
+
+| Taxa de ATC (sessões → carrinho) | Verba |
+|---|---|
+| **≥ 5%** | Patamar cheio |
+| **3–5%** | 70% do patamar |
+| **< 3% por 2 dias seguidos** | **40% do patamar** — e segura até voltar |
+| **Dia de evento (Dia D, Semana do Cliente)** | **2x o patamar** — é onde o retorno dobra |
+
+Puxar a taxa de ATC no Shopify:
+```
+FROM sessions SHOW sessions, sessions_with_cart_additions, conversion_rate TIMESERIES day SINCE -14d UNTIL today
+```
+
+**Por que ATC e não conversão:** conversão cai por motivo de checkout também. ATC isola a intenção — é a pessoa dizendo se quer ou não comprar. E vira dois dias antes do faturamento.
+
+**Checar toda segunda**, junto com a leitura das três fontes (§6). E **recalcular esse calendário todo mês fechado**, junto com as faixas de CPA.
+
+
 ## 11. COMPLIANCE — a régua do §4 vale para post impulsionado
 
 Post orgânico que vira anúncio **é anúncio**. O §4 do `CLAUDE.md` se aplica inteiro à legenda.
