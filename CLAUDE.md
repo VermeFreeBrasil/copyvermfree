@@ -57,7 +57,7 @@ Desparasitação é categoria **sensível**. Os rótulos oficiais usam "erradica
 - Comparar com remédio/vermífugo de farmácia
 - Promessa de emagrecimento ou estética
 - Diagnosticar o espectador ("você tem verme")
-- **Citar médico ou influenciador como aval clínico**
+- Usar médico ou influenciador **não autorizado** pela marca como se fosse aval clínico (prova científica, "cura comprovada", etc.)
 
 **SEMPRE usar (linguagem segura):**
 - "Auxilia na desparasitação", "apoia a rotina de limpeza intestinal", "contribui para o bem-estar"
@@ -65,8 +65,10 @@ Desparasitação é categoria **sensível**. Os rótulos oficiais usam "erradica
 - Falar de rotina, constância, prevenção natural
 - Foco em sintomas de bem-estar e sensação de leveza
 
-### 🚫 REGRA DURA, SEM EXCEÇÃO
-**Dr. William Araujo NÃO pode ser mencionado em NENHUMA peça** — anúncio, legenda, e-mail, WhatsApp, UGC. Em lugar nenhum. Nunca.
+### ✅ PRESCRITORES OFICIAIS DA MARCA — PODEM APARECER
+**Dr. William Araújo é o principal porta-voz (speak) da VermeFree** — já é usado em vídeo no site, em anúncios em circulação, e tem autorização própria pra uso de imagem. Ele **pode e deve** ser citado/mostrado em peças (anúncio, legenda, e-mail, WhatsApp, UGC, banners do site) sempre que fizer sentido pro criativo.
+O mesmo vale pros demais prescritores já listados na seção "Autoridade Médica" do site (Dra. Giovanna Eller, Dr. Robson Araújo, Dra. Raquel Cembranelli) — são profissionais afiliados e autorizados, não avais externos aleatórios.
+A regra de claim acima continua valendo pro **conteúdo** da fala deles (nenhum prescritor pode dizer "cura", "elimina/erradica parasitas", "garantido", etc.) — a restrição é sobre o que se afirma, não sobre poder aparecer.
 
 ---
 
@@ -182,7 +184,7 @@ Requer opt-in. Template HSM aprovado fora da janela 24h; quando o cliente respon
 ## 11. CHECKLIST ANTES DE PUBLICAR QUALQUER COPY
 
 - [ ] Não promete cura / não usa "elimina/erradica/mata parasitas" / "em X dias"
-- [ ] Não cita Dr. William nem nenhum médico como aval
+- [ ] Se citar prescritor, é um dos autorizados (Dr. William Araújo e demais da seção Autoridade Médica) e a fala deles segue as mesmas regras de claim acima
 - [ ] Não diagnostica o leitor ("você tem verme")
 - [ ] Tom natural/acolhedor, não alarmista nem milagreiro
 - [ ] Usa linguagem segura ("auxilia na desparasitação", "rotina de limpeza natural")
