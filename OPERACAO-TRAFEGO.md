@@ -404,6 +404,11 @@ Decisões: `SEGUE` · `MATA` (CPA-morto) · `MANTÉM` · `GRADUA` · `FADIGA-PÚ
 | **`location_types` obsoleto grudado no conjunto** | Todo conjunto criado por API sai com `geo_locations.location_types: ["frequently_in","home"]` — opções que o Meta aposentou. Não atrapalha quem já está no ar, mas **trava a publicação de rascunho** no Gerenciador com o erro **#1870194** ("direcionamento por localização que foi removida"). Reescrever o `targeting` por API **não tira**: o update volta `success: true` e o campo reaparece na releitura. | Só pela interface: abrir o conjunto → Localizações → "Editar" → remover e re-selecionar Brasil → publicar |
 | **`ObjectStorySpecRedundant` (erro 1443051) ao publicar rascunho** | Passar `image_url` pro `ads_create_creative` num criativo de VÍDEO faz o Meta gravar **`image_hash` E `image_url` ao mesmo tempo** no `object_story_spec`. O criativo é criado sem reclamar, o anúncio também — e o rascunho **trava na publicação**. | Criar o criativo passando **só `image_hash`**. O hash aparece no `spec` do criativo que falhou, dá pra reaproveitar. Conferir `active_errors: []` no retorno de `ads_create_ad` antes de seguir |
 | **Vídeo com oferta queimada na imagem** | Vários vídeos da conta têm o selo da promoção **gravado no vídeo** (ex.: "12% OFF em todos os produtos", "compras acima de R$700 ganham 1 Protocolo Infantil"). Montar campanha de oferta nova em cima deles faz o anúncio prometer uma coisa e a página entregar outra — risco de CDC art. 37 (publicidade enganosa), não só de conversão. | **Rodar `ads_get_ad_preview` em todo criativo ANTES de montar o anúncio**, e ler o que está escrito na tela. Pra campanha de oferta: usar vídeo perpétuo (sem selo) e deixar a oferta só na legenda/título |
+| **Zerar orçamento com `0` não limpa — tem que ser `null`** | Trocar orçamento diário por total (ou vice-versa) mandando `{"lifetime_budget": 0}` deixa os dois campos gravados e trava o rascunho com **erro 1487164 "More than one budget specified"**. O `0` conta como valor definido. | Mandar `{"lifetime_budget": null, "daily_budget": X}` na mesma chamada. O `null` apaga o campo de verdade e o `active_errors` volta vazio. |
+| **Não dá pra trocar diário↔total em campanha no ar** | A campanha aceita o update, mas ele fica no rascunho e não aplica. Só o mesmo tipo de orçamento atualiza ao vivo. | Se precisa de teto total, converter em diário: `total ÷ nº de dias`. Ex.: R$1.000 até quarta = R$333/dia em 3 dias. |
+| **`ads_create_ad_set` mente sobre CBO em campanha publicada** | Ao criar conjunto novo numa campanha CBO que já está no ar, o erro diz "the parent campaign does not use CBO" mesmo com `daily_budget` e `bid_strategy` confirmados na leitura ao vivo. | Não forçar orçamento de conjunto dentro de CBO (cria estrutura imprevisível). Fazer campanha separada com orçamento próprio. |
+| **Preview de vídeo mostra a thumbnail, não o vídeo** | Se o criativo tem um `image_hash` que não é frame do próprio vídeo, o `ads_get_ad_preview` renderiza **essa imagem**, e parece que o preview "não funciona". Com a capa correta, ele mostra o primeiro frame do vídeo. | Pegar a capa real em `ads_get_ad_videos` com o campo `picture`, passar como `image_url` no criativo, colher o `image_hash` que o Meta gera (aparece no spec do anúncio) e remontar passando **só o hash**. |
+| **O preview nunca mostra o áudio nem os frames seguintes** | Dá pra confirmar que não tem oferta errada queimada na abertura — não dá pra saber o que é falado. Claim de §4 (comparar com farmácia, diagnosticar o espectador) vive na fala. | Quem assiste o vídeo confere. Anúncio com risco de claim não sobe sem alguém ter visto até o fim. |
 
 
 ### 10.1 Os públicos de site NÃO estavam vazios — conclusão errada, corrigida em 26/09
@@ -531,3 +536,30 @@ Auditoria dos 7 posts mais engajados do `@vermefree` (22/09):
 Também reprovados por comparação com farmácia (§4): "3 motivos caminho natural" e "Somos 90% água" — ambos usam *"muito além do vermífugo comum"*.
 
 > **Regra: antes de impulsionar qualquer post, rodar o checklist do §11 do `CLAUDE.md` na legenda.** Os posts que mais engajam organicamente são justamente os de claim mais forte — é o que os torna mais arriscados como anúncio.
+
+---
+
+## 15. DIA D KIDS · 28–30/09 (registro da operação)
+
+**Oferta:** 10% OFF nos protocolos Kids já na 1ª unidade · frete grátis · Guia da Imunidade Infantil de brinde. Sem cupom — o desconto entra no preço. Encerra **30/09 23h59**.
+
+**Estrutura:** duas campanhas, **R$999 no total** (R$333/dia × 3 dias), por cima da base de R$1.400/dia.
+
+| Campanha | Verba | Conjuntos | Criativos |
+|---|---|---|---|
+| `DIA D KIDS \| VENDAS` | R$233/dia | QUENTE (site+IG 30D+vídeo 25%) · COMPRADORES 180D+RMKT Kids · MÃES FRIO (LAL 1%) | 6 estáticos, um par por conjunto |
+| `DIA D KIDS \| VIDEOS ADV` | R$100/dia | 1 conjunto ADV (Advantage+ ligado, BR 25–50, excl. compradores) | 5 vídeos A1–A5 |
+
+**Por que os vídeos em campanha separada:** em CBO o ADV tem o CPM mais barato e puxa a verba, deixando COMPRADORES 180D — a lista que mais converte — sem entrega. Separado, cada um tem a sua. (A tentativa de pendurar como 4º conjunto esbarrou no bug de CBO do §10.)
+
+**Limite reconhecido:** com R$300 divididos entre 5 vídeos dá **R$60 por anúncio**. Pelo §13 isso não cruza gate nenhum — o que dá pra ler em 3 dias é hook rate e CTR, não conversão. **Não tratar como teste de criativo.** Teste de verdade dos vídeos fica pra campanha de TESTE depois da virada do mês.
+
+### 15.1 O que a conferência dos criativos pegou
+
+Preview rodado nos 7 estáticos antes de montar (regra do §10). A oferta estava certa em todos e os preços batiam (R$270→R$243, R$389→R$350,10). Três achados:
+
+1. **`adkids7` ficou de fora** — o rótulo do 3º frasco lê **"FINTURA! PE DESPARASITTAÇÃO"**. Defeito de geração de imagem, e é o criativo onde os frascos aparecem maiores.
+2. **Texto de rótulo embaralhado em mais peças** — `adkids2` ("POTENCIALIZADO**A**", "das **tormas** dos parasitas"), `adkids4` ("Auxilia **no** eliminação", "**tornas**"), `adkids6` (logo "Verme kids", sem o "Free"). Invisível em tamanho de feed, mas é dívida pra uma marca que se vende como séria. **Refazer os packshots com o rótulo real.**
+3. **Parcelamento com juros não declarado** — "R$243 ou 10x de R$28,66" dá R$286,60 no total (~17,9% a.p.). Se é o parcelamento real do checkout o número está certo, mas o CDC art. 52 exige informar o total. Ou tirar o "10x de" da arte, ou escrever o total.
+
+**Ponto cego que fica:** o preview mostra o primeiro frame, nunca o áudio. Claim de §4 (comparar com farmácia, diagnosticar o espectador) vive na fala — **vídeo com risco de claim não sobe sem alguém ter assistido até o fim.**
