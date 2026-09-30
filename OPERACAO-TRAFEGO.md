@@ -610,3 +610,69 @@ O §13.7 manda não matar anúncio rodando em mais de um conjunto, porque o leil
 Matei mesmo assim, e o teste que usei foi: **a melhor leitura possível ainda reprova?** Isolando só a metade boa (QUENTE: R$686 · 2 compras) o CPA é **R$343** — 1,7x acima da linha de corte. Canibalização explica CPM inflado e alguns pontos de CPA; não explica errar o alvo por 70%.
 
 > **Regra que fica:** dado sujo por canibalização adia o corte quando o anúncio está **perto** da linha. Quando ele está longe dela na leitura mais generosa possível, a sujeira é irrelevante — corta.
+
+---
+
+## 17. CTWA · O público frio não vinha do público — vinha do posicionamento
+
+> Reorganizado em 30/09, depois do retorno da Sarah: *"chegou bastante gente, mas o público ainda frio... pessoal que não conhece o produto ainda"*, e *"aquele pessoal que chega 'oi, preciso de ajuda' converte bem melhor"*.
+
+### 17.1 O diagnóstico — três hipóteses, duas descartadas com dado
+
+| Hipótese | Verificação | Resultado |
+|---|---|---|
+| A expansão de público religou (§10) | `targeting_relaxation_types: {lookalike:0, custom_audience:0}` e `targeting_automation.advantage_audience: 0` nos **dois** conjuntos | ❌ Descartada — estava desligada |
+| O Gabriel mexeu sem querer na atualização | Mesma leitura acima, conferida ao vivo | ❌ Descartada — não foi ele |
+| **Posicionamento** | `effective_publisher_platforms` incluía **`audience_network`** com as posições **`classic` e `rewarded_video`**, mais `whatsapp-status`, `mobile_fb_notifs_jewel`, `marketplace_search_ads`, `search_serp_ads`, `watch_search_ads_mobile` | ✅ **É isso** |
+
+**O mecanismo:** `optimization_goal: CONVERSATIONS` manda o Meta caçar a conversa mais barata que existir. **Audience Network `rewarded_video` é onde a pessoa toca no anúncio pra ganhar recompensa dentro de um joguinho.** Ela abre o WhatsApp, manda qualquer coisa, e a Sarah recebe um "oi" de alguém que nunca ouviu falar de VermeFree. Conversa baratíssima, intenção zero.
+
+**Agravante:** os dois conjuntos rodavam em **18–65, todos os gêneros**. O ICP do §2 é **mulher 30–50**.
+
+> **Regra que fica:** em campanha de conversa (CTWA), **posicionamento é filtro de intenção, não de alcance.** Audience Network e posições de busca/notificação entregam o clique mais barato e a pior conversa. Objetivo CONVERSATIONS sem placement manual é um pedido pra receber lixo.
+
+### 17.2 O que a Sarah ensinou sobre criativo
+
+*"Aquele pessoal que chega 'oi, preciso de ajuda', eles são mais quentes, a conversão deles tá bem melhor."*
+
+**Quem chega com pergunta converte melhor que quem chega com intenção de compra.** Então o criativo de CTWA não deve vender — deve **provocar uma dúvida**. Os 5 novos foram escolhidos por isso: todos abrem uma pergunta e prometem explicação, nenhum promete desconto.
+
+### 17.3 A estrutura nova
+
+Dois conjuntos (R$60 + R$40, freq 2,79 e 1,82) viraram **um só**, `VF | CTWA | QUENTE CONSOLIDADO | OUT26`, R$100/dia:
+
+- **Públicos:** ENG 7D + ENG 30D + ENG 180D (IG) + Seguidores + VIU PRODUTO 180D + CHECKOUT 180D. Exclui COMPRADORES 180D.
+- **Por que consolidar:** os dois conjuntos antigos disputavam o mesmo público pequeno e a frequência subiu. Pool somado (~140 mil) derruba a frequência sem perder temperatura.
+- **Mulheres, 28–55.** `advantage_audience: 0` pra segurar a faixa (§10).
+- **Posicionamento manual:** só Facebook (feed, reels, story) e Instagram (feed, story, reels). **Sem Audience Network, sem busca, sem notificações.**
+
+**Os 5 vídeos** — escolhidos por CTR e CPA reais, todos em formato de pergunta:
+
+| Anúncio | Vídeo de origem | Histórico |
+|---|---|---|
+| `AD_CTWA_3SINAIS` | Três sinais pra prestar atenção | CTR 3,95% · 4 compras · CPA R$107 |
+| `AD_CTWA_DESPARASITACAO_CALMA` | Desparasitação natural, com calma | **CTR 4,23%** (melhor da conta com vídeo próprio) |
+| `AD_CTWA_ULTIMA_LIMPEZA` | Quando foi sua última limpeza natural? | CPA **R$80** · ROAS 12,59 |
+| `AD_CTWA_POR_QUE_CICLOS` | Por que fazer em ciclos | CTR 2,64% |
+| `AD_CTWA_QUAL_E_O_SEU` | Desparasitação natural, na rotina | CPA R$96 · ROAS 4,31 |
+
+### 17.4 Como medir isso — o gate normal não serve
+
+O CTWA converte **no WhatsApp**, fora do pixel e fora do UTM. O gate de gasto do §13.1 mede o custo e não enxerga o resultado. **O placar do CTWA é a Sarah**, não o Gerenciador:
+
+- **quantas conversas chegaram** (Meta entrega isso)
+- **quantas viraram atendimento de verdade** (só a Sarah tem)
+- **quantas viraram venda** (só a Sarah tem)
+
+> **Regra que fica:** enquanto não houver o número do outro lado, **CTWA não entra em gate de corte por gasto.** Canal que converte fora do site se mede fora do site. Pedir esse número é parte da rotina, não um favor.
+
+---
+
+## 18. BLOQUEIOS NOVOS DA API (descobertos em 30/09)
+
+| Bloqueio | Efeito | Como destravar |
+|---|---|---|
+| **Vídeo sem capa explícita não publica** — erro **1443226** "Your ad needs a video thumbnail" | A documentação do `ads_create_ad` afirma que o Meta gera a capa sozinho a partir do primeiro frame quando `image_hash`/`image_url` são omitidos. **Não gera.** O anúncio é criado, mas nasce com `active_errors` e trava a publicação. | Sempre passar `image_url` dentro de `video_data`, com a capa real do próprio vídeo. |
+| **`image_hash` não é legível nos criativos desta conta** | `ads_get_creatives` devolve `thumbnail_url` mas **nunca** `image_hash`, mesmo pedindo o campo explicitamente. A `thumbnail_url` é um recorte 64×64 (`p64x64` na URL) e não serve de capa. Então **não dá pra reaproveitar a capa de um criativo existente**. | Pegar a capa em `ads_get_ad_videos` no campo **`picture`** (vem em 160×160, `p160x160`) e passar como `image_url`. |
+| **Refinamento do `ObjectStorySpecRedundant` (§10)** | O erro 1443051 é do **`ads_create_creative`**. Passar `image_url` dentro de `video_data` num `object_story_spec` inline do **`ads_create_ad`** **não** dispara o erro — conferido nos 5 anúncios do §17, todos com `active_errors: []` e só `image_url` gravado. | Pra vídeo, montar o anúncio com `object_story_spec` inline no `ads_create_ad`, não com `ads_create_creative`. Poupa o vai-e-volta de colher hash. |
+| **`ads_create_ad` devolve INTERNAL esporádico** | Um dos 5 anúncios falhou com `error_category: INTERNAL`, `is_retryable: true`. Repetir a mesma chamada funcionou na primeira tentativa. | Repetir. Conferir depois se não criou duplicado. |
