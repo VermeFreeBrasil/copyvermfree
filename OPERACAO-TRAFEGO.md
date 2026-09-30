@@ -676,3 +676,79 @@ O CTWA converte **no WhatsApp**, fora do pixel e fora do UTM. O gate de gasto do
 | **`image_hash` não é legível nos criativos desta conta** | `ads_get_creatives` devolve `thumbnail_url` mas **nunca** `image_hash`, mesmo pedindo o campo explicitamente. A `thumbnail_url` é um recorte 64×64 (`p64x64` na URL) e não serve de capa. Então **não dá pra reaproveitar a capa de um criativo existente**. | Pegar a capa em `ads_get_ad_videos` no campo **`picture`** (vem em 160×160, `p160x160`) e passar como `image_url`. |
 | **Refinamento do `ObjectStorySpecRedundant` (§10)** | O erro 1443051 é do **`ads_create_creative`**. Passar `image_url` dentro de `video_data` num `object_story_spec` inline do **`ads_create_ad`** **não** dispara o erro — conferido nos 5 anúncios do §17, todos com `active_errors: []` e só `image_url` gravado. | Pra vídeo, montar o anúncio com `object_story_spec` inline no `ads_create_ad`, não com `ads_create_creative`. Poupa o vai-e-volta de colher hash. |
 | **`ads_create_ad` devolve INTERNAL esporádico** | Um dos 5 anúncios falhou com `error_category: INTERNAL`, `is_retryable: true`. Repetir a mesma chamada funcionou na primeira tentativa. | Repetir. Conferir depois se não criou duplicado. |
+
+---
+
+## 19. O DIA EM QUE A CONTA FOI MEXIDA TRÊS VEZES — 30/09
+
+> Registro honesto de um dia com três ondas de edição nos mesmos conjuntos. Vale mais pela lição de método que pelo resultado.
+
+### 19.1 As três ondas
+
+1. **Manhã — minha otimização (§16).** 4 mudanças: 8H02 morto, TESTE|ADV pra R$300, KIDS Maes pra R$110, ENG IG+SITE pra R$40.
+2. **Tarde — o Gabriel pausou 15 anúncios** olhando a tela da Utmify, que mostrava a conta inteira em ROAS 0,78 e lucro −R$3.925.
+3. **Noite — 4 religados** depois de cruzar com o Meta.
+
+### 19.2 O erro de método que eu cometi duas vezes no mesmo dia
+
+**Escolhi a janela de data depois de saber o que queria provar.**
+
+- Defendi o `3SINAIS` com o CPA do **mês** (R$209 → R$134 corrigido). Nos **últimos 7 dias** ele estava em **R$325**. O Gabriel matou certo.
+- Apresentei 9 anúncios como "campeões a CPA R$118" usando uma janela de 7 dias que **incluía os 3 dias de Dia D com desconto no site inteiro**. A preço normal (24–27/09) os mesmos anúncios liam **R$135 a R$204**.
+
+> **Regra que fica: escolher a janela ANTES de olhar o resultado.** E toda leitura de criativo tem que declarar se a janela contém dia de evento — §12 já mandava isolar, e eu não isolei.
+
+### 19.3 A descoberta que o erro revelou
+
+Separando preço normal de dia de desconto, **todo anúncio da conta melhorou ~2x nos 3 dias de Dia D**:
+
+| Anúncio | 24–27/09 (preço cheio) | 28–30/09 (10% OFF) |
+|---|---|---|
+| `AD_TD_JATOMEI_01` | CPA **R$521** | CPA **R$87** |
+| `AD_TD_JATOMEI_02` | CPA R$294 | CPA R$145 |
+| `AD_TD_RANGER_02` | CPA R$204 | CPA R$55 |
+| `AD_TD_SINAIS_01` | CPA R$142 | CPA R$104 |
+
+**Criativo não melhora 6x sozinho. Foi a oferta, não a mídia.**
+
+> **A conclusão desconfortável:** a preço cheio o inventário inteiro roda entre R$142 e R$521 de CPA — cinza a morto. **Setembro foi segurado por desconto, não por mídia.** A conta não tem problema de quais anúncios estão ligados; tem **dívida de criativo**. E os 5 vídeos novos do Dia D, que eram a chance de renovar isso, gastaram R$10 a R$115 cada — nenhum cruzou gate nenhum.
+
+### 19.4 O buraco que as 15 pausas abriram
+
+Depois da onda 2, **dois conjuntos ficaram com zero anúncio ativo** e um terceiro com só um que não converte:
+
+| Conjunto | Verba/dia | Anúncios ativos |
+|---|---|---|
+| `VF \| TESTE \| ADV` | R$300 | **0** |
+| `VF \| TESTE \| ENG IG + SITE` | R$40 | **0** |
+| `VF \| ESCALA QUENTE` | R$350 | 1 (`DUVIDAS`, 0 compras) |
+
+**R$690/dia apontado pro vazio.** Não é dinheiro queimado — é poder de compra que para.
+
+> **Regra que fica:** toda vez que se pausa anúncio em lote, **conferir quantos anúncios ativos sobraram por conjunto.** Conjunto sem anúncio não gasta e não avisa. É o tipo de dano que não aparece em nenhum relatório de performance — só na receita que não veio.
+
+### 19.5 Estado final do dia (conferido ao vivo)
+
+| Conjunto | Verba/dia | Anúncios ativos |
+|---|---|---|
+| `ESCALA FRIO \| ADV` | R$600 | 6 (JATOMEI 01/02, ROTINA_CICLOS, 3SINAIS, SINAIS_02, DUVIDAS) |
+| `ESCALA QUENTE` | R$350 | 3 (**ROTINA_CICLOS** ↩, **AD_TD_SINAIS_01** ↩, DUVIDAS) |
+| `TESTE \| ADV` | R$300 | 2 (**12SINAIS** ↩, **N_A2_DIRETO** ↩) |
+| `TESTE \| KIDS Maes` | R$110 | 2 (KIDS_PET, KIDS_AMAMENTACAO) |
+| `CTWA QUENTE CONSOLIDADO` | R$100 | 5 (§17) |
+| `TESTE \| ENG IG + SITE` | — | **conjunto pausado** (freq 3,33, sem anúncio provado) |
+
+↩ = religado na onda 3.
+
+**Ficaram mortos, por decisão apoiada em dado:** `3SINAIS` (CPA R$325 em 7d), `JULIANA_UNBOX` (CPA R$172, freq 2,90), `AD_TD_RANGER_02` (CPA R$204 a preço cheio), `SINAIS_02` (histórico inteiro vem dos dias de desconto), `AD_TD_8H02` (CPA R$387), os dois `AD_CTWA_DUVIDAS` antigos.
+
+### 19.6 O que esperar de 01/10 — previsão registrada pra ser conferida depois
+
+Religar consertou a **entrega**, não a **economia**. A previsão que dei:
+
+- CPA Meta na faixa **R$150–250** (não os R$118 que eu tinha apresentado)
+- **Blended 2,5 a 4,5** — não os 8+ de 28–29/09, que eram dia de evento
+- Primeiros 2–3 dias piores por ruído de aprendizado (três ondas de edição em 24h, §13.6)
+- Única alavanca real de alta: o calendário (§14, primeira semana do mês)
+
+> **O risco a evitar:** 01/10 ler ROAS baixo por ruído + fim do desconto, parecer que religar deu errado, e cortar de novo. Foi assim que setembro quebrou.
