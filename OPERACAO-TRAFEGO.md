@@ -563,3 +563,50 @@ Preview rodado nos 7 estáticos antes de montar (regra do §10). A oferta estava
 3. **Parcelamento com juros não declarado** — "R$243 ou 10x de R$28,66" dá R$286,60 no total (~17,9% a.p.). Se é o parcelamento real do checkout o número está certo, mas o CDC art. 52 exige informar o total. Ou tirar o "10x de" da arte, ou escrever o total.
 
 **Ponto cego que fica:** o preview mostra o primeiro frame, nunca o áudio. Claim de §4 (comparar com farmácia, diagnosticar o espectador) vive na fala — **vídeo com risco de claim não sobe sem alguém ter assistido até o fim.**
+
+---
+
+## 16. OTIMIZAÇÃO DO PERPÉTUO · 30/09 (virada de mês)
+
+> Aplicada em 30/09 a pedido do Gabriel ("pra amanhã já estar forte"). Um dia antes do gate de quinta do §13.6 — a antecipação é consciente, pra 01/10 começar já ajustado.
+
+### 16.1 O contexto que autorizou mexer
+
+**ATC em 8,1% (28/09) e 9,5% (29/09)** — dois dias seguidos acima do gatilho de patamar cheio do §14.4. E 01/10 abre a primeira semana do mês, a faixa historicamente mais forte (§14.2: Ago 01–07 blended **17,77**).
+
+Detalhe que vale guardar: em **29/09 as sessões foram as MENORES da janela (855)** e a conversão a **MAIOR (3,74%)**. Não veio tráfego novo — veio tráfego certo. Volume de sessão não é o indicador; ATC é.
+
+### 16.2 O que mudou
+
+| Objeto | De | Para | Motivo |
+|---|---|---|---|
+| **`AD_TD_8H02`** (2 conjuntos) | ATIVO | **PAUSADO** | R$774 · 2 compras · **CPA R$387** — §13.1 (≥R$450 · CPA >R$200) |
+| `VF \| TESTE \| ADV` | R$200/dia | **R$300/dia** | CPA R$100,31 · ROAS 5,36 · 31 compras — graduado com folga |
+| `VF \| TESTE \| KIDS \| Maes 28-45` | R$75/dia | **R$110/dia** | CPA R$117 · **freq 1,57** — tem espaço, e Kids é o lado fraco do mix |
+| `VF \| TESTE \| ENG IG + SITE` | R$75/dia | **R$40/dia** | **freq 3,33** · CPA R$177 — público torrado |
+
+Líquido: **+R$100/dia** (R$1.400 → R$1.500). Os R$333/dia do Dia D morrem hoje 23:59 e cobrem com sobra.
+
+**Não mexido de propósito:** ESCALA FRIO (R$600/dia, CPA R$105, ROAS 5,46 — o motor, e o Gabriel mandou manter) e CTWA (ver 16.4).
+
+### 16.3 Três decisões de NÃO matar — e por quê
+
+O gate não é gatilho automático. Três anúncios passaram perto e ficaram:
+
+1. **`3SINAIS` — R$2.935 · CPA R$209 · ROAS 3,00.** Pela tabela do §13.1 seria corte (≥R$450 · CPA >R$200). **Não cortei.** O CPA do Meta é pessimista nessa conta por fator conhecido: **CPA Meta R$122,59 vs CPA blended R$79 no mês = 0,64x**. R$209 × 0,64 ≈ **R$134 real** — faixa saudável. É exatamente o aviso do §13.2: *não matar no limite sem olhar o blended*. Reavaliar na segunda.
+2. **`JULIANA_UNBOX` — R$1.061 · CPA R$177 · CTR 0,97% · freq 2,90.** Passou dos R$900 da zona cinza. **Não é o criativo que morreu, é o público:** o conjunto inteiro está em **freq 3,33**. Matar o anúncio não resolve um problema de conjunto. Cortei a verba do conjunto pra 40 e deixo a frequência cair antes de julgar o criativo.
+3. **`AD_TD_SINAIS_02` — R$271 combinado · CPA R$242.** Abaixo dos R$450. CTR 1,36% e tem ATC — nenhum dos três sinais do §13.3. Não existe dado ainda.
+
+### 16.4 O que ficou parado esperando gente
+
+**CTWA: R$504,61 no mês, ZERO compras, ZERO ATC, freq 2,24.** Pela letra do §13.1 é MATA sem discussão. **Não matei** — e a razão é o §13.7: a conversão do CTWA acontece no WhatsApp, **fora do pixel e fora do UTM**. O gate não sabe ler esse canal. Precisa do número de atendimento/venda da Sarah antes.
+
+> **Regra que fica:** gate de gasto só decide canal cuja conversão o gate consegue ver. Pra canal que converte fora do site, o gate mede o custo — não mede o resultado. Sem o dado do outro lado, a decisão não é minha.
+
+### 16.5 O caso `AD_TD_8H02` — por que a canibalização não salvou ele
+
+O §13.7 manda não matar anúncio rodando em mais de um conjunto, porque o leilão contra si mesmo suja o dado. O 8H02 estava em dois (ESCALA QUENTE e ESCALA FRIO) — então o dado **estava** sujo.
+
+Matei mesmo assim, e o teste que usei foi: **a melhor leitura possível ainda reprova?** Isolando só a metade boa (QUENTE: R$686 · 2 compras) o CPA é **R$343** — 1,7x acima da linha de corte. Canibalização explica CPM inflado e alguns pontos de CPA; não explica errar o alvo por 70%.
+
+> **Regra que fica:** dado sujo por canibalização adia o corte quando o anúncio está **perto** da linha. Quando ele está longe dela na leitura mais generosa possível, a sujeira é irrelevante — corta.
