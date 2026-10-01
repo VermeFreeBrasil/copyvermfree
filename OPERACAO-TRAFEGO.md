@@ -752,3 +752,86 @@ Religar consertou a **entrega**, não a **economia**. A previsão que dei:
 - Única alavanca real de alta: o calendário (§14, primeira semana do mês)
 
 > **O risco a evitar:** 01/10 ler ROAS baixo por ruído + fim do desconto, parecer que religar deu errado, e cortar de novo. Foi assim que setembro quebrou.
+
+---
+
+## 20. CORREÇÃO DO §12 — mídia não é só Meta Ads
+
+> Descoberto em 01/10 ao puxar o Supabase pela primeira vez. Invalida o blended de todos os relatórios anteriores.
+
+`public.meta_whatsapp` (alimentada pelo n8n, workflow `[VermeFree] Report - Meta API`, coleta diária 07:05) guarda o custo real das WABAs:
+
+| | Agosto | Setembro |
+|---|---|---|
+| Meta Ads | R$33.700,30 | R$59.140,88 |
+| **WhatsApp API** | R$424,19 | **R$7.604,42** |
+
+Em agosto era 1,2% da mídia. Em setembro virou **11,4%**, porque ligaram disparo de **marketing** (R$5.611,73 — em agosto era R$0, só utility).
+
+**O blended de setembro que eu vinha reportando (6,96) estava errado. O real é 6,17.**
+
+> **Regra corrigida do §12: `mídia total = Meta Ads + WhatsApp API`.** Puxar `meta_whatsapp` do Supabase em toda leitura mensal, e em leitura diária quando houver disparo de marketing no dia.
+
+### 20.1 As outras fontes que existiam e eu não usava
+
+O Supabase tem muito mais que isso, e nada disso estava no protocolo:
+
+| Tabela | O que tem | Pra que serve |
+|---|---|---|
+| `compra_aprovada` | 3.149 linhas · venda com `utm_source`, `cupom`, `plataforma`, `produto` | **Atribuição real por canal** — melhor que Utmify, que está em 6–10% de cobertura |
+| `meta_whatsapp` | custo/volume por dia e por tipo (marketing, utility, auth, service) | Mídia de WhatsApp (acima) |
+| `emails` | 94 campanhas AC com envios, abertura, clique | Performance de e-mail |
+| `produtos_cogs` | 6 categorias — **`custo_unitario` NULL em todas** | Breakeven, quando preenchida |
+| `produtos_estoque` | estoque por SKU | Ruptura |
+| `cupons_influencers` | 18 cupons — **todos com influencer "(a definir)"** | ROI por influenciadora, quando preenchida |
+| `instagram_stats` | seguidores, alcance, visitas (só 7 dias) | Saúde do orgânico |
+| `meta_ads` | 3.821 linhas de métrica diária por anúncio | Histórico próprio, independente da API |
+
+> **Regra que fica:** leitura mensal puxa **cinco** fontes, não três — Shopify, Meta, Utmify, **Supabase** e **n8n** (pra saber o que está alimentando o quê). A Utmify é a fonte mais fraca das cinco nessa conta; `compra_aprovada` cobre o que ela não cobre.
+
+### 20.2 O erro de método por trás disso
+
+Eu operei dois meses com um protocolo de três fontes sem nunca ter perguntado **quais fontes existem**. O `meta_whatsapp` estava sendo preenchido diariamente desde julho por um workflow que já rodava.
+
+**Regra: antes de confiar num protocolo de medição, inventariar o que a operação já coleta.** Custou um blended 13% otimista em todo relatório de setembro.
+
+---
+
+## 21. FECHAMENTO DE SETEMBRO — o que os dois meses mostraram
+
+Relatório completo em **`RELATORIO-FECHAMENTO-SET26.md`**. O essencial:
+
+### 21.1 O número que decide outubro
+
+```
+Δ faturamento (ago→set) = R$55.839
+Δ mídia        (ago→set) = R$32.621
+ROAS MARGINAL            = 1,71
+```
+
+**Cada real extra de mídia em setembro comprou R$1,71.** Faturamento +15,7%, mídia +95,6%, blended 10,43 → 6,17.
+
+### 21.2 O mecanismo: CPM responde à verba
+
+| Semana | Gasto | CPM | CTR | CPA |
+|---|---|---|---|---|
+| 17–23/08 | R$5.412 | **R$9,36** | 2,91% | **R$78** |
+| 14–20/09 | R$17.708 | **R$41,94** | 1,83% | R$126 |
+| 21–27/09 | R$16.651 | R$28,72 | **1,47%** | **R$189** |
+
+Gasto +75% no mês, impressões **−25%**. Pagamos mais caro por menos gente.
+
+**Mas verba alta em dia de evento funciona:** 07–13/09 (Dia D) gastou R$13.299 com CPA R$79. A mesma verba sem evento (21–27/09) deu CPA R$189.
+
+> **Regra que fica: verba alta só se paga em dia de evento.** Em dia normal, verba alta compra leilão caro. Isso substitui a leitura de calendário do §14 — o gatilho é o CPM, não a data.
+
+### 21.3 O crescimento não veio da mídia
+
+| | Agosto | Setembro | Δ |
+|---|---|---|---|
+| Mídia paga (`ig`+`FB`) | 260 pedidos · R$144.415 | 265 pedidos · R$144.314 | **0%** |
+| Orgânico (`whatsapp_org`+`insta_org`+`email_org`+`areademembros`) | 62 pedidos · R$33.937 | **145 pedidos · R$77.512** | **+128%** |
+
+**75% mais verba comprou o mesmo número de pedidos pagos.** Quem cresceu setembro foi o orgânico, que não tem orçamento nem dono formal. `whatsapp_org` sozinho fez R$37.676 com custo zero.
+
+> **Regra que fica:** quando o blended cai e o faturamento sobe, **conferir se o crescimento é da mídia antes de creditar à mídia.** Eu passei setembro inteiro otimizando anúncio num mês cujo crescimento veio de outro lugar.
