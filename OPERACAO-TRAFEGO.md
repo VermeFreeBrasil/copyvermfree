@@ -835,3 +835,53 @@ Gasto +75% no mês, impressões **−25%**. Pagamos mais caro por menos gente.
 **75% mais verba comprou o mesmo número de pedidos pagos.** Quem cresceu setembro foi o orgânico, que não tem orçamento nem dono formal. `whatsapp_org` sozinho fez R$37.676 com custo zero.
 
 > **Regra que fica:** quando o blended cai e o faturamento sobe, **conferir se o crescimento é da mídia antes de creditar à mídia.** Eu passei setembro inteiro otimizando anúncio num mês cujo crescimento veio de outro lugar.
+
+---
+
+## 22. MARGEM — o número que o Gabriel destravou em 01/10
+
+> *"Eu não tenho exatamente o custo por produtos, mas não passa de 20% do valor total de vendas."*
+
+Não é o COGS por SKU que a `produtos_cogs` pediria, mas **é suficiente pra fechar a conta** — e muda uma conclusão minha.
+
+### 22.1 Correção: eu exagerei no diagnóstico de setembro
+
+Eu afirmei que o gasto extra de setembro (ROAS marginal **1,71**) "quase certamente destruiu margem". **Com COGS a 20%, isso está errado.**
+
+| Custos além do COGS | Margem de contribuição | Breakeven ROAS | A 1,71 de marginal |
+|---|---|---|---|
+| 0% | 80% | 1,25 | **+R$0,37/real** |
+| 10% | 70% | 1,43 | +R$0,20 |
+| 20% | 60% | 1,67 | +R$0,03 |
+| 25% | 55% | 1,82 | −R$0,06 |
+
+O real extra de setembro rendeu entre **+R$0,37 e −R$0,06**. Isso é **de levemente lucrativo a empatado**, não destrutivo.
+
+**O que continua verdade:** foi trabalho e risco pra ganhar quase nada. Esse é o argumento pro teto de verba — não "estamos perdendo dinheiro".
+
+> **Regra que fica:** antes de chamar um gasto de destrutivo, **fazer a conta de margem.** "ROAS caiu" e "está dando prejuízo" são afirmações diferentes, e eu tratei uma como a outra. Com contribuição de 60% e AOV de R$540, o **CPA máximo é ~R$324** — o CPA blended de setembro foi R$88,29. A conta tem folga grande; o problema é o **último** real gasto, não a média.
+
+### 22.2 Teto de CPA por produto (contribuição a 60%)
+
+| Produto | Preço | CPA máximo | Confortável |
+|---|---|---|---|
+| Kids 5–9 | R$389 | R$233 | R$117 |
+| Protocolo Adulto | R$347 | R$208 | R$104 |
+| Kids 2–4 | R$270 | R$162 | R$81 |
+| Óleo de Alho | R$67 | R$40 | R$20 |
+
+As faixas do §13.2 continuam valendo como regra de operação — agora sabemos que são **conservadoras de propósito**.
+
+### 22.3 A regra nova de outubro: alarme de CPM
+
+A descoberta do §21.2 (CPM responde à verba) virou gatilho operacional, ao lado do ATC do §14.4:
+
+| CPM 7 dias | Ação |
+|---|---|
+| ≤ R$18 | normal |
+| R$18–22 | não sobe verba |
+| **> R$22** | **corta 20%, mesmo com ATC bom** |
+
+**O CPM avisa antes do CPA.** Em setembro ele dobrou enquanto as impressões caíam 25% — e eu só percebi no fechamento.
+
+**Rotina diária completa em `PLANO-OUTUBRO-26.md`.**
