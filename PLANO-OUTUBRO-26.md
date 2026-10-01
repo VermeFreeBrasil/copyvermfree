@@ -213,3 +213,61 @@ O orgânico dobrou em setembro e **não tem dono formal**:
 **Outubro não é pra crescer. É pra faturar o mesmo gastando 30% menos, parar de comprar leilão caro, e descobrir se o orgânico aguenta ser o motor.**
 
 Se der certo: R$420 mil com R$47 mil de mídia = blended **8,94** contra 6,17 de setembro.
+
+---
+
+# ADENDO — 01/10, decisão do Gabriel
+
+> *"Considere que vai ter live e não precisa cortar. Vamos com esse planejamento."*
+
+Levantei duas preocupações (tráfego perpétuo a ROAS previsto 1,07 e Dia D sem live). **O Gabriel decidiu: live confirmada, verba mantida no plano do Alliance OS.** Decisão tomada — o que vale agora é executar bem, não re-discutir.
+
+**Isso inverte o meu trabalho:** eu propunha segurar em R$1.150/dia. O plano manda gastar **R$70.000 no perpétuo = R$2.258/dia**. Então o risco deixa de ser "gastar demais" e passa a ser **gastar mal e rápido**.
+
+## A rampa — porque pular 55% de uma vez é o erro de setembro
+
+Os conjuntos levaram três ondas de edição em 48h (§19). Subir de R$1.460 pra R$2.258 num dia reinicia aprendizado em cima de estrutura instável e infla o CPM — exatamente o mecanismo do §21.2.
+
+| Período | Perpétuo/dia | Acumulado |
+|---|---|---|
+| **01–03/10** | **R$1.800** ✅ aplicado | R$5.400 |
+| 04–07/10 | R$2.100 | R$13.800 |
+| 08–09/10 | R$2.400 (pré Dia D) | R$18.600 |
+| 10–31/10 | R$2.340 | **R$70.000** |
+
+Eventos entram **por cima**: Dia D R$8.000 (10–11) · Kids R$3.000 (15) · Semana R$15.000 (20–23).
+
+## O instrumento que substitui o corte
+
+Como não vou cortar, o **alarme de CPM vira o principal indicador do mês**, não uma regra de segurança:
+
+| CPM 7 dias | O que significa | O que eu faço |
+|---|---|---|
+| ≤ R$18 | a verba está sendo absorvida | sigo a rampa |
+| R$18–22 | começando a pagar caro | seguro a rampa onde está |
+| **> R$22** | **é setembro de novo** | **reporto no mesmo dia, com a conta do que está custando** |
+
+Em setembro o CPM dobrou (R$11,64 → R$27,27) e as impressões caíram 25%. **Se acontecer de novo, eu aviso com número, não com opinião** — e a decisão de segurar ou seguir é do Gabriel.
+
+## O Dia D 10–11/10 — o que muda com a live
+
+O Dia D de **09/09 fez R$63.984 com R$2.925 de mídia (blended 21,88)** e teve **duas lives** (15h e 22h). É o melhor dia dos dois meses, e a live é parte do mecanismo.
+
+**Meta por fonte (TAP do Alliance OS):**
+
+| Fonte | Responsável | Meta |
+|---|---|---|
+| **CRM / Lifecycle** | **Sarah** | **R$44.000** |
+| Instagram / Social | Ítalo | R$31.000 |
+| Performance | Pedro | R$16.000 (R$8.000 investimento) |
+| Direto / SEO | — | R$16.000 |
+| Influenciadores | Ana | R$6.000 |
+| Atendimento | Poly | R$2.000 |
+
+**A lista do ciclo é a munição do CRM.** 796 na janela + 474 aquecendo = **1.270 pessoas**. Pra R$44.000 a R$516 de ticket: **85 pedidos = 6,7% de conversão.** Factível com folga.
+
+E o calendário ajuda: quem comprou em **10/07 completa 3 meses exatos em 10/10**.
+
+## Pendência aberta no Alliance OS
+
+O TAP do Dia D ainda está com `live: tem: false`. **Seis pessoas leem esse TAP.** Não edito o planejamento de outro time por conta própria — mas alguém precisa corrigir antes de 08/10, senão o Ítalo e a Poly planejam sem a live.
