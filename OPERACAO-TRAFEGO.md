@@ -885,3 +885,180 @@ A descoberta do §21.2 (CPM responde à verba) virou gatilho operacional, ao lad
 **O CPM avisa antes do CPA.** Em setembro ele dobrou enquanto as impressões caíam 25% — e eu só percebi no fechamento.
 
 **Rotina diária completa em `PLANO-OUTUBRO-26.md`.**
+
+---
+
+## §23 — O DIA EM QUE A PERGUNTA DO GABRIEL ESTAVA CERTA E A MINHA CONTA ESTAVA ERRADA (02/10)
+
+O Gabriel chegou com uma tese: *"o número de sessões caiu demais e a taxa de
+conversão tá boa"*. Eu entrei achando que era artefato aritmético — tirar o
+tráfego ruim do denominador sobe a média sem nada melhorar de verdade.
+
+**Testei a minha própria hipótese e ela se provou quase toda errada.** Fica
+registrado porque o método importa mais que o acerto.
+
+### 23.1 Onde as sessões caíram (Shopify, por origem)
+
+| Origem | 24–27/09 média/dia | 01/10 | Δ |
+|---|---|---|---|
+| Instagram | 723 | 377 | **−48%** |
+| Facebook | 157 | 71 | −55% |
+| Direct | 264 | 312 | +18% |
+| Google | 46 | 38 | −17% |
+| **Total** | **1.201** | **809** | **−33%** |
+
+### 23.2 Onde o tráfego PAGO caiu (Meta, landing page views)
+
+| Campanha | 24–27/09 LPV/dia | 01/10 | O que aconteceu |
+|---|---|---|---|
+| TESTE 2 \| CRIATIVOS NOVOS | 195 | 0 | pausada (CPM R$15–20, CPA R$200–600) |
+| TOPO DE FUNIL \| VIDEO VIEWS | 44 | 0 | pausada (CPM R$3,52–4,12) |
+| FRIO + QUENTE + TESTE | 370 | 320 | segue |
+| **Total LPV pago** | **~611** | **~324** | **−287/dia** |
+
+A queda de sessões (−392/dia) é **73% explicada pela queda de LPV pago**
+(−287/dia). Não foi o orgânico que secou: foi a limpeza da conta.
+
+### 23.3 O teste que eu errei
+
+Hipótese: a conversão subiu porque saiu do denominador o tráfego que convertia
+mal. Se fosse só isso, recalcular a baseline SEM esse tráfego daria o mesmo
+número de hoje.
+
+```
+24–27/09 cheio            : 4.803 sessões · 58 pedidos = 1,21%
+24–27/09 sem TESTE2+TOPO  : 3.847 sessões · 51 pedidos = 1,33%
+01/10                     :   809 sessões · 18 pedidos = 2,22%
+```
+
+**O mix explica 0,12 ponto dos 1,01 que subiram. 12%.** Os outros 88% são
+melhora real de qualidade de tráfego. A tese do Gabriel estava certa; a minha
+desconfiança estava errada.
+
+> **Regra nova: antes de chamar um número de "artefato de mix", recalcular a
+> baseline removendo o mesmo tráfego.** Se o número velho não encosta no novo,
+> não é artefato — é melhora.
+
+### 23.4 A correção de verdade do dia: R$5.400 de WhatsApp em 30/09
+
+O §20 mandou somar `meta_whatsapp` na mídia total. Eu somei no fechamento do
+mês e **esqueci de somar na leitura diária**. Resultado:
+
+| Dia | Shopify | Meta | WhatsApp (Supabase) | Mídia total | Blended REAL | Blended que eu reportei |
+|---|---|---|---|---|---|---|
+| 24/09 | 14.589 | 2.722 | 88 | 2.810 | 5,19 | — |
+| 25/09 | 6.713 | 2.471 | 2 | 2.474 | 2,71 | — |
+| 26/09 | 4.277 | 2.752 | 1 | 2.753 | 1,55 | — |
+| 27/09 | 8.592 | 2.365 | 1 | 2.366 | 3,63 | — |
+| 28/09 | 17.276 | 1.952 | 1 | 1.953 | 8,85 | 8,85 |
+| 29/09 | 15.298 | 1.871 | 2 | 1.873 | 8,17 | 8,18 |
+| **30/09** | **12.976** | **1.807** | **5.402** | **7.210** | **1,80** | **7,18** ❌ |
+| 01/10 | 10.138 | 2.019 | 23 | 2.042 | 4,97 | 5,02 |
+
+**30/09 não foi um dia de ROAS 7. Foi o PIOR dia da semana, a 1,80.** Saíram
+16.786 mensagens de marketing por R$5.400 e eu reportei o dia como se elas não
+existissem.
+
+> **Regra: a leitura diária puxa `meta_whatsapp` igual puxa o Meta. Dia com
+> disparo em massa não é dia normal — isola igual dia de evento (§12).**
+
+### 23.5 O preço real da mensagem (e o erro de 3x que eu tinha na cabeça)
+
+Tarifas medidas na própria conta, não estimadas:
+
+| Template | R$/mensagem | Fonte |
+|---|---|---|
+| **Marketing** | **R$0,32–0,35** | `marketing_custo ÷ marketing_volume`, 30/09 e 01/10 |
+| **Utility** | **R$0,035** | `utility_custo ÷ utility_volume`, todos os dias |
+
+**Utility é 9x mais barato que marketing.** Eu vinha usando R$0,0976 — errado
+nas duas pontas.
+
+Impacto na lista de ciclo (796 pessoas, ~3.184 mensagens em 4 toques):
+
+| Como template | Custo | O que eu tinha dito |
+|---|---|---|
+| Marketing | **R$1.019** | R$311 |
+| Utility | **R$111** | R$311 |
+
+E o comparativo que importa: o disparo de 30/09 gastou **R$5.400 para falar com
+16.786 pessoas sem recorte**. A lista de ciclo fala com as 796 que estão na
+janela de recompra por R$1.019 no pior caso. Mesmo no caso caro, **5x mais
+barato para um público 21x mais qualificado.**
+
+### 23.6 Utmify: cobertura quebrada, gasto confiável
+
+| Janela | Pedidos Shopify | Rastreados Utmify | Taxa |
+|---|---|---|---|
+| 24–30/09 | 148 | 25 | **16,9%** |
+| 01–02/10 | 24 | 2 | **8,3%** |
+
+**Gasto bate exato nas duas janelas** (24–30/09: R$15.940,76 nos dois lados;
+01–02/10: R$2.724,61). Então a integração está viva — o que quebrou é a UTM na
+venda, não o pixel de gasto.
+
+> Por §12, com 8–17% de cobertura o Utmify **não decide nada** este mês. Serve
+> só como conferência de gasto. Consertar a UTM é tarefa, não análise.
+
+### 23.7 Google orgânico: o canal que ninguém está olhando
+
+24/09–02/10, Shopify, pedidos por origem:
+
+```
+search/google : 31 pedidos · ~393 sessões = 7,9% de conversão
+ticket médio  : R$960 (vs R$545 da conta)
+custo de mídia: R$1 na semana (conta Google Ads praticamente parada)
+```
+
+**6x a conversão média do site, ticket 76% maior, custo zero.** Não é a decisão
+de hoje, mas é a maior assimetria aberta na conta.
+
+### 23.8 A decisão aplicada em 02/10
+
+Teste de rampa limpo, por campanha, 29/09 → 01/10:
+
+| Campanha | Gasto | CPM | CTR | Freq | CPA | Veredicto |
+|---|---|---|---|---|---|---|
+| ESCALA FRIO | 566 → **731** | 69,40 → **65,60** ↓ | 2,39 → **2,92%** ↑ | 1,48 → 1,41 | 283 → 183 | **absorve** |
+| ESCALA QUENTE | 375 → **428** | 54,74 → 56,54 | 1,74 → 2,10% | 1,41 → 1,50 | 188 → **143** | **absorve** |
+| TESTE SET26 | 354 → **548** | 48,23 → 54,26 | 1,08 → 1,31% | 1,48 → **2,07** | 118 → **274** | **saturou** |
+
+Verba total mantida em R$1.800/dia, redistribuída para quem absorve:
+
+| Objeto | Antes | Depois |
+|---|---|---|
+| ESCALA FRIO \| ADV (CBO) | 750 | **800** |
+| ESCALA QUENTE \| ENG IG + VIDEO VIEW | 400 | **460** |
+| TESTE \| ADV | 350 | **300** |
+| TESTE \| KIDS \| Maes 28-45 | 200 | **140** |
+| CTWA \| QUENTE CONSOLIDADO | 100 | 100 |
+
+### 23.9 A matemática que autoriza a escala — e o que a desautoriza
+
+```
+custo por sessão   = 2.042 ÷ 809   = R$2,52
+receita por sessão = 10.138 ÷ 809  = R$12,53
+margem de contrib. = 12,53 × 0,80  = R$10,02   (COGS 20%, §22)
+lucro por sessão   = 10,02 − 2,52  = R$7,50
+```
+
+Cada sessão marginal comprada a R$2,52 devolve R$7,50 de contribuição —
+**desde que converta como a média.** Ela não vai. O teste de rampa (§23.8) mostra
+onde ainda converte e onde já não.
+
+**Dois contrafatos que eu não tenho como descartar hoje:**
+1. **01/10 é dia 1 do mês.** Salário caiu. Um dia não é tendência.
+2. 02/10 parcial segura a tese (284 sessões, 2,11%), mas é meio dia.
+
+Por isso a rampa é de +13%, não de dobrar.
+
+### 23.10 Gatilhos de parada da rampa (checar antes de cada aumento)
+
+- [ ] CPM do ESCALA FRIO > **R$75** → para a rampa
+- [ ] Frequência de qualquer conjunto > **1,8** → para
+- [ ] Conversão do site, média de 2 dias, < **1,8%** → volta a verba
+- [ ] `meta_whatsapp` com disparo em massa no dia → **não lê o blended desse dia**
+
+> **Correção do meu próprio alarme (§22):** o gatilho de CPM R$22 veio da média
+> mensal, inflada por boost de live barato que não existe mais. A linha de base
+> do perpétuo é **R$48–69**. Alarme útil: **CPM > R$75 ou +20% em 3 dias.**
