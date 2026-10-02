@@ -1062,3 +1062,161 @@ Por isso a rampa é de +13%, não de dobrar.
 > **Correção do meu próprio alarme (§22):** o gatilho de CPM R$22 veio da média
 > mensal, inflada por boost de live barato que não existe mais. A linha de base
 > do perpétuo é **R$48–69**. Alarme útil: **CPM > R$75 ou +20% em 3 dias.**
+
+---
+
+## §24 — REFAZENDO SÓ COM CAMPANHA DE SITE (02/10) — e a correção que enfraquece o §23
+
+O Gabriel mandou refazer: **fora a campanha de WhatsApp (CTWA), fora o custo da
+API, só campanha pro site.** Refiz do zero, classificando por `objective` puxado
+da API, não pelo nome da campanha.
+
+> **Nota sobre o §23:** o §23.4 (R$5.400 de API em 30/09) e o §23.5 (tarifa real
+> de R$0,32 marketing / R$0,035 utility) seguem válidos como fato. O que o §24
+> corrige é a **conclusão** do §23.3: a melhora é real, mas a causa que eu dei
+> estava incompleta.
+
+### 24.1 Classificação por objetivo (API, 24/09–02/10)
+
+| Campanha | `objective` | Gasto | Entra? |
+|---|---|---|---|
+| ESCALA FRIO \| ADV | OUTCOME_SALES | 5.902,33 | ✅ site |
+| TESTE \| SET26 \| ABO | OUTCOME_SALES | 4.089,46 | ✅ site |
+| ESCALA QUENTE | OUTCOME_SALES | 3.666,27 | ✅ site |
+| TESTE 2 \| CRIATIVOS NOVOS | OUTCOME_SALES | 2.026,39 | ✅ site (pausada 28/09) |
+| DIA D KIDS \| VENDAS | OUTCOME_SALES | 571,21 | ✅ site |
+| DIA D KIDS \| VIDEOS ADV | OUTCOME_SALES | 235,95 | ✅ site |
+| Boost Lives (24,25,28,29,30/09, 01/10) | OUTCOME_SALES | 1.013,73 | ✅ site |
+| **Subtotal SITE** | | **17.505,34** | |
+| [CTWA] RECUPERACAO (+ cópia errada) | OUTCOME_ENGAGEMENT | 675,82 | ❌ WhatsApp |
+| TOPO DE FUNIL \| VIDEO VIEWS | OUTCOME_ENGAGEMENT | 507,12 | ❌ não é site |
+| **Total conta** | | **18.688,28** | |
+
+**Cada dia fecha ao centavo contra o gasto da conta** (ex.: 01/10 — conta
+R$2.018,76 − site R$1.928,65 = R$90,11, que é exatamente o CTWA do dia).
+Dá para conferir linha por linha.
+
+### 24.2 A tabela (só site, Shopify contra gasto de site)
+
+| Dia | Gasto site | CPM site | R$/LPV | LPV | Sessões | Conv. | ROAS site |
+|---|---|---|---|---|---|---|---|
+| 24/09 | 2.598,69 | 40,26 | 4,47 | 582 | 1.254 | 1,75% | 5,61 |
+| 25/09 | 2.249,86 | 36,44 | 4,35 | 517 | 1.188 | 1,09% | 2,98 |
+| 26/09 | 2.518,58 | 32,99 | 3,69 | 683 | 1.213 | 0,66% | 1,70 |
+| 27/09 | 2.225,28 | 46,10 | 4,63 | 481 | 1.148 | 1,31% | 3,86 |
+| 28/09 | 1.808,89 | 81,15 | 5,46 | 331 | 1.192 | 2,52% | 9,55 |
+| 29/09 | 1.743,80 | 70,03 | 5,79 | 301 | 855 | 3,74% | 8,77 |
+| 30/09 | 1.714,24 | 73,10 | 5,83 | 294 | 1.029 | 2,72% | 7,57 |
+| **01/10** | **1.928,65** | **57,11** | **5,92** | **326** | **809** | **2,22%** | **5,26** |
+| 02/10 parcial | 717,68 | 48,90 | 5,83 | 123 | 295 | 2,03% | 3,01 |
+
+Agrupado, isolando o Dia D Kids (§12):
+
+| Janela | Gasto/dia | CPM | R$/LPV | LPV/dia | Sessões/dia | Conv. | **ROAS site** |
+|---|---|---|---|---|---|---|---|
+| 24–27/09 preço cheio | 2.398,10 | 38,23 | 4,24 | 566 | 1.201 | 1,208% | **3,56** |
+| 28–30/09 Dia D Kids | 1.755,64 | 74,56 | 5,69 | 309 | 1.025 | 2,926% | 8,65 |
+| **01/10 preço cheio** | **1.928,65** | **57,11** | **5,92** | **326** | **809** | **2,225%** | **5,26** |
+
+**Preço cheio contra preço cheio, só site: ROAS 3,56 → 5,26. +48%.** Sem API,
+sem CTWA, sem dia de promoção na média.
+
+### 24.3 O teste de mix refeito — o número aguenta
+
+```
+base 24-27/09 como está : 4.803 sessões / 58 pedidos = 1,208%
+base sem TESTE2 + TOPO  : 3.846 sessões / 51 pedidos = 1,326%
+01/10                   :   809 sessões / 18 pedidos = 2,225%
+
+mix explica 0,118 pt de 1,017 pt  =  11,6%
+```
+
+Dois contra-testes que eu rodei e que **reforçam** o número em vez de derrubar:
+
+- **Desconto.** 01/10 deu 7,9% de desconto sobre o bruto. A base 24–27/09 deu
+  9,7%. O dia melhor é o dia com MENOS desconto.
+- **Ticket.** 01/10 ficou em R$544,53. A base ficou em R$589,15. O ticket CAIU.
+  A alta de conversão não veio de carrinho maior.
+
+### 24.4 A causa que eu errei no §23: foi CPM, não poda
+
+Eu te disse que as sessões caíram porque você parou de comprar sessão ruim.
+Está só parcialmente certo. A conta de verdade:
+
+```
+gasto de site : 2.398/dia → 1.929/dia  =  −19,6%
+LPV comprado  :   566/dia →   326/dia  =  −42,4%
+```
+
+**Gastei 20% menos e comprei 42% menos sessão.** Os 22 pontos de diferença são
+preço: **o CPM de site saiu de R$38,23 para R$57,11 (+49%)** e o custo por
+sessão de R$4,24 para R$5,92 (+40%).
+
+E por quê o CPM subiu? **Pelo mesmo efeito de mix que eu acusei na conversão —
+só que agora contra mim.** O que foi pausado era o inventário barato:
+
+| Campanha pausada | CPM dela |
+|---|---|
+| TOPO DE FUNIL \| VIDEO VIEWS | **R$3,91** |
+| TESTE 2 \| CRIATIVOS NOVOS | **R$19,30** |
+| (o que sobrou: FRIO / QUENTE / TESTE) | R$49,88–62,26 |
+
+Tirar inventário de CPM R$4 e R$19 da média sobe o CPM da conta sozinho. Não é
+o leilão piorando — é a composição mudando.
+
+**Prova de que o leilão não piorou:** o CPM do ESCALA FRIO, dele mesmo, dia a dia:
+
+```
+24/09  53,72   28/09  69,70   01/10  65,60
+25/09  57,27   29/09  68,39   02/10  53,86
+26/09  59,37   30/09  69,40
+27/09  67,36
+```
+
+Picou em R$69,70 no Dia D Kids (a própria conta leiloando contra ela mesma, §13.4)
+e **voltou para R$53,86 hoje — o mesmo nível de 24/09.** As campanhas que
+sobraram não estão ficando mais caras.
+
+### 24.5 O que isso muda na decisão
+
+A boa notícia e a má são a mesma frase: **a conta trocou volume barato por
+volume caro que converte muito melhor, e a troca está pagando.**
+
+```
+receita por sessão paga : R$14,00 → R$30,91   (+121%)
+custo  por sessão paga  : R$ 4,24 → R$ 5,92   (+40%)
+```
+
+A receita por sessão subiu 3x mais rápido que o custo. É isso que autoriza
+escalar.
+
+**Mas tem um limite aritmético que eu não tinha enxergado:** a R$5,92/sessão,
+voltar aos 566 LPV/dia da base custa **R$3.351/dia**, não R$1.929. Você não
+volta ao volume antigo com a verba atual — só com mais dinheiro, ou re-abrindo
+o inventário barato que você acabou de matar (e que convertia a 0,9%).
+
+Então a pergunta não é "escala ou não". É **quanto volume você quer comprar a
+R$5,92** — e a resposta vem do teste de rampa (§23.8), que é o único dado que
+diz onde a verba extra ainda não piora o preço:
+
+| Campanha | 29/09 → 01/10 | Veredicto |
+|---|---|---|
+| ESCALA FRIO | +29% de verba, CPM **caiu** 69,40→65,60, CTR subiu 2,39→2,92% | **absorve** |
+| ESCALA QUENTE | +14% de verba, CPA R$188→R$143 | **absorve** |
+| TESTE SET26 | +55% de verba, frequência →2,07, CPA R$118→R$274 | **saturou** |
+
+### 24.6 O que eu não consigo descartar
+
+- **02/10 está em 3,01 de ROAS site.** Parcial (pedido entra ao longo do dia),
+  mas é o número de hoje e é mais fraco que 01/10. **Não é dado de decisão
+  ainda.**
+- **Resíduo do Dia D Kids.** Gente que viu 28–30/09 e comprou em 01/10. Não
+  tenho como separar.
+- **01/10 é dia 1º.** Testei contra 01–03/09 (554/409/418 sessões, 2,17/2,20/2,15%):
+  a conversão dos dias 2 e 3 segurou igual à do dia 1, então **não é efeito de
+  salário**. Mas 01–03/09 também foram dias de verba baixa — o que, de novo,
+  aponta para a mesma relação: menos verba, melhor conversão.
+
+> **Regra que sai daqui: antes de explicar uma queda de sessão por "pausei
+> anúncio", dividir o gasto pelo LPV.** Se o gasto caiu menos que o LPV, a causa
+> é preço, não poda — e preço e poda pedem decisões opostas.
