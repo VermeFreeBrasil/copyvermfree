@@ -1311,3 +1311,113 @@ frequência 1,905 com CPA indo para R$233.
 **Proposta: TESTE de R$440 para R$300, FRIO de R$800 para R$940. Total de site
 fica nos mesmos R$1.700/dia.** Zero verba nova até ter dois dias cheios acima
 de 4,0 de ROAS site.
+
+---
+
+## §26 — AS TRÊS FONTES INVERTEM DUAS DECISÕES MINHAS (03/10)
+
+O Gabriel autorizou R$2.000/dia e perguntou o que fazer com o teto. Eu
+respondi com uma distribuição montada **só com métrica do Meta** — CPM,
+frequência, CTR, CPA do pixel. Ele me parou: *"voce consultou somente meta?"*
+
+Estava certo. Isso fere o §12, e o cruzamento mudou duas decisões.
+
+### 26.1 A descoberta de método: o Supabase atribui melhor que o Utmify
+
+A tabela `compra_aprovada` tem `utm_campaign`, `utm_content`, `utm_term` **e uma
+coluna `quiz`**. Eu nunca tinha usado para atribuição. Mesma janela, 01–03/10,
+48 pedidos:
+
+| Fonte | Pedidos atribuídos | Cobertura |
+|---|---|---|
+| Utmify | 11 | 22,9% |
+| **Supabase `compra_aprovada`** | **21** | **43,8%** |
+
+**Quase o dobro.** E a linha Shopify do Supabase bate exato com o Shopify
+Analytics (39 pedidos · R$20.660,53), então a tabela é confiável. O Guru entra
+com mais 9 pedidos · R$967,10 que o Shopify não vê.
+
+> **Correção do protocolo (§12 e §20): a atribuição por objeto sai do Supabase,
+> não do Utmify.** O Utmify fica para conferência de gasto, onde bate ao centavo.
+
+### 26.2 Erro 1 — eu ia cortar a campanha mais rentável da conta
+
+Ontem eu propus **ESCALA QUENTE de R$460 para R$350**, com este argumento:
+*"fechou 02/10 com zero compra e hoje está em R$235 sem compra."*
+
+Era leitura de pixel em janela de 1 dia. O que o Supabase mostra:
+
+| Campanha | Gasto 01–03/10 | Pedidos | Receita atribuída | **ROAS atrib.** | **Ticket** |
+|---|---|---|---|---|---|
+| **ESCALA QUENTE** | 1.081,29 | 3 | 2.356,93 | **2,18** | **785,64** |
+| ESCALA FRIO | 1.972,55 | 6 | 2.332,42 | 1,18 | 388,74 |
+| TESTE ADV+KIDS | 1.266,38 | 2 | 701,34 | **0,55** | 350,67 |
+| QUIZ PARASITOSE | 272,64 | 0 | 0 | **0,00** | — |
+| Boost Lives | 470,44 | 0 | 0 | **0,00** | — |
+
+**O QUENTE é o melhor ROAS atribuído da conta e vende carrinho 2x maior que o
+FRIO** (R$786 contra R$389). O pixel jogou as 3 vendas todas no dia 01/10 e
+mostrou 02 e 03 zerados — eu li o zero de um dia como morte da campanha.
+
+E o ranking do Meta é o inverso do real: o pixel deu 12 compras ao FRIO
+(Supabase: 6) e concentrou as do QUENTE num dia só. **O pixel não subreporta de
+forma uniforme — ele empurra crédito para quem gasta mais.**
+
+### 26.3 Erro 2 — o "zero ATC" da QUIZ é provavelmente instrumentação
+
+Eu ia sugerir matar a QUIZ PARASITOSE por zero ATC com R$272 gastos (sinal 2 do
+§13.3). A coluna `quiz` do Supabase mostra por onde os pedidos realmente passam:
+
+```
+24/09  22 de 23      28/09   5 de 31      01/10  18 de 18
+25/09  13 de 15      29/09   2 de 34      02/10  15 de 24
+26/09   8 de  9      30/09   2 de 32      03/10   6 de  6
+27/09  15 de 15
+```
+
+**O quiz é o caminho principal de conversão do negócio** (18/18 em 01/10,
+6/6 em 03/10). Só no Dia D Kids a galera comprou direto. Se o funil passa pelo
+quiz, **o ATC não dispara na landing** — dispara depois. O sinal 2 é falso
+alarme aqui.
+
+> **Regra: o sinal "zero ATC com R$200" do §13.3 não vale para campanha que
+> manda para quiz.** O gate dessa campanha é passagem do quiz, não carrinho.
+
+### 26.4 O que as três fontes dizem juntas, 01–03/10
+
+| | Valor | Fonte |
+|---|---|---|
+| Faturamento | R$20.660,53 | Shopify |
+| (+ Guru) | R$967,10 | Supabase |
+| Gasto de site | R$5.063,30 | Meta |
+| Gasto conferido | bate ao centavo | Utmify |
+| **ROAS site blended** | **4,08** | Shopify ÷ Meta |
+| vs base 24–27/09 (3,56) | **+14,6%** | |
+| Maior fonte isolada | **`vermefree/link_in_bio` — 26 pedidos, R$13.184,33** (desde 28/09) | Supabase |
+
+O **link da bio do Instagram é a maior fonte atribuída da conta** — sozinho vale
+mais que todas as campanhas pagas somadas. Isso não é verba, é orgânico.
+
+### 26.5 Distribuição revisada do teto de R$2.000
+
+| Objeto | Hoje | **R$2.000** | R$2.200 | Por quê (3 fontes) |
+|---|---|---|---|---|
+| **ESCALA FRIO** | 800 | **900** | **1.000** | maior volume, CPM R$42, freq 1,26, estoura o teto. ROAS atrib. 1,18 mas é o motor |
+| **ESCALA QUENTE** | 460 | **500** ↑ | **550** | **melhor ROAS atribuído (2,18) e ticket 2x.** Era corte, virou aumento |
+| TESTE ADV+KIDS | 440 | **250** | **250** | pior ROAS atrib. (0,55) + maior frequência (1,53) + CTR 1,01% |
+| QUIZ *(1 conjunto)* | 500 | **200** | **250** | sem venda ainda, mas o sinal de morte é falso — segue como teste |
+| **TOPO DE FUNIL** | 0 | **150** | **150** | alimenta o QUENTE, que é o melhor ROAS. Dia D em 7 dias |
+| **Total site** | 2.200 | **2.000** | **2.200** | |
+
+O argumento do topo de funil **ficou mais forte**, não mais fraco: a campanha
+que ele alimenta (QUENTE, que come de engajamento IG + video view) é justamente
+a de melhor ROAS e maior ticket. Deixar a fonte dela seca a 7 dias do Dia D é o
+erro mais caro disponível.
+
+### 26.6 Ressalvas honestas
+
+- **A amostra é pequena.** 3 pedidos no QUENTE, 6 no FRIO, 2 no TESTE. Serve
+  para ordenar, não para dimensionar. O ROAS atribuído está subestimado em
+  todos porque 56% dos pedidos não têm UTM.
+- **Boost Lives: R$470,44 em 3 dias, zero pedido atribuído.** Não mato porque
+  alcance de live tem valor fora do clique, mas fica registrado.
