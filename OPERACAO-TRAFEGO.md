@@ -1220,3 +1220,94 @@ diz onde a verba extra ainda não piora o preço:
 > **Regra que sai daqui: antes de explicar uma queda de sessão por "pausei
 > anúncio", dividir o gasto pelo LPV.** Se o gasto caiu menos que o LPV, a causa
 > é preço, não poda — e preço e poda pedem decisões opostas.
+
+---
+
+## §25 — 02/10 FECHOU E DERRUBOU METADE DA MINHA TESE (03/10)
+
+**Não subi a verba.** Pedi aval no fim do §24 e fiquei parado. Foi sorte: o
+fechamento de 02/10 tirou a razão do aumento que eu tinha proposto.
+
+### 25.1 Dois dias cheios valem menos que um
+
+| | Gasto site | Faturamento | **ROAS site** | Conversão | AOV |
+|---|---|---|---|---|---|
+| Base 24–27/09 (preço cheio) | 9.592,41 | 34.170,88 | **3,56** | 1,208% | 589,15 |
+| **Só 01/10** | 1.928,65 | 10.138,24 | **5,26** | 2,225% | 544,53 |
+| **02/10** | 2.121,53 | 7.040,04 | **3,32** | 1,847% | 452,32 |
+| **01+02/10 juntos** | 4.050,18 | 17.178,28 | **4,24** | 2,036% | 520,55 |
+| 03/10 parcial | 1.002,62 | 3.482,25 | 3,47 | 1,714% | 569,00 |
+
+```
+com 1 dia : +47,6% de ROAS sobre a base
+com 2 dias: +19,1%
+```
+
+**02/10 fechou em 3,32 — ABAIXO da base de 3,56.** O 01/10 não era o novo
+patamar, era o topo da faixa.
+
+O que sobrevive e o que morre da tese:
+
+| Afirmação do §24 | Com 2 dias |
+|---|---|
+| Conversão melhorou de verdade | **sobrevive** — 2,036% vs 1,208% = +68,6% |
+| Entrega ficou mais barata | **sobrevive** — R$/LPV do núcleo 5,34 → 4,65 → 4,97 |
+| ROAS +48% justifica escalar | **morre** — virou +19,1%, e um dos dois dias ficou abaixo da base |
+
+A causa do buraco entre conversão (+69%) e ROAS (+19%) é o **ticket: −11,6%**
+(R$589 → R$521). Mais gente comprando, carrinho menor. Converter melhor não
+é a mesma coisa que faturar melhor.
+
+> **Regra: nunca autorizar aumento de verba com 1 dia de dado.** Eu
+> quantifiquei esse risco no §24.6 e mesmo assim propus o aumento. O gate é
+> 2 dias cheios no mesmo regime de preço, mínimo.
+
+### 25.2 Meus próprios gatilhos de parada, conferidos
+
+| Gatilho | Leitura | |
+|---|---|---|
+| CPM do FRIO > R$75 | 02/10 **42,55** · 03/10 **42,48** | ✅ folgado |
+| Frequência de conjunto > 1,8 | **TESTE 02/10 = 1,905** | 🚨 **disparou** |
+| Conversão 2 dias < 1,8% | 01+02/10 = 2,036% · 02+03/10 = 1,807% | ⚠️ na linha |
+
+Um disparou e outro está encostando. **Isso não é cenário de aumentar verba.**
+
+Detalhe que importa: o CPM do FRIO caiu de R$65,60 (01/10) para R$42,48 — bem
+abaixo do nível de 24/09 (R$53,72). O inflacionamento do §24.4 era mesmo o
+Dia D Kids leiloando contra a própria conta, e passou.
+
+### 25.3 Duas campanhas entraram na conta e não fui eu
+
+| Campanha | Gasto 02+03/10 | Impressões | CTR | LPV | ATC | Compras |
+|---|---|---|---|---|---|---|
+| **QUIZ PARASITOSE \| OUT26** | 268,80 | 10.676 | 0,76–1,93% | 84 | **0** | **0** |
+| **Boost Live 02/10** | 249,65 | 7.271 | **0,73%** | 3 | 1 | 0 |
+
+Pelos sinais de morte precoce do §13.3, **as duas já estouraram gatilho**:
+
+- QUIZ → sinal 2 (**zero ATC com R$200 gastos**). Está em R$268,80 com ATC zero.
+- Boost Live 02/10 → sinal 1 (**CTR < 1,0% com 2.000+ impressões**). 0,73% em 7.271.
+
+Não matei nenhuma das duas: foram subidas por outra pessoa, podem ter objetivo
+que eu não conheço (a QUIZ é teste de criativo novo; o boost é alcance de live).
+**Fica registrado que o gate já pegou as duas** — decisão do Gabriel.
+
+### 25.4 O que eu faço agora (verba total PARADA)
+
+TESTE contra FRIO, só o dado:
+
+| | Gasto 02/10 | CPM | Freq | CTR | CPA Meta |
+|---|---|---|---|---|---|
+| **ESCALA FRIO** | 814,78 (teto 800) | **42,55** | **1,42** | **2,11%** | **162,96** |
+| **TESTE SET26** | 483,66 | 44,18 | **1,905** | 1,21% | 161,22 |
+| ESCALA QUENTE | 417,94 | 36,06 | 1,49 | 1,74% | sem compra |
+
+03/10 parcial: FRIO CPA **R$141,17** · TESTE CPA **R$233,18**.
+
+O FRIO está estourando o próprio teto (gastou R$814,78 contra R$800) com
+frequência 1,42 e CPM R$42 — tem apetite e não está saturado. O TESTE está em
+frequência 1,905 com CPA indo para R$233.
+
+**Proposta: TESTE de R$440 para R$300, FRIO de R$800 para R$940. Total de site
+fica nos mesmos R$1.700/dia.** Zero verba nova até ter dois dias cheios acima
+de 4,0 de ROAS site.
