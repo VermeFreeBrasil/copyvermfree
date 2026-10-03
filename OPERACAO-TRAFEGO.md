@@ -1491,3 +1491,25 @@ atribuição (§26.1). Não mexer antes disso (§13.6).
 - [ ] QUENTE: o ticket de R$785 se sustenta com +20% de verba?
 - [ ] FRIO: CPM segue abaixo de R$75 e frequência abaixo de 1,8?
 - [ ] TOPO: os públicos quentes voltaram a crescer? (é o teste real dele)
+
+### 27.6 REGRA PERMANENTE — a QUIZ PARASITOSE fica fora de tudo
+
+Instrução do Gabriel, 03/10: *"nao é pra pausar o quiz.. nem é pra tocar nem
+envolver ela em nada.. finje que ela nem ta ali."*
+
+Eu não toquei na campanha — a leitura ao vivo feita **depois** das publicações
+confirma os 10 conjuntos em R$50 e ACTIVE. Mas eu a incluí na aritmética e no
+relatório ("site vai de 2.200 para 2.500"). Isso também está proibido.
+
+**Daqui em diante, em qualquer análise, relatório ou decisão de verba:**
+
+- A campanha **QUIZ PARASITOSE | OUT26** (e seus conjuntos CJ01–CJ10) não é
+  editada, pausada, consolidada, nem proposta para mudança.
+- **Não entra em soma de orçamento, em total de site, em ROAS de conta, nem em
+  tabela de comparação entre campanhas.**
+- O orçamento sob gestão são **os quatro objetos liberados**: ESCALA FRIO,
+  ESCALA QUENTE, TESTE ADV, TESTE KIDS, mais o TOPO DE FUNIL. **Total: R$2.000/dia.**
+- O CTWA segue separado nos R$100 (§24, instrução anterior do Gabriel).
+
+> Correção da tabela do §27.1: o número de gestão é **R$2.000/dia**. As linhas
+> "Site 2.500" e "Conta 2.600" daquela tabela não devem ser usadas.
