@@ -1421,3 +1421,73 @@ erro mais caro disponível.
   todos porque 56% dos pedidos não têm UTM.
 - **Boost Lives: R$470,44 em 3 dias, zero pedido atribuído.** Não mato porque
   alcance de live tem valor fora do clique, mas fica registrado.
+
+---
+
+## §27 — APLICADO E VERIFICADO AO VIVO (03/10)
+
+Instrução do Gabriel: teto de R$2.000, **não encostar na QUIZ** ("ela deve
+permanecer como está"), mexer só em ESCALA FRIO, ESCALA QUENTE, TESTE ADV+KIDS
+e TOPO DE FUNIL.
+
+Como a QUIZ está congelada nos R$500 dela, os R$2.000 foram aplicados **nos
+quatro objetos liberados**, não no total do site.
+
+### 27.1 Estado ao vivo depois da publicação
+
+| Objeto | Antes | **Agora** | Verificado |
+|---|---|---|---|
+| ESCALA FRIO \| ADV *(CBO)* | 800 | **1.000** | ✅ ACTIVE |
+| ESCALA QUENTE \| ENG IG + VIDEO VIEW | 460 | **550** | ✅ ACTIVE |
+| TESTE \| ADV | 300 | **160** | ✅ ACTIVE |
+| TESTE \| KIDS \| Maes 28-45 | 140 | **140** *(não mexi)* | ✅ ACTIVE |
+| TOPO \| VIDEO VIEWS \| Mulheres 28-55 | pausada | **150 · religada** | ✅ ACTIVE |
+| **Subtotal liberado** | **1.700** | **2.000** | |
+| QUIZ PARASITOSE (10 × 50) | 500 | **500** *(congelada)* | não tocada |
+| CTWA \| QUENTE CONSOLIDADO | 100 | **100** | não tocada |
+| **Site** | 2.200 | **2.500** | |
+| **Conta** | 2.300 | **2.600** | |
+
+### 27.2 Por que cada número
+
+- **FRIO 800 → 1.000 (+25%).** O teste de rampa do §23.8 provou que ele absorve
+  +29% com o CPM caindo. +25% está dentro da faixa já testada. Estourou o
+  próprio teto em 02/10 (gastou R$814,78 contra R$800) e roda frequência 1,26.
+- **QUENTE 460 → 550 (+20%).** Melhor ROAS atribuído da conta (2,18) e ticket
+  R$785,64, o dobro do FRIO (§26.2). Aumento contido porque o público é quente
+  e finito.
+- **TESTE ADV 300 → 160 (−47%).** Pior nas três fontes: ROAS atribuído 0,55,
+  frequência 1,53, CTR 1,01%, CPA R$233 em 03/10.
+- **TESTE KIDS 140 → 140.** Não mexi de propósito: Kids é **43% dos pedidos**
+  (Shopify, 01–03/10). Não corto o único conjunto dedicado a Kids sem dado
+  melhor do que tenho.
+- **TOPO religado a 150.** O conjunto já estava configurado em R$150 com
+  2 anúncios ativos dentro — só a campanha estava pausada, então bastou
+  religar. CPM R$3,82, frequência 1,11.
+
+### 27.3 Ressalva sobre o gate do TOPO
+
+Os dois anúncios do TOPO rodam **CTR 0,43% e 0,46%** com 113 mil e 48 mil
+impressões. Pelo §13.3 isso é sinal de morte 1 (CTR < 1,0% com 2.000+
+impressões) — mas **esse sinal não se aplica aqui**: a campanha é
+OUTCOME_ENGAGEMENT otimizando video view, onde o clique não é o objetivo. O que
+ela compra é alcance a R$3,82 de CPM para alimentar os públicos quentes antes
+do Dia D (10/10).
+
+> Fica registrado para não ser matada por engano numa revisão de gate.
+
+### 27.4 Detalhe operacional
+
+**O TESTE ADV já tinha gasto R$160,86 hoje quando o novo teto de R$160 entrou** —
+ou seja, ele para de entregar pelo resto do dia 03/10. O corte começa a valer de
+fato amanhã.
+
+### 27.5 O que medir antes de mexer de novo
+
+Próxima leitura: **segunda 06/10**, com as três fontes e o Supabase como
+atribuição (§26.1). Não mexer antes disso (§13.6).
+
+- [ ] ROAS site blended de 04–05/10 contra a base de 3,56
+- [ ] QUENTE: o ticket de R$785 se sustenta com +20% de verba?
+- [ ] FRIO: CPM segue abaixo de R$75 e frequência abaixo de 1,8?
+- [ ] TOPO: os públicos quentes voltaram a crescer? (é o teste real dele)
