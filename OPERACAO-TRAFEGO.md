@@ -1513,3 +1513,132 @@ relatório ("site vai de 2.200 para 2.500"). Isso também está proibido.
 
 > Correção da tabela do §27.1: o número de gestão é **R$2.000/dia**. As linhas
 > "Site 2.500" e "Conta 2.600" daquela tabela não devem ser usadas.
+
+---
+
+## §28 — LEITURA DE DOMINGO 04/10 (três fontes, cinco objetos)
+
+Escopo: só os cinco objetos sob gestão. QUIZ fora de tudo (§27.6), CTWA fora,
+WhatsApp fora (sem disparo em massa: 03/10 teve R$1,16 de API, dia limpo).
+
+### 28.1 TRÊS MUDANÇAS NA CONTA QUE NÃO FUI EU
+
+| Objeto | Eu deixei em | **Está em** |
+|---|---|---|
+| ESCALA FRIO \| ADV | **1.000** (publicado e verificado 03/10) | **810** |
+| CTWA \| QUENTE CONSOLIDADO | 100 | **51** |
+| QUIZ PARASITOSE \| OUT26 | ACTIVE, não tocada | **PAUSED** |
+
+QUENTE (550), TESTE ADV (160), TESTE KIDS (140) e TOPO (150) estão como eu
+deixei. **Orçamento sob gestão hoje: R$1.810, não R$2.000.**
+
+Registro sem julgamento — pode ter sido o Gabriel. Mas a leitura abaixo é
+contra R$1.810, não contra o teto que combinamos.
+
+### 28.2 03/10 fechado — e por que o número feio não é o que parece
+
+| | 03/10 (sáb) | 02/10 (sex) | **26/09 (sáb anterior, preço cheio)** |
+|---|---|---|---|
+| Sessões | **1.187** | 812 | 1.213 |
+| Pedidos | **9** | 15 | 8 |
+| Conversão | **0,758%** | 1,847% | 0,660% |
+| ATC | 39 (3,3%) | 63 (7,8%) | 30 (2,5%) |
+| Faturamento | **4.508,42** | 7.040,04 | 4.276,84 |
+| Gasto (5 objetos) | **1.892,84** | — | 2.518,58 |
+| **ROAS site** | **2,38** | 3,32 | **1,70** |
+
+Sessões subiram 46% e pedidos caíram 40%. Parece desastre. Não é:
+
+**03/10 é um sábado, e é praticamente o gêmeo de 26/09** — o sábado anterior
+sem promoção: 1.187 vs 1.213 sessões, 0,758% vs 0,660%, R$4.508 vs R$4.277.
+Contra o dia certo, **o ROAS foi de 1,70 para 2,38 (+40%) gastando 25% menos.**
+
+O TOPO explica só uma fração: ele trouxe 161 sessões de CPM R$2,77 que não
+convertem. Tirando elas, 1.026 sessões / 9 pedidos = 0,877%. **0,12 ponto dos
+1,09 que caíram.** A causa principal é o dia da semana.
+
+> **Meu erro de método, de novo:** marquei a leitura para domingo e deixei o
+> gatilho "conversão de 2 dias abaixo de 1,8%" valendo — sem notar que os dois
+> dias seriam **sábado e domingo**. O gatilho ia disparar por calendário, não
+> por performance. **Gatilho de conversão tem que comparar dia útil com dia
+> útil e fim de semana com fim de semana.**
+
+### 28.3 04/10 parcial (9h) — começo forte
+
+| | Valor |
+|---|---|
+| Gasto (5 objetos) | R$387,52 |
+| Shopify | 224 sessões · 3 pedidos · **R$2.727,41** |
+| Ticket | **R$899,12** |
+| **ROAS site parcial** | **7,04** |
+| Cobertura de UTM | **3 de 3 = 100%** |
+
+3 pedidos às 9h com um ticket desse tamanho — um pedido grande puxa o número.
+Não é dado de decisão.
+
+### 28.4 Atribuição real (Supabase)
+
+**03/10 — 9 pedidos, 5 com UTM (55,6%)**
+
+| Origem | Pedidos | Receita | ROAS atrib. |
+|---|---|---|---|
+| (sem utm) | 4 | 2.173,56 | — |
+| **ESCALA FRIO** | 2 | 903,28 | **1,13** |
+| `vermefree` (bio) | 1 | 626,34 | orgânico |
+| **TESTE** | 1 | 415,25 | **1,14** |
+| `dia_d_0606` | 1 | 389,99 | CRM |
+| **ESCALA QUENTE** | **0** | **0** | **0,00** |
+
+**04/10 parcial — 3 de 3 com UTM**
+
+| Origem | Pedidos | Receita | Ticket | ROAS atrib. |
+|---|---|---|---|---|
+| **ESCALA FRIO** | 2 | 1.577,41 | 788,71 | **9,42** |
+| **ESCALA QUENTE** | 1 | 1.150,00 | **1.150,00** (Kit Família) | **9,98** |
+
+Conferência Utmify: gasto Meta 03–04/10 R$2.616,27 contra R$2.613,61 do Meta —
+bate (dia em movimento). Rastreio do Utmify: 2 de 12 = **16,7%**, contra
+**66,7% do Supabase**. Confirma o §26.1.
+
+### 28.5 As perguntas que eu tinha deixado
+
+**ESCALA FRIO — CPM abaixo de R$75 e frequência abaixo de 1,8?**
+✅ Folgado, e é o melhor objeto da conta.
+
+```
+03/10  CPM 37,15  freq 1,28  CTR 2,56%  5 compras  CPA 160,33
+04/10  CPM 53,73  freq 1,23  CTR 2,63%  2 compras  CPA  83,76
+```
+
+**ESCALA QUENTE — o ticket de R$785 se sustenta com R$550?**
+Sim, mas **intermitente**. 03/10 zerou — e aqui o pixel estava certo, o Supabase
+confirma zero pedido com R$469,58 gastos. 04/10 trouxe 1 Kit Família de
+R$1.150. O padrão é poucos pedidos de ticket muito alto: 4 pedidos em 5 dias,
+ticket médio ~R$878. **Com esse padrão, um dia zerado não significa nada — e
+três zerados significam tudo.** Vale observar, não cortar.
+
+**TESTE ADV — o corte para R$160 melhorou o CPA?**
+Não dá para dizer ainda: o teto novo só passou a valer hoje (ontem ele já tinha
+gasto o teto antes da edição). O que dá para dizer é que **03/10 rodou
+frequência 1,837 — acima do meu gatilho de 1,8.** CPA R$182,44.
+
+**TOPO — religou e entregou?**
+✅ Entregou muito: **92.680 impressões por R$256,74 em 03/10, CPM R$2,77**,
+frequência 1,04. 161 LPV, 0 ATC, 0 compra — esperado (§27.3).
+⚠️ **Estourou o teto: R$256,74 contra R$150 (+71%).** Hoje está pacing normal
+(R$40,08 de R$150). Se repetir, travar.
+
+**Os públicos quentes estão crescendo? (Dia D em 6 dias)**
+Cedo para dizer — o TOPO rodou 1 dia. O sinal a favor é o Kit Família de
+R$1.150 vindo do QUENTE hoje. O teste real é a semana.
+
+### 28.6 Recomendação: não mexer em nada hoje
+
+Sábado e domingo não decidem verba. A próxima decisão é **segunda 06/10**, com
+dois dias úteis (06 e 07/10) contra dias úteis.
+
+O que eu levaria para segunda, se o dado confirmar:
+- [ ] FRIO: se o CPA de R$83–160 segurar, ele merece os R$1.000 de volta
+- [ ] TESTE: frequência 1,837 em 03/10 — se repetir em dia útil, cortar mais
+- [ ] TOPO: travar o estouro de orçamento
+- [ ] QUENTE: contar os dias zerados. Três seguidos = revisar
