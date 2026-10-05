@@ -2018,3 +2018,96 @@ está esperando decisão desde 01/10.
 
 Para comparar: o ralo que eu quero fechar hoje (R$328,58/dia) paga essa lista
 três vezes.
+
+---
+
+## §32 — AUDITORIA DO SUPABASE (05/10) · o Gabriel mandou desconfiar, eu testei
+
+*"meu medo é de lá não estar coletando dados direito."* Em vez de defender,
+testei. Descobri que o **Shopify guarda o próprio registro de UTM** em
+`order.customerJourneySummary.lastVisit.utmParameters` — com a mesma estrutura
+que o n8n lê (campaign = id da campanha, content = id do anúncio). Isso dá uma
+fonte de atribuição que **não passa pelo Supabase**.
+
+### 32.1 Teste 1 — o registro de pedidos bate?
+
+| Dia | Supabase (plataforma Shopify) | Shopify Analytics | |
+|---|---|---|---|
+| 28/09 | 29 · 17.357,40 | 30 · 17.275,65 | ✗ −1 ped |
+| 29/09 | 31 · 14.967,87 | 32 · 15.297,52 | ✗ −1 ped |
+| 30/09 | 28 · 12.976,48 | 28 · 12.976,48 | ✅ exato |
+| 01/10 | 18 · 10.138,24 | 18 · 10.138,24 | ✅ exato |
+| 02/10 | 15 · 7.040,04 | 15 · 7.040,04 | ✅ exato |
+| 03/10 | 9 · 4.508,42 | 9 · 4.508,42 | ✅ exato |
+| 04/10 | 8 · 5.474,51 | 8 · 5.474,51 | ✅ exato |
+
+**6 de 8 dias ao centavo.** Os dois que falham são 28 e 29/09 — Dia D Kids,
+1 pedido cada.
+
+### 32.2 Teste 2 — a atribuição bate? (58 pedidos pagos, 01–05/10)
+
+| Campanha | Supabase | **Shopify próprio** | Diferença |
+|---|---|---|---|
+| ESCALA FRIO | 13 ped · 6.507,69 | **14 ped · 6.788,65** | +1 ped · +280,96 |
+| ESCALA QUENTE | 4 ped · 3.506,93 | **3 ped · 3.225,97** | −1 ped · −280,96 |
+| TESTE | 3 ped · 1.110,78 | **3 ped · 1.110,78** | ✅ exato |
+
+**Uma única divergência, e eu achei a causa:**
+
+```
+Supabase gravou utm_campaign = "VF | ESCALA QUENTE|120251480163000323"
+Shopify  gravou utm_campaign = "120251302956470323" (FRIO), content = JATOMEI_01
+```
+
+A string malformada é a assinatura do bug: **o n8n não perdeu receita, ele
+trocou o pedido de campanha.** 1 erro em 20 pedidos atribuídos = 5%.
+
+> **Veredicto: o Supabase coleta certo. Tem um bug de parse quando o
+> `utm_campaign` vem com nome + id na mesma string.** Nenhuma receita inventada,
+> nenhuma receita perdida.
+
+### 32.3 Teste 3 — o que decidiu a semana se confirma?
+
+| Criativo | Pixel diz | Supabase diz | **Shopify próprio diz** |
+|---|---|---|---|
+| **AD_TD_SINAIS_01** | 9 compras | 0 pedidos | **0 pedidos** |
+| **12SINAIS** | 9 compras | 0 pedidos | **0 pedidos** |
+
+**Zero nas duas fontes independentes, com R$2.141 e R$1.562 gastos.** O corte
+proposto no §31.5 se confirma sem depender do Supabase.
+
+### 32.4 O que o teste achou e que é MAIS importante que o Supabase
+
+| Origem do pedido (registro do próprio Shopify, 58 pedidos) | Qtd | % |
+|---|---|---|
+| Mídia paga (campanha com id numérico) | 20 | 34,5% |
+| Outra origem com UTM (bio, CRM, captura) | 16 | 27,6% |
+| **SEM NENHUM UTM** | **22** | **37,9%** |
+
+**37,9% dos pedidos chegam sem UTM no registro do PRÓPRIO Shopify.** Então o
+buraco de atribuição nunca foi do Supabase nem do Utmify — **está nos links.**
+Quase 4 em 10 vendas não dizem de onde vieram, e isso é um conserto de
+rastreamento no site, não de banco de dados.
+
+Isso também explica por que o Utmify só pega 30%: ele não pode rastrear um
+pedido que chegou sem UTM.
+
+### 32.5 Protocolo corrigido de atribuição
+
+| Fonte | Papel |
+|---|---|
+| **Shopify GraphQL** (`customerJourneySummary.lastVisit.utmParameters`) | **VERDADE da atribuição.** É o registro da própria loja |
+| Supabase `compra_aprovada` | consulta rápida e agregação. Confiável, com a ressalva do parse (§32.2) |
+| Utmify | conferência de gasto (bate ao centavo). Atribuição só como terceira opinião |
+| Meta (pixel) | nunca para julgar criativo (§30.4). Só entrega: CPM, CTR, frequência |
+
+**Toda decisão de matar ou escalar criativo passa a ser confirmada no Shopify
+GraphQL antes de aplicar.** O Supabase continua, porque consulta em segundos o
+que no GraphQL leva páginas — mas não decide sozinho.
+
+### 32.6 Tarefa que saiu daqui
+
+- [ ] **Consertar a UTM de 37,9% dos pedidos.** Prioridade alta: é o maior
+      ganho de visibilidade disponível e não custa mídia.
+- [ ] Corrigir o n8n para gravar `utm_campaign` só com o id quando vier
+      "nome|id" (§32.2).
