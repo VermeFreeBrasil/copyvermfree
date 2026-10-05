@@ -1760,3 +1760,145 @@ conversão de um dia normal.
       na véspera do maior dia do mês.
 - [ ] A lista de ciclo (796 clientes, §23.5) continua sem disparar. É a munição
       mais barata que existe para o dia 10 e está parada.
+
+---
+
+## §30 — ANÁLISE POR CRIATIVO (05/10) · a conta está com os melhores pausados e os piores ativos
+
+Janela 20/09–05/10. Agregado por **criativo**, somando as instâncias do mesmo
+vídeo em conjuntos diferentes (a visão de campanha esconde isso: ROTINA_CICLOS,
+SINAIS_01, JATOMEI_01 e DUVIDAS rodam em mais de um lugar).
+
+**Receita por criativo vem do Supabase (`utm_content` = id do anúncio), não do
+pixel.** O pixel não mede criativo — ele distribui crédito para quem gasta mais.
+
+### 30.1 A tabela
+
+| Criativo | Gasto | Ped. | Receita | **ROAS atrib.** | CPA atrib. | Ticket | ped/R$1k | Freq | Ret. vídeo | LPV→ATC |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **N_CORPO_PEDINDO** ⏸ | 309 | 2 | **1.803** | **5,84** | 154 | **901** | 6,47 | 1,56 | 40% | 9,3% |
+| **SINAIS_01** ⏸ | 849 | 5 | **2.766** | **3,26** | 170 | 553 | 5,89 | **1,21** | 27% | 5,9% |
+| **ROTINA_CICLOS** | 2.282 | 7 | 5.126 | **2,25** | 326 | 732 | 3,07 | 1,74 | 33% | 12,8% |
+| **AD_TD_JATOMEI_02** | 4.696 | **15** | **9.820** | **2,09** | 313 | 655 | 3,19 | 1,82 | 37% | 12,1% |
+| **AD_TD_JATOMEI_01** | 3.886 | 13 | 6.424 | 1,65 | 299 | 494 | 3,35 | 1,56 | 31% | 9,0% |
+| DUVIDAS [graduou] ⏸ | 434 | 1 | 586 | 1,35 | 434 | 586 | 2,30 | 1,55 | 32% | 20,5% |
+| 3SINAIS | 1.905 | 2 | 1.653 | 0,87 | 953 | 827 | 1,05 | 1,34 | 33% | 4,6% |
+| N_A2_DIRETO | 876 | 2 | 701 | 0,80 | 438 | 351 | 2,28 | **3,12** | 26% | 11,5% |
+| KIDS_PET | 642 | 1 | 409 | 0,64 | 642 | 409 | 1,56 | 1,91 | 22% | 10,8% |
+| **AD_TD_SINAIS_01** | **2.141** | **0** | **0** | **0,00** | — | — | 0,00 | **2,48** | 27% | 16,5% |
+| **12SINAIS** | **1.562** | **0** | **0** | **0,00** | — | — | 0,00 | **2,36** | 29% | 16,2% |
+| JULIANA_UNBOX ⏸ | 1.067 | 0 | 0 | 0,00 | — | — | 0,00 | **2,91** | 40% | 32,8% |
+| AD_TD_RANGER_02 ⏸ | 878 | 0 | 0 | 0,00 | — | — | 0,00 | 1,53 | 23% | 13,4% |
+| N_DUVIDAS_CALMA ⏸ | 767 | 0 | 0 | 0,00 | — | — | 0,00 | **3,07** | **48%** | **0,0%** |
+| N_POR_QUE_CICLOS ⏸ | 765 | 0 | 0 | 0,00 | — | — | 0,00 | 1,22 | 35% | 2,9% |
+| AD_TD_8H02 ⏸ | 686 | 0 | 0 | 0,00 | — | — | 0,00 | 1,64 | 27% | 9,0% |
+| N_TRES_SINAIS ⏸ | 565 | 0 | 0 | 0,00 | — | — | 0,00 | 1,45 | 42% | 7,1% |
+| SINAIS_02 | 371 | 0 | 0 | 0,00 | — | — | 0,00 | 1,22 | 16% | 2,7% |
+| KIDS_AMAMENTACAO | 311 | 0 | 0 | 0,00 | — | — | 0,00 | 1,57 | 21% | **69,6%** |
+| **TOTAL** | **24.992** | **48** | **29.289** | **1,17** | 521 | 610 | **1,92** | | | |
+
+⏸ = pausado agora
+
+### 30.2 O achado: a conta está invertida
+
+**Os dois melhores criativos por ROAS atribuído estão PAUSADOS:**
+
+| | ROAS atrib. | Status |
+|---|---|---|
+| N_CORPO_PEDINDO | **5,84** | ⏸ pausado (veio da TESTE 2, que foi pausada) |
+| SINAIS_01 | **3,26** | ⏸ pausado (nas duas instâncias) |
+
+**Os dois maiores ralos estão ATIVOS:**
+
+| | Gasto | Pedidos atrib. | Status |
+|---|---|---|---|
+| AD_TD_SINAIS_01 | **R$2.141** | **0** | ▶ ativo |
+| 12SINAIS | **R$1.562** | **0** | ▶ ativo |
+
+### 30.3 A regra que o dado revela: frequência acima de 2,3 mata o criativo
+
+| Bucket de frequência | Gasto | Receita atrib. | **ROAS** |
+|---|---|---|---|
+| Freq ≤ 1,82 (11 criativos) | 18.579 | 28.588 | **1,54** |
+| **Freq > 2,3 (5 criativos)** | **6.413** | **701** | **0,11** |
+
+**R$6.413 — 25,7% de tudo que foi gasto — entrou em criativo com frequência
+acima de 2,3 e devolveu R$701.** Nenhum criativo acima de 2,3 passou de ROAS
+0,80. Nenhum.
+
+Mas a regra é **assimétrica**: frequência alta condena, frequência baixa não
+salva. AD_TD_RANGER_02 (1,53), N_POR_QUE_CICLOS (1,22) e SINAIS_02 (1,22)
+rodaram frequência ótima e deram zero.
+
+> **Regra nova: frequência de criativo acima de 2,3 é corte, sem discussão e
+> sem esperar o gate de gasto.** Entra como quarto sinal de morte precoce no
+> §13.3 — e é o único que não precisa de volume para ser confiável.
+
+### 30.4 Duas métricas que eu usava e que NÃO preveem venda
+
+**Retenção de vídeo (p75÷p25) não prevê nada.**
+
+```
+N_DUVIDAS_CALMA   retenção 48% (a melhor)  →  R$767 gastos, ZERO venda
+N_TRES_SINAIS     retenção 42%             →  R$565 gastos, ZERO venda
+JULIANA_UNBOX     retenção 40%             →  R$1.067 gastos, ZERO venda
+KIDS_PET          retenção 22% (a pior)    →  melhor CPA da conta no Meta
+SINAIS_01         retenção 27%             →  ROAS atribuído 3,26
+```
+
+**LPV→ATC também não.**
+
+```
+KIDS_AMAMENTACAO  69,6% de LPV→ATC  →  ZERO venda atribuída
+JULIANA_UNBOX     32,8%             →  ZERO venda atribuída
+AD_TD_SINAIS_01   16,5%             →  ZERO venda atribuída
+SINAIS_01          5,9%             →  ROAS 3,26
+```
+
+O caso mais claro é o **N_DUVIDAS_CALMA**: CPM R$8,65 (o mais barato),
+CTR 1,77%, a melhor retenção da conta, **545 landing page views e ZERO add to
+cart**. É um gancho que funciona perfeitamente para trazer gente que não quer
+comprar.
+
+> **Regra: criativo se julga por pedido atribuído por R$1.000 gastos. Retenção,
+> CTR e LPV→ATC servem para diagnosticar POR QUE um criativo falha — nunca para
+> decidir se ele fica.**
+
+### 30.5 Ressalva honesta sobre o zero
+
+A cobertura de UTM é ~48%, então "zero atribuído" não é prova de zero venda.
+Quanto o zero vale, por criativo:
+
+| Criativo | Gasto | Esperado na média da conta | Veio | Pixel diz |
+|---|---|---|---|---|
+| AD_TD_SINAIS_01 | 2.141 | ~4,1 pedidos | **0** | 9 |
+| 12SINAIS | 1.562 | ~3,0 | **0** | 9 |
+| JULIANA_UNBOX | 1.067 | ~2,0 | **0** | 7 |
+| AD_TD_RANGER_02 | 878 | ~1,7 | **0** | 7 |
+
+Com 48% de cobertura, um criativo com 4 vendas reais teria ~6% de chance de
+mostrar zero; com 9 vendas, menos de 1%. **Nos dois primeiros o zero é forte.**
+Nos dois últimos é sugestivo, não conclusivo — e os dois já estão pausados.
+
+### 30.6 Decisões por criativo
+
+**Cortar agora (ativos e sangrando):**
+1. **AD_TD_SINAIS_01** — R$2.141, zero atribuído, freq 2,48, CTR 1,08%
+2. **12SINAIS** — R$1.562, zero atribuído, freq 2,36
+3. **N_A2_DIRETO** — freq 3,12, ROAS 0,80. Não é zero, mas está reciclando público
+
+**Religar e testar (pausados e bons):**
+4. **SINAIS_01** — ROAS atrib. 3,26, freq 1,21, 5 pedidos. O melhor com amostra
+   defensável. Volta para a ESCALA FRIO
+5. **N_CORPO_PEDINDO** — ROAS atrib. 5,84, ticket R$901. **Só 2 pedidos**, então
+   volta como teste com R$100/dia, não como escala
+
+**Manter como são:**
+6. **AD_TD_JATOMEI_02** — R$9.820 de receita atribuída, o maior gerador absoluto
+   da conta. Confirma o §29.4: não matar pelo CPA
+7. **ROTINA_CICLOS** — ROAS 2,25 com ticket R$732. É o que vende Kit Família
+8. **AD_TD_JATOMEI_01** — ROAS 1,65, 13 pedidos. Motor de volume
+
+**Reavaliar o 3SINAIS:** R$1.905 gastos, ROAS atrib. 0,87, apenas 1,05 pedidos
+por R$1.000 — metade da média da conta. CTR 3,41% é excelente e me fez defendê-lo
+no §19.2. **A receita diz que o CTR me enganou de novo.**
