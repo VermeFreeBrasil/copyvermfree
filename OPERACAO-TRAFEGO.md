@@ -1642,3 +1642,121 @@ O que eu levaria para segunda, se o dado confirmar:
 - [ ] TESTE: frequência 1,837 em 03/10 — se repetir em dia útil, cortar mais
 - [ ] TOPO: travar o estouro de orçamento
 - [ ] QUENTE: contar os dias zerados. Três seguidos = revisar
+
+---
+
+## §29 — RELATÓRIO DE SEGUNDA 05/10 · três fontes + Supabase · decisões
+
+Escopo: cinco objetos sob gestão. QUIZ fora de tudo (§27.6), CTWA fora,
+WhatsApp fora (sem disparo em massa na semana). **Dia D em 5 dias (10/10).**
+
+### 29.1 A semana no Shopify
+
+| Dia | Sessões | ATC | Conv. | Pedidos | Faturamento | Gasto (5 obj) | **ROAS site** |
+|---|---|---|---|---|---|---|---|
+| 01/10 qui | 809 | 7,0% | 2,22% | 18 | 10.138,24 | 1.707,86 | **5,94** |
+| 02/10 sex | 812 | 7,8% | 1,85% | 15 | 7.040,04 | 1.716,38 | **4,10** |
+| 03/10 sáb | 1.187 | 3,3% | 0,76% | 9 | 4.508,42 | 1.892,84 | **2,38** |
+| 04/10 dom | 1.212 | **1,9%** | **0,66%** | 8 | 5.474,51 | 1.866,48 | **2,93** |
+| 05/10 seg* | 377 | 6,9% | 1,86% | 7 | 4.430,84 | 566,42 | **7,82** |
+| **Semana** | **4.397** | — | **1,30%** | **57** | **31.592,05** | **7.749,98** | **4,08** |
+
+\*parcial · base de preço cheio 24–27/09 = 3,56 → **+14,5%**
+
+**O fim de semana é um buraco estrutural, não uma piora da conta.** O ATC caiu
+de 7,8% (sex) para 1,9% (dom) e voltou a 6,9% hoje. Dia útil converte 1,85–2,22%;
+fim de semana converte 0,66–0,76%. Toda decisão de verba tem que comparar dia
+útil com dia útil (§28.2).
+
+> **Nota de honestidade:** o ROAS acima é faturamento TOTAL do Shopify dividido
+> pelo gasto dos 5 objetos. Como houve gasto fora do meu escopo na semana
+> (R$847,72 em objetos que não gerencio), o número favorece ligeiramente os 5.
+> Contra o gasto de site inteiro (R$8.597,70) o ROAS da semana é **3,67**.
+
+### 29.2 Atribuição real por objeto (Supabase, 01–05/10)
+
+| Objeto | Gasto | Pedidos | Receita atrib. | **ROAS atrib.** | CPA atrib. | **Ticket** |
+|---|---|---|---|---|---|---|
+| **ESCALA FRIO** | 3.453,06 | **13** | 6.507,69 | **1,88** | 265,62 | 500,59 |
+| **ESCALA QUENTE** | 2.027,41 | 4 | 3.506,93 | **1,73** | 506,85 | **876,73** |
+| **TESTE ADV+KIDS** | 1.779,50 | 3 | 1.110,78 | **0,62** | **593,17** | 370,26 |
+| TOPO | 490,01 | 0 | 0 | 0,00 | — | — |
+
+Fora dos 5: `vermefree/link_in_bio` 7 pedidos · R$2.659,99 (orgânico) e CRM
+(`dia_d_kids`, `dia_d_0606`, `semana_do_cliente`, `acao_alunos_drwilliam`)
+5 pedidos · R$2.926,13.
+
+**Cobertura de atribuição, 66 pedidos:** Utmify 20 (30,3%) · **Supabase 32
+(48,5%)**. Conferência de gasto: Utmify R$8.893,83 contra R$8.834,87 somados no
+Meta — bate (dia em movimento).
+
+### 29.3 Nível de anúncio — onde o dinheiro está sendo ganho e perdido
+
+| Anúncio | Gasto | Compras | CPA | ROAS Meta | CTR | Freq | Veredicto |
+|---|---|---|---|---|---|---|---|
+| **KIDS_PET** *(TESTE KIDS)* | 517,16 | **5** | **103,43** | **6,15** | 1,38% | 1,82 | **GRADUA** |
+| **AD_TD_JATOMEI_01** *(FRIO)* | 1.496,09 | **12** | **124,67** | 3,64 | 2,84% | 1,41 | campeão |
+| SINAIS_02 | 296,34 | 2 | 148,17 | 3,33 | 1,87% | 1,16 | saudável |
+| ROTINA_CICLOS *(FRIO)* | 365,02 | 2 | 182,51 | 3,22 | 1,69% | 1,19 | saudável |
+| N_A2_DIRETO | 569,00 | 3 | 189,67 | 1,75 | 1,05% | **2,86** | freq crítica |
+| **ROTINA_CICLOS** *(QUENTE)* | 807,78 | 3 | 269,26 | **3,99** | **3,77%** | 1,58 | ticket alto |
+| AD_TD_JATOMEI_02 | 1.043,00 | 4 | 260,75 | 2,23 | 2,24% | 1,42 | **observa** |
+| **12SINAIS** | **551,92** | **0** | — | — | 1,16% | 1,98 | **MATA** |
+| **AD_TD_SINAIS_01** | **1.090,98** | 2 | **545,49** | 1,25 | **0,95%** | **2,04** | **MATA** |
+| 3SINAIS | 132,99 | 0 | — | — | **10,46%** | 1,17 | abaixo do gate |
+| KIDS_AMAMENTACAO | 141,57 | 0 | — | — | 0,85% | 2,13 | abaixo do gate |
+| DUVIDAS (×2) | 167,72 | 0 | — | — | 2,7% | 1,5 | abaixo do gate |
+
+### 29.4 Decisões propostas
+
+**1 · GRADUAR o KIDS_PET para a escala.** 5 compras · R$517,16 · CPA R$103,43 ·
+ROAS Meta 6,15. Cruza o gate de graduação (≥5 compras + R$150 + ROAS ≥2,2) com
+folga. É o melhor CPA da conta e está preso numa campanha de teste.
+
+**2 · MATAR o 12SINAIS.** R$551,92 gastos, **zero compra**. Passou dos R$450 do
+gate sem uma venda — §13.1 não deixa margem.
+
+**3 · MATAR o AD_TD_SINAIS_01.** Três motivos, não um: CPA R$545,49 (acima dos
+R$200 com R$1.091 gastos), **CTR 0,95% com 34.795 impressões** (sinal 1 do
+§13.3) e frequência 2,04.
+
+**4 · NÃO matar o AD_TD_JATOMEI_02, apesar do gate.** CPA R$260,75 manda cortar.
+Mas é exatamente este anúncio que o §13.1 registra como já tendo sido declarado
+morto por engano e recuperado para ROAS 5,26. ROAS atual 2,23, acima do
+breakeven (1,25–1,82 do §22). **Reavalia quinta 08/10.** Essa é a lição mais
+cara do playbook e eu não vou repeti-la.
+
+**5 · N_A2_DIRETO a frequência 2,86** está reciclando o mesmo público. Não mato
+— é o TOPO que resolve isso, alimentando público novo.
+
+**6 · TESTE como campanha fica, com função mudada.** ROAS atribuído 0,62 é o
+pior dos 5 objetos, mas a função dela é graduar anúncio e ela acabou de graduar
+o KIDS_PET. Tirando o 12SINAIS e graduando o KIDS_PET, ela volta a ser teste de
+criativo para o Dia D — não verba de escala.
+
+### 29.5 Verba proposta (teto de R$2.000 que o Gabriel autorizou)
+
+| Objeto | Hoje | **Proposto** | Por quê |
+|---|---|---|---|
+| **ESCALA FRIO** | 810 | **950** | JATOMEI_01 a CPA R$124,67; CTR 3,61% e freq 1,17 hoje; 13 dos 20 pedidos atribuídos |
+| **ESCALA QUENTE** | 550 | **550** | ticket R$876,73 é o maior da conta, mas freq subiu 1,31→1,61. Não aumenta |
+| TESTE ADV+KIDS | 300 | **300** | mantém como teste de criativo pro Dia D |
+| **TOPO** | 150 | **200** | munição do Dia D: CPM R$2,19–2,85, 24–73 mil impressões/dia |
+| **Total** | **1.810** | **2.000** | |
+
+### 29.6 Dia D 10/10 — o que precisa estar pronto (5 dias)
+
+Referência do Dia D anterior (09/09): R$2.924,75 de gasto, 2.539 sessões,
+**conversão de 5,199%**, 116 compras no pixel. É o dobro de sessão e 4x a
+conversão de um dia normal.
+
+- [ ] **Público quente carregado.** O TOPO voltou só em 03/10 — tem 5 dias de
+      alcance a CPM ~R$2,50. É o que o QUENTE vai consumir no dia 10.
+- [ ] **Campanha de Dia D criada e com verba própria**, separada do perpétuo,
+      para não contaminar a leitura do perpétuo (§12: isolar dia de evento).
+- [ ] **Anúncios definidos:** JATOMEI_01 (CPA R$124) e KIDS_PET (CPA R$103) são
+      os dois com direito a entrar. ROTINA_CICLOS no QUENTE pelo ticket.
+- [ ] **Não mexer no perpétuo entre 08 e 10/10** — edição reinicia aprendizado
+      na véspera do maior dia do mês.
+- [ ] A lista de ciclo (796 clientes, §23.5) continua sem disparar. É a munição
+      mais barata que existe para o dia 10 e está parada.
