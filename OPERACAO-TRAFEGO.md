@@ -1902,3 +1902,119 @@ Nos dois últimos é sugestivo, não conclusivo — e os dois já estão pausado
 **Reavaliar o 3SINAIS:** R$1.905 gastos, ROAS atrib. 0,87, apenas 1,05 pedidos
 por R$1.000 — metade da média da conta. CTR 3,41% é excelente e me fez defendê-lo
 no §19.2. **A receita diz que o CTR me enganou de novo.**
+
+---
+
+## §31 — O QUE OS DOIS NÍVEIS JUNTOS DIZEM (05/10) · plano
+
+Separados, os dois níveis mentem. Campanha mostra média; criativo mostra
+distribuição. Cruzados, aparece a coisa:
+
+### 31.1 As campanhas não são medíocres — cada uma carrega um morto dentro
+
+```
+ESCALA QUENTE
+  como está        : gasto 2.027,41  receita 3.506,93  ROAS 1,73
+  AD_TD_SINAIS_01  : gasto 1.090,98  receita     0,00  ROAS 0,00  (54% da verba!)
+  SEM o morto      : gasto   936,43  receita 3.506,93  ROAS 3,74   +117%
+
+ESCALA FRIO
+  como está        : gasto 3.453,06  receita 6.507,69  ROAS 1,88
+  12SINAIS         : gasto   551,92  receita     0,00  ROAS 0,00
+  SEM o morto      : gasto 2.901,14  receita 6.507,69  ROAS 2,24   +19%
+```
+
+**Cortando dois criativos, as duas campanhas de escala vão de 1,73/1,88 para
+3,74/2,24.** Não precisa de verba nova, nem de criativo novo, nem de teste.
+
+**Verba liberada: R$328,58/dia que hoje produz zero atribuído.** R$1.642,90 até
+o Dia D.
+
+> **Por isso eu quase cortei a campanha errada.** Na leitura de campanha
+> (§29.2) o QUENTE apareceu com ROAS 1,73 e eu chamei de "intermitente". Ele
+> não é intermitente — ele é bom com um ralo de R$218/dia aberto dentro.
+
+### 31.2 Quatro criativos sustentam a conta
+
+| Criativo | Gasto | Receita atrib. | ROAS |
+|---|---|---|---|
+| AD_TD_JATOMEI_02 | 4.695,83 | 9.820,07 | 2,09 |
+| AD_TD_JATOMEI_01 | 3.886,27 | 6.423,90 | 1,65 |
+| ROTINA_CICLOS | 2.281,93 | 5.126,27 | 2,25 |
+| SINAIS_01 | 848,84 | 2.765,59 | 3,26 |
+| **SOMA** | **11.712,87** | **24.135,83** | **2,06** |
+
+**82% da receita atribuída com 47% do gasto.** Os outros 53% do dinheiro
+produziram 18% da receita.
+
+### 31.3 O mesmo criativo vale 2,3x mais no público certo
+
+```
+ROTINA_CICLOS no QUENTE : R$1.343,97 -> R$3.225,97   ticket R$1.075
+ROTINA_CICLOS no FRIO   : R$  937,96 -> R$1.900,30   ticket R$  475
+```
+
+Mesmo vídeo. **O quente compra Kit Família; o frio compra frasco avulso.**
+
+> **Regra: criativo de ticket alto (ROTINA_CICLOS, N_CORPO_PEDINDO) vai para o
+> QUENTE. Criativo de volume (JATOMEI_01/02) vai para o FRIO.** A conta estava
+> misturando os dois.
+
+### 31.4 Por que a conta chegou invertida
+
+O pixel diz que o AD_TD_SINAIS_01 fez **9 compras**. Por isso ele está vivo
+desde 20/09 consumindo R$2.141. O Supabase diz zero.
+
+**Ninguém estava julgando criativo por receita atribuída — nem eu.** Até o §30
+eu julgava por CPA do pixel, CTR e retenção, e as três me enganaram (§30.4).
+
+> **Rotina nova: revisão de criativo toda quinta, no número do Supabase
+> (pedido atribuído por R$1.000), junto com o gate de gasto do §13.6.**
+
+### 31.5 O plano — hoje, antes do Dia D
+
+**HOJE (4 edições, uma publicação):**
+
+| # | Ação | Objeto | Motivo |
+|---|---|---|---|
+| 1 | **Pausar AD_TD_SINAIS_01** | em QUENTE | R$2.141 → zero · freq 2,48 · CTR 1,08% |
+| 2 | **Pausar 12SINAIS** | em FRIO | R$1.562 → zero |
+| 3 | **Pausar N_A2_DIRETO** | em TESTE | freq 3,12 · ROAS 0,80 |
+| 4 | **Religar SINAIS_01** | em FRIO | ROAS 3,26 · freq 1,21 · 5 pedidos |
+| 5 | **Subir N_CORPO_PEDINDO** | em **QUENTE**, não no teste | ticket R$901 combina com o perfil Kit Família do quente |
+
+**Verba (teto de R$2.000 autorizado):**
+
+| Objeto | Hoje | Proposto | Por quê |
+|---|---|---|---|
+| ESCALA FRIO | 810 | **900** | 4 criativos bons: JATOMEI 01+02, ROTINA_CICLOS, SINAIS_01 |
+| **ESCALA QUENTE** | 550 | **600** | ROAS 3,74 sem o morto. Dois criativos de ticket alto |
+| TESTE ADV+KIDS | 300 | **300** | fica como teste real de criativo novo |
+| TOPO | 150 | **200** | munição do Dia D |
+| **Total** | 1.810 | **2.000** | |
+
+**QUENTE sobe só 9%** de propósito: a frequência dele subiu 1,31 → 1,61 na
+semana e o público é finito. O que resolve o QUENTE é criativo novo (ação 5),
+não verba.
+
+**DIA D 10/10 — a escalação sai do dado, não de opinião:**
+
+| Papel | Criativo | Base |
+|---|---|---|
+| Volume (frio) | **JATOMEI_02** + **JATOMEI_01** | R$16.244 de receita atribuída juntos |
+| Ticket (quente) | **ROTINA_CICLOS** + **N_CORPO_PEDINDO** | ticket R$1.075 e R$901 |
+| Eficiência | **SINAIS_01** | ROAS 3,26, o melhor com amostra defensável |
+| Kids | **KIDS_PET** | CPA R$107 no Meta — mas ROAS atribuído 0,64, confirmar quinta |
+
+**Não mexer no perpétuo de 08 a 10/10.** Edição reinicia aprendizado na véspera
+do maior dia do mês.
+
+### 31.6 O que continua parado e é mais barato que tudo acima
+
+A **lista de ciclo: 796 clientes** na janela de 90–200 dias, prontos para o
+próximo protocolo (§23.5). Custo: **R$111 como utility** ou R$1.019 como
+marketing. A 5 dias do Dia D, é a munição mais barata que existe na operação, e
+está esperando decisão desde 01/10.
+
+Para comparar: o ralo que eu quero fechar hoje (R$328,58/dia) paga essa lista
+três vezes.
