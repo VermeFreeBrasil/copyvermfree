@@ -2246,3 +2246,26 @@ O ESCALA QUENTE deu **zero pedido atribuído** em 05/10 com R$683,33. O Dia D
 depende do público quente. Com o TOPO rodando só desde 03/10, o quente tem
 3 dias de alimentação. **Se o QUENTE não voltar a converter até quinta, o Dia D
 vai depender do frio — que é mais caro por pedido.**
+
+### 33.9 APLICADO — 06/10
+
+Gabriel: *"ok, pode aplicar"*. Quatro edições publicadas.
+
+| Anúncio | Onde | Ação | `status` | `effective_status` |
+|---|---|---|---|---|
+| **AD_TD_SINAIS_01** | ESCALA QUENTE | pausado | PAUSED | **PAUSED** ✅ |
+| **12SINAIS** | TESTE ADV | pausado | PAUSED | **PAUSED** ✅ |
+| **KIDS_AMAMENTACAO** | TESTE KIDS | pausado | PAUSED | IN_PROCESS *(propagando)* |
+| **SINAIS_01** | ESCALA FRIO | **religado** | ACTIVE | IN_PROCESS *(propagando)* |
+
+Os três pausados já tinham gasto **R$249,80 hoje** antes da pausa
+(AD_TD_SINAIS_01 R$190,43 · 12SINAIS R$46,39 · KIDS_AMAMENTACAO R$12,98), então
+o efeito de verba começa a valer de fato amanhã.
+
+**Verba não foi tocada.** Segue como alguém deixou: FRIO R$1.080 · QUENTE R$750 ·
+TESTE ADV R$160 · TESTE KIDS R$140 · TOPO R$150 = R$2.280/dia. Com o
+AD_TD_SINAIS_01 fora, os R$750 do QUENTE agora vão para ROTINA_CICLOS e DUVIDAS.
+
+**Congelamento até o Dia D:** nada mais muda de 07 a 10/10 (§13.6). A próxima
+leitura é quinta 08/10, só para confirmar que o QUENTE voltou a converter sem o
+ralo dentro.
