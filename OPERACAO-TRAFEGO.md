@@ -2111,3 +2111,138 @@ que no GraphQL leva páginas — mas não decide sozinho.
       ganho de visibilidade disponível e não custa mídia.
 - [ ] Corrigir o n8n para gravar `utm_campaign` só com o id quando vier
       "nome|id" (§32.2).
+
+---
+
+## §33 — DIÁRIO 06/10 · três fontes · campanha, conjunto e anúncio
+
+Dia D em 4 dias. Escopo: cinco objetos sob gestão. QUIZ fora (§27.6).
+
+### 33.1 A verba mudou de novo e não fui eu
+
+| Objeto | Eu deixei | **Está em** |
+|---|---|---|
+| ESCALA FRIO (CBO) | 810 *(já tinha sido mexido de 1.000)* | **1.080** |
+| ESCALA QUENTE | 550 | **750** |
+| TESTE ADV | 160 | 160 |
+| TESTE KIDS | 140 | 140 |
+| TOPO | 150 | 150 |
+| **Total sob gestão** | 1.810 | **R$2.280** |
+
+Também entrou uma campanha nova: **Boost Live 05/10** (R$111,32), fora do meu
+escopo.
+
+### 33.2 05/10 fechado — e por que o número bonito não é o que parece
+
+| | Valor | Fonte |
+|---|---|---|
+| Sessões | **1.583** | Shopify |
+| Pedidos | **25** | Shopify |
+| Faturamento | **R$15.337,45** | Shopify |
+| Conversão · ATC · AOV | 1,579% · 4,99% · R$598,74 | Shopify |
+| Gasto (5 objetos) | **R$2.198,60** | Meta |
+| Gasto conta inteira | R$2.351,63 | Meta |
+| Gasto conferido | **R$2.351,63 — bate ao centavo** | Utmify |
+| **ROAS site** | **6,98** | Shopify ÷ Meta |
+
+**Melhor dia desde 29/09.** Mas:
+
+```
+ESCALA FRIO    R$1.077,85 ->  5 pedidos · R$1.800,69   ROAS atrib. 1,67
+ESCALA QUENTE  R$  683,33 ->  0 pedidos · R$    0,00   ROAS atrib. 0,00
+TESTE ADV+KIDS R$  287,61 ->  0 pedidos · R$    0,00   ROAS atrib. 0,00
+TOPO           R$  149,81 ->  0 pedidos (esperado)
+
+bio do Instagram     6 pedidos · R$3.240,04
+CRM (live_26_08)     1 pedido  · R$1.249,20
+SEM NENHUM UTM      13 pedidos · 52% do dia
+```
+
+**A mídia paga explica R$1.800,69 de R$15.337,45 — 11,7% do dia.**
+Rastreio: Utmify 5 de 25 · Shopify 5 de 25. **As duas fontes concordam no 5.**
+
+> **05/10 foi dia de live** (a campanha Boost Live 05/10 existe). 1.583 sessões
+> contra ~810 de dia normal, e 52% dos pedidos sem UTM — assinatura de live.
+> **Por §12 este dia isola: não entra em baseline e não autoriza escala.**
+
+### 33.3 Anúncio por anúncio — gasto contra receita CONFIRMADA
+
+| Anúncio | Onde | Gasto | Pixel | **Real** | Receita | **ROAS at.** | CTR | Freq |
+|---|---|---|---|---|---|---|---|---|
+| **AD_TD_SINAIS_01** | QUENTE | **388,95** | 2 | **0** | **0,00** | **0,00** | 1,31% | 1,34 |
+| AD_TD_JATOMEI_01 | FRIO | 377,82 | 1 | 1 | 377,06 | 1,00 | 2,50% | 1,19 |
+| **AD_TD_JATOMEI_02** | FRIO | 340,94 | 3 | **3** | **1.046,57** | **3,07** | 2,63% | 1,17 |
+| ROTINA_CICLOS | QUENTE | 224,16 | 0 | 0 | 0,00 | 0,00 | **4,51%** | 1,20 |
+| **3SINAIS** | FRIO | 183,31 | 1 | **1** | **377,06** | **2,06** | **11,54%** | 1,08 |
+| 12SINAIS | TESTE | 97,58 | 0 | 0 | 0,00 | 0,00 | 1,74% | 1,25 |
+| KIDS_PET | TESTE KIDS | 87,92 | 0 | 0 | 0,00 | 0,00 | 1,26% | 1,23 |
+| DUVIDAS | QUENTE | 70,22 | 1 | 0 | 0,00 | 0,00 | **5,19%** | 1,24 |
+| N_A2_DIRETO | TESTE | 57,90 | 1 | 0 | 0,00 | 0,00 | 1,25% | 1,61 |
+| AD_TD_SINAIS_02 | FRIO | 57,09 | 1 | 0 | 0,00 | 0,00 | 0,96% | 1,37 |
+| SINAIS_02 | FRIO | 55,20 | 1 | 0 | 0,00 | 0,00 | 2,71% | 1,14 |
+| ROTINA_CICLOS | FRIO | 48,30 | 0 | 0 | 0,00 | 0,00 | 1,39% | 1,07 |
+| KIDS_AMAMENTACAO | TESTE KIDS | 44,21 | 0 | 0 | 0,00 | 0,00 | 0,98% | 1,36 |
+
+**O pixel somou 11 compras. O Shopify confirma 5.** O pixel está inflando 2,2x
+no nível de anúncio.
+
+Só **três criativos** produziram receita confirmada no dia, e os três estão na
+ESCALA FRIO: JATOMEI_02 (R$1.046,57), JATOMEI_01 e 3SINAIS (R$377,06 cada).
+
+### 33.4 Terceira confirmação do AD_TD_SINAIS_01
+
+| Fonte | 20/09–05/10 | Só 05/10 |
+|---|---|---|
+| Pixel do Meta | 9 compras | 2 compras (CPA R$194,48) |
+| Supabase | **0 pedidos** | **0 pedidos** |
+| Shopify GraphQL | **0 pedidos** | **0 pedidos** |
+
+Ele gastou **R$388,95 ontem — 57% da verba do ESCALA QUENTE** — e a campanha
+toda fechou com zero pedido atribuído. A verba do QUENTE acabou de subir para
+R$750, o que aumenta a exposição a esse anúncio.
+
+### 33.5 Correção parcial sobre o 3SINAIS
+
+Ontem (§30.6) eu escrevi que *"a receita diz que o CTR me enganou de novo"*
+sobre o 3SINAIS. Em 05/10 ele fez **1 pedido confirmado de R$377,06 com
+R$183,31 gastos — ROAS atribuído 2,06**, com CTR de 11,54% e frequência 1,08.
+
+Um dia não derruba a janela de 16 dias (ROAS atrib. 0,87 lá), e o dia era de
+live. Mas **ele saiu do zero e merece observação, não corte.** Registro para não
+cortar por inércia.
+
+### 33.6 06/10 parcial
+
+```
+Shopify   309 sessoes · 2 pedidos · R$1.015,72 · conv 0,647%
+Gasto     R$652,52  (FRIO 303,74 + QUENTE 226,83 + TESTE 95,90 + TOPO 26,05)
+ROAS site 1,56   <- cedo, nao decide nada
+```
+
+FRIO com CPM R$66,76 hoje (ontem 44,44) e CTR 3,19%. **Nenhuma compra em nenhum
+objeto até agora.**
+
+### 33.7 Decisão de hoje
+
+**O que mudou desde ontem e muda a recomendação:** a verba do QUENTE subiu para
+R$750 e o AD_TD_SINAIS_01 continua dentro dele consumindo 57%. Isso piora o
+problema do §31.1 em vez de resolver.
+
+**Ação de maior impacto, inalterada e agora com três dias de confirmação:**
+
+| # | Ação | Impacto |
+|---|---|---|
+| 1 | **Pausar AD_TD_SINAIS_01** | libera ~R$389/dia que dá zero. ESCALA QUENTE sai de 0,00 para o ROAS do ROTINA_CICLOS sozinho |
+| 2 | **Pausar 12SINAIS** (hoje no TESTE) | R$97,58 ontem, zero |
+| 3 | **Pausar KIDS_AMAMENTACAO** | R$44,21 ontem, zero · CTR 0,98% |
+| 4 | **Religar SINAIS_01 no FRIO** | ROAS atrib. 3,26 na janela, freq 1,21 |
+
+**Não mexer em mais nada até 10/10.** Faltam 4 dias para o Dia D e cada edição
+reinicia aprendizado (§13.6).
+
+### 33.8 Alerta de Dia D
+
+O ESCALA QUENTE deu **zero pedido atribuído** em 05/10 com R$683,33. O Dia D
+depende do público quente. Com o TOPO rodando só desde 03/10, o quente tem
+3 dias de alimentação. **Se o QUENTE não voltar a converter até quinta, o Dia D
+vai depender do frio — que é mais caro por pedido.**
