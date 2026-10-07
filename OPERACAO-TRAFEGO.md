@@ -2558,3 +2558,159 @@ Dependendo do tema, isso exibe na vitrine que o produto ficou **mais caro**.
 Os preços em si estão certos (conferem com o §6 do CLAUDE.md) — é só o campo de
 comparação. **Não posso datar quando quebrou** (o `updatedAt` é movido por
 venda), então não atribuo nada a isso. Mas 3 dias antes do Dia D é bom arrumar.
+
+---
+
+## §36 — ONDE O DIA 07/10 REALMENTE QUEBROU (leitura das 09h50)
+
+O Gabriel: *"entendi a sazonalidade mas nao precisamos mudar nada do dia d. quero
+saber de hoje , mesmo com cpm alto nao justifica nao ter uma venda esse 3 nao
+entendi bem .. quero que releia 12h .. espera 18h nao.. vamos ver 12h que teremos
+um intervalo de 12 h"*
+
+**Dia D segue 10/10. Decisão dele, encerrada — o §35.4 fica como registro da
+hipótese de leilão, não como proposta de mudar data.**
+
+### 36.1 Ele está certo: CPM não justifica zero venda
+
+E eu não deveria ter deixado o §35 dar essa impressão. São duas contas separadas:
+
+- **CPM** diz quanto tráfego o dinheiro compra. Explica volume.
+- **Zero venda** é o que o tráfego faz depois de chegar no site. Explica conversão.
+
+E a prova de que CPM **não** é o problema desta manhã: na mesma faixa de horário,
+o site recebeu **290 sessões hoje contra 326 ontem** — −11%. O volume está
+praticamente normal. O CPM alto ainda não tirou visita relevante. **O zero não
+vem de falta de gente.**
+
+### 36.2 O passo que quebrou: carrinho → checkout
+
+Janela 00h–09h50 BRT (03:00–12:50 UTC):
+
+| Dia | Sessões | ATC | Chegaram ao checkout | Vendas | **ATC→chk** | chk→venda |
+|---|---|---|---|---|---|---|
+| 05/10 | 319 | 23 | 21 | 6 | 91% | 29% |
+| 06/10 | 326 | 13 | 11 | 3 | 85% | 27% |
+| **07/10** | **290** | **15** | **7** | **0** | **47%** | **0%** |
+
+**A intenção está intacta: 15 ATC hoje contra 13 ontem, com menos sessão.** As
+pessoas estão colocando no carrinho na taxa normal ou melhor. Elas param no passo
+seguinte.
+
+Contra base longa — ATC→checkout de dia fechado, 17 dias (20/09 a 06/10):
+
+```
+faixa     : 70% (01/10) a 111% (30/09)
+mediana   : ~88%
+hoje      : 47%  -> abaixo do piso de TODOS os 17 dias
+```
+
+**E o pixel do Meta, que é sistema independente, mostra o mesmo passo quebrado:**
+
+| Dia | ATC pixel | Checkout iniciado | ATC→IC |
+|---|---|---|---|
+| 29/09 | 34 | 25 | 74% |
+| 30/09 | 28 | 27 | 96% |
+| 01/10 | 34 | 21 | 62% |
+| 02/10 | 36 | 24 | 67% |
+| 03/10 | 31 | 22 | 71% |
+| 04/10 | 20 | 24 | 120% |
+| 05/10 | 55 | 40 | 73% |
+| 06/10 | 43 | 28 | 65% |
+| **07/10** | **11** | **4** | **36%** |
+
+(FRIO + QUENTE + TESTE. Piso da série: 62%. Hoje: 36%.)
+
+Dois sistemas que medem de formas diferentes, mesmo passo, mesma direção, ambos
+no chão da própria série histórica.
+
+### 36.3 A conta do dia, decomposta
+
+```
+ATC de hoje                                  : 15
+x 0,88  (ATC->checkout normal, mediana 17d)  : 13,2 checkouts esperados
+x 0,33  (checkout->venda normal)             :  4,4 vendas esperadas
+realizado                                    :  0
+```
+
+Onde foram as 4,4:
+
+- **~2 vendas** perdidas no passo carrinho→checkout: deviam ter chegado 13, chegaram 7.
+- **~2 vendas** perdidas no último passo: 0 de 7 checkouts. `P(zero) = (1−0,33)^7 = 6,1%`.
+
+**Nem o CPM nem o azar explicam o dia sozinhos.** Metade do buraco é azar de 1 em
+16; a outra metade tem causa, e a causa está entre o carrinho e o checkout.
+
+### 36.4 Honestidade sobre o tamanho da amostra
+
+Isto é sinal, não prova:
+
+| Sinal | Teste | Chance de ser sorte |
+|---|---|---|
+| Shopify 7 de 15 ATC | contra o **pior** dia histórico (70%) | ~13% |
+| Pixel 4 de 11 ATC | contra o piso da série (62%) | ~5% |
+
+Contra a mediana (88%) os dois são praticamente impossíveis; contra o piso são
+improváveis. Dois sinais fracos apontando pro mesmo lugar não fecham caso — mas
+é o único lugar do dia onde existe algo pra olhar, e às 12h o n dobra.
+
+### 36.5 O que testei e descartei hoje (para não repetir o §34)
+
+| Hipótese | Teste | Resultado |
+|---|---|---|
+| Frete grátis R$399 caiu | `discountNodes status:active` | **ATIVO** — node novo de 10/09 |
+| Desconto de volume caiu | idem | **ATIVOS** — 10/15/20%, "retomada 20/09" |
+| Order bump Óleo caiu | idem | **ATIVO** |
+| Frete grátis não calcula | carrinho abandonado de hoje: Adulto + Kids 5-9 = **R$736,00** | 347+389 exato, **frete zero** → calcula certo |
+| Checkout não registra | `abandonedCheckouts` hoje | 2 registros com contato capturado → a página aceita e grava |
+| Preço mudou | §35.1 | sem mudança |
+
+> **Segundo falso positivo que eu quase te mandei hoje.** Os nodes antigos
+> "Frete Grátis · Pedidos acima de R$ 399", "10/15/20% OFF · 3+/5+/8+ Kits"
+> aparecem **EXPIRED, todos no mesmo segundo (12/09 14:59:15Z)**. Parecia
+> desligamento em massa. **Foram substituídos por nodes novos, ativos.** Conferi
+> antes de escrever.
+>
+> **Terceiro.** Os descontos automáticos ativos têm `endsAt 2026-10-10T02:59:59Z`
+> = 09/10 23:59:59 BRT, a véspera do Dia D. Ia mandar como achado urgente. **É do
+> próprio runbook de Dia D** (triggers `trig_01W5BC1hmdiT6XFfydZ3RUke` sáb 00h e
+> `trig_01YR8PYoZpVmpJs19NysGRBp` seg 00h): no dia 10 eles saem e entram
+> "Dia D 10-11/10 · Frete Grátis Sem Mínimo" e "· Óleo de Alho de presente".
+> **Não é bug, é o plano.**
+
+**O que eu NÃO consegui testar:** abrir o site por fora. A saída de rede deste
+ambiente bloqueia `vermefree.com.br` (CONNECT 403, política de egresso). Então o
+teste decisivo tem que ser humano, no celular, em 2 minutos:
+
+- [ ] abrir a página do Protocolo Adulto
+- [ ] adicionar ao carrinho
+- [ ] clicar em **Finalizar compra** e ver se o checkout abre ou trava
+- [ ] repetir com Kids 2-4 (foi o produto dos 2 carrinhos abandonados de hoje)
+
+### 36.6 O dia até 09h50, três fontes
+
+| | Valor | Fonte |
+|---|---|---|
+| Sessões | 290 | Shopify |
+| ATC | 15 (5,2%) | Shopify |
+| Chegaram ao checkout | 7 | Shopify |
+| **Pedidos** | **0** | Shopify (GraphQL e Analytics) |
+| Gasto site (4 campanhas) | **R$562,16** | Meta |
+| └ ESCALA FRIO ADV | 250,04 · CPM 71,77 · CTR 3,33% · 46 LPV · 6 ATC · 3 IC | Meta |
+| └ ESCALA QUENTE | 196,08 · CPM 64,35 · CTR 3,84% · 34 LPV · 1 ATC · 1 IC | Meta |
+| └ TESTE | 87,93 · CPM 48,61 · CTR 1,38% · 19 LPV · 4 ATC · 0 IC | Meta |
+| └ TOPO video view | 28,11 · CPM 2,57 · 28 LPV | Meta |
+| Compras pixel | **0** | Meta |
+
+QUIZ PARASITOSE (R$151,14) e CTWA (R$12,01) fora dos totais — regra fixa.
+
+### 36.7 Decisão
+
+**Não mexer em nada.** O congelamento do §13.6 vale até 10/10, e o problema de
+hoje não está na mídia: está no site, depois do carrinho. Cortar verba não
+consertaria.
+
+- [x] Releitura agendada para **12h BRT** (`trig_01LNbj9s7H62gMDKFaMmH4PQ`) — 12h de janela, como ele pediu. Nada às 18h.
+- [ ] **Teste manual do carrinho→checkout no celular** (§36.5) — é a única coisa que fecha o caso hoje.
+- [ ] Gatilho das 12h: se ATC→checkout continuar abaixo de 60% com 25+ ATC, é quebra confirmada e passa na frente de tudo.
+
