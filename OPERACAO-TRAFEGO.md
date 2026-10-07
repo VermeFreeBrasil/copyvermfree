@@ -2417,3 +2417,144 @@ split_part(utm_content,'::',1)                     -- quando vem id::fbclid
 > **Regra: nenhum criativo é declarado morto antes de a consulta ser testada
 > contra um pedido conhecido dele.** Eu tinha o pedido #3784 disponível desde
 > 06/10 e não testei.
+
+---
+
+## §35 — INVESTIGAÇÃO: ZERO CONVERSÃO EM 07/10
+
+O Gabriel: *"hoje nao tivemos nenhuma conversao ainda .. ai vc me quebra.. investigue a fundo."*
+
+### 35.1 O que descartei primeiro (e como)
+
+| Hipótese | Teste | Resultado |
+|---|---|---|
+| Atraso de relatório | Shopify GraphQL `orders(created_at:>=2026-10-07)`, qualquer status financeiro | **lista vazia** — zero é real |
+| Utmify atrasado | Utmify 07/10 | **0 pedidos**, confirma |
+| Produto fora de estoque | `productVariants.availableForSale` nos 5 ativos | **todos true** |
+| Checkout travado | `abandonedCheckouts` de hoje | **2 registros** (R$338,25 e R$736,00) — o checkout aceita, registra e só não fecha |
+| Preço mudou | `products.variants.price` | Adulto 347 · Kids2-4 270 · Kids5-9 389 · Família 1.150 · Óleo 67 — **todos conforme o CLAUDE.md §6** |
+
+**Última venda: pedido #3798 às 02:50 UTC (23:50 BRT de 06/10).** ~10h sem venda
+na hora da leitura.
+
+> **Pista que eu quase te vendi como causa e descartei:** os `updatedAt` das
+> variantes batiam em 16–21 segundos com as últimas vendas de cada produto.
+> Parecia que alguém editou o produto e a venda parou. **É o contrário: a venda
+> mexe no estoque, e isso move o `updatedAt`.** Correlação espúria.
+
+### 35.2 O teste honesto — mesma faixa de horário
+
+Janela 00h–09h BRT (03:00–12:00 UTC), que é onde estamos:
+
+| Dia | Sessões | ATC | Chegaram ao checkout | **Vendas** | ATC→chk | chk→venda |
+|---|---|---|---|---|---|---|
+| 05/10 | 319 | 23 | 21 | **6** | 91% | 29% |
+| 06/10 | 326 | 13 | 11 | **3** | 85% | 27% |
+| **07/10** | **269** | **15** | **7** | **0** | **47%** | **0%** |
+
+```
+conversao checkout->venda nos dois dias anteriores : 28,1%
+esperado hoje com 7 checkouts                      : 1,97 vendas
+P(zero vendas) = (1 - 0,281)^7                     = 9,9%
+```
+
+**É um azar de 1 em 10 manhãs. Não é quebra.** E a manhã é fração pequena do dia:
+06/10 fez 3 vendas nessa faixa e **fechou com 16**; 05/10 fez 6 e fechou com 25.
+
+**Mas tem deterioração real a montante, e essa não é azar:**
+
+```
+chegaram ao checkout : 21 -> 11 -> 7     (tres dias caindo)
+ATC -> checkout      : 91% -> 85% -> 47%
+```
+
+### 35.3 O ACHADO: o CPM quase dobrou hoje
+
+| Campanha | 06/10 | **07/10** | Δ |
+|---|---|---|---|
+| ESCALA FRIO | 48,04 | **71,09** | **+48%** |
+| ESCALA QUENTE | 38,48 | **70,56** | **+83%** |
+| TESTE ADV+KIDS | 38,42 | **49,85** | +30% |
+| **TOPO (video view)** | 2,37 | 2,56 | **+8%** |
+
+No nível de anúncio, sem exceção:
+
+| Anúncio | 06/10 | **07/10** | Δ |
+|---|---|---|---|
+| AD_TD_SINAIS_02 | 38,80 | **80,53** | **+108%** |
+| 3SINAIS | 44,72 | **80,77** | +81% |
+| ROTINA_CICLOS (QUENTE) | 36,71 | **66,28** | +81% |
+| DUVIDAS | 39,30 | 62,90 | +60% |
+| KIDS_PET | 34,32 | 51,89 | +51% |
+| AD_TD_JATOMEI_02 | 59,22 | **86,05** | +45% |
+| SINAIS_01 | 46,63 | 65,86 | +41% |
+| AD_TD_JATOMEI_01 | 46,81 | 61,61 | +32% |
+| **TOPO_AD_TD_8H02** | 2,39 | 2,59 | **+8%** |
+
+**Todo anúncio de conversão ficou 32–108% mais caro. O de video view não subiu.**
+
+Isso é a assinatura de **leilão externo**, não de problema na conta: se fosse
+criativo saturado ou público queimado, a frequência subiria — e ela **caiu**
+(FRIO 1,44→1,17 · QUENTE 1,37→1,23). E se fosse a conta, o TOPO subiria também.
+
+### 35.4 A hipótese — e o que ela muda no Dia D
+
+**12/10 é Dia das Crianças**, numa segunda-feira. A semana 07–12/10 é a janela
+comercial mais cara do ano para público de mãe com filho pequeno — que é
+exatamente o ICP do Kids (CLAUDE.md §2). A VermeFree entrou no leilão disputando
+com o varejo de brinquedo inteiro.
+
+**Confiança: média-alta.** O mecanismo explica os três fatos (conversão caro,
+video view não, frequência caindo), mas eu não tenho leitura direta do leilão —
+é inferência. O que confirma ou derruba é o CPM dos próximos 2 dias: se seguir
+subindo até 12/10 e cair depois, é Dia das Crianças.
+
+> **Isso muda a conta do Dia D de 10/10.** O evento cai **2 dias antes do Dia das
+> Crianças**, no pico do leilão. Se o CPM dobrou, a mesma verba compra metade da
+> sessão. O Dia D de setembro (09/09) rodou CPM R$24,98 e fez 116 compras com
+> R$2.924,75. **Com CPM a R$70, R$2.925 compram menos da metade do alcance.**
+
+### 35.5 O dia até agora (três fontes)
+
+| | Valor | Fonte |
+|---|---|---|
+| Sessões | 269 | Shopify |
+| ATC | 15 (5,6%) | Shopify |
+| Chegaram ao checkout | 7 | Shopify |
+| **Pedidos** | **0** | Shopify (GraphQL e Analytics) |
+| **Pedidos** | **0** | Utmify |
+| Gasto Meta | R$669,04 | Utmify |
+| Gasto (5 objetos) | R$449,77 | Meta |
+| Checkouts iniciados | 5 (Utmify) · 7 (Shopify) | consistente |
+
+ATC de 5,6% ainda está na faixa saudável do §14.4 (3–5% = 70% da verba,
+≥5% = verba cheia). **O tráfego não está ruim; está caro.**
+
+### 35.6 Recomendação
+
+**Não mexer em nada hoje.** Motivos:
+1. Zero às 9h é azar de 1 em 10, não sinal.
+2. A causa provável é externa — cortar verba não baixa o CPM do leilão.
+3. Congelamento até 10/10 (§13.6) — editar na véspera do Dia D é o pior momento.
+
+**O que fazer hoje:**
+- [ ] Reler às 18h. Se até lá continuar zero com 400+ sessões, aí é sinal e eu
+      investigo o checkout por dentro.
+- [ ] **Decisão do Gabriel, urgente:** o Dia D de 10/10 cai no pico do leilão de
+      Dia das Crianças. Vale discutir **mover para 13 ou 14/10**, depois do pico,
+      ou **aceitar o CPM e dobrar a verba** para comprar o mesmo alcance.
+- [ ] Consertar o `compareAtPrice` invertido (§35.7) — não causou isso, mas está
+      errado na vitrine.
+
+### 35.7 Defeito achado de passagem (não é a causa, mas conserta)
+
+| Produto | Preço | `compareAtPrice` | Problema |
+|---|---|---|---|
+| Protocolo Adulto | 347,00 | **337,00** | preço "de" MENOR que o de venda |
+| Kit Família | 1.150,00 | **846,60** | preço "de" R$303 menor |
+| Kids 2–4 | 270,00 | 270,00 | iguais → mostra "0% de desconto" |
+
+Dependendo do tema, isso exibe na vitrine que o produto ficou **mais caro**.
+Os preços em si estão certos (conferem com o §6 do CLAUDE.md) — é só o campo de
+comparação. **Não posso datar quando quebrou** (o `updatedAt` é movido por
+venda), então não atribuo nada a isso. Mas 3 dias antes do Dia D é bom arrumar.
