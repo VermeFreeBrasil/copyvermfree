@@ -2269,3 +2269,151 @@ AD_TD_SINAIS_01 fora, os R$750 do QUENTE agora vão para ROTINA_CICLOS e DUVIDAS
 **Congelamento até o Dia D:** nada mais muda de 07 a 10/10 (§13.6). A próxima
 leitura é quinta 08/10, só para confirmar que o QUENTE voltou a converter sem o
 ralo dentro.
+
+---
+
+## §34 — ERRO MEU: PAUSEI UM ANÚNCIO QUE VENDIA (07/10)
+
+Dia D em 3 dias. Esta seção abre com um erro meu porque ele muda decisões já
+tomadas.
+
+### 34.1 O que aconteceu
+
+No pedido **#3786** do Shopify de 06/10 (R$389,67) o UTM está assim:
+
+```
+campaign = "VF | ESCALA QUENTE|120251480163000323"
+content  = "AD_TD_SINAIS_01|120251668816170323"
+```
+
+É o formato malformado que **eu mesmo identifiquei no §32.2** — e em vez de
+tratá-lo, eu escrevi consultas que o excluíam:
+
+```sql
+-- o que eu usei no §30 e no §33
+WHERE utm_campaign ~ '^[0-9]{10,}$'     -- so id puro
+-- e no Shopify eu contava content == '120251668816170323'
+--                       e nao content LIKE '%120251668816170323%'
+```
+
+**Eu achei o bug, documentei o bug, e depois construí a análise inteira em cima
+de uma consulta que o bug derruba.**
+
+### 34.2 O tamanho do buraco · 20/09–06/10
+
+| Formato do UTM | Pedidos | Receita |
+|---|---|---|
+| sem UTM | 167 | 94.910,33 |
+| outro (bio, CRM) | 134 | 71.103,80 |
+| **id puro — minhas consultas pegavam** | **63** | **36.404,86** |
+| **MALFORMADO `nome\|id` — minhas consultas PERDIAM** | **11** | **5.229,05** |
+
+Da mídia paga atribuída (74 pedidos · R$41.633,91) eu estava perdendo
+**14,9% dos pedidos e 12,6% da receita.**
+
+### 34.3 Os três criativos que eu julguei errado
+
+| Criativo | Gasto | Pedidos REAIS | Receita REAL | **ROAS real** | Eu disse |
+|---|---|---|---|---|---|
+| **AD_TD_SINAIS_01** | 2.334,15 | **4** | **2.121,27** | **0,91** | **0,00** |
+| AD_TD_RANGER_02 | 877,70 | 2 | 819,27 | 0,93 | 0,00 |
+| AD_TD_8H02 | 686,19 | 1 | 376,59 | 0,55 | 0,00 |
+
+**12SINAIS e KIDS_AMAMENTACAO deram zero em qualquer formato** — essas duas
+pausas de ontem estavam certas.
+
+### 34.4 Correção do §30.3 (a regra da frequência)
+
+```
+eu disse: freq > 2,3 -> R$6.413 gastos -> R$  701 atribuidos -> ROAS 0,11
+real    : freq > 2,3 -> R$6.413 gastos -> R$2.822 atribuidos -> ROAS 0,44
+```
+
+A direção se mantém (0,44 contra 1,54 da faixa de frequência baixa), mas **eu
+exagerei o efeito em 4x.** A regra vale como alerta, não como sentença.
+
+### 34.5 A pausa do AD_TD_SINAIS_01 se sustenta?
+
+ROAS atribuído corrigido: **0,91** com R$2.334,15 gastos.
+
+**Mas atenção a uma comparação que eu não devo fazer:** o breakeven de 1,25–1,82
+(§22) é sobre receita TOTAL. O ROAS atribuído captura só ~50–60% da receita,
+porque 37,9% dos pedidos chegam sem UTM (§32.4). **ROAS atribuído não se compara
+com breakeven.**
+
+A comparação válida é contra a média atribuída da própria conta, que na janela
+20/09–06/10 ficou em ~1,5. Então o AD_TD_SINAIS_01 a 0,91 é **abaixo da média da
+conta, não morto.**
+
+> **Veredicto honesto: a pausa é uma poda defensável, não o "maior ralo da
+> conta" que eu apresentei no §31.1.** E o §31.1 dizia que tirar ele levaria o
+> ESCALA QUENTE de 1,73 para 3,74 — **isso está errado**, porque a receita dele
+> existia e eu não a contei.
+
+**Um fato que pesa contra manter a pausa:** em 06/10 o **único pedido atribuído
+do ESCALA QUENTE veio do AD_TD_SINAIS_01** (R$389,67). O Dia D depende do
+quente. **Decisão do Gabriel, não minha** — eu já errei uma vez aqui.
+
+### 34.6 06/10 fechado — o QUENTE voltou
+
+| Objeto | Gasto | CTR | Freq | Ped. atrib. | Receita | **ROAS at.** | CPA pixel |
+|---|---|---|---|---|---|---|---|
+| ESCALA FRIO | 1.170,20 | 3,28% | 1,44 | 1 | 762,85 | 0,65 | 292,55 |
+| **ESCALA QUENTE** | 665,74 | **4,24%** | 1,37 | 1 | 389,67 | 0,59 | **166,44** |
+| **TESTE ADV+KIDS** | 346,46 | 1,25% | 1,73 | **2** | **711,80** | **2,05** | **86,62** |
+| TOPO | 132,53 | 0,45% | 1,01 | 0 | 0 | — | — |
+
+Shopify 06/10: **1.410 sessões · 16 pedidos · R$8.911,03** · conv 1,135% ·
+ATC 3,83% · AOV R$538,17. **ROAS site 3,85.**
+
+**O ESCALA QUENTE melhorou de verdade:** CTR 2,54% → **4,24%**, LPV 184 → 265,
+CPA do pixel R$227,78 → **R$166,44**. O ROTINA_CICLOS dentro dele rodou CTR
+**5,39%** com CPA R$161,51.
+
+**E o TESTE foi o melhor da conta:** CPA R$86,62, ROAS atribuído 2,05. O
+**N_A2_DIRETO fez 3 compras a CPA R$40,60** — justamente o anúncio que eu
+propus pausar no §31.5 por frequência 3,12. **Bom que o Gabriel só aprovou os
+três que eu nomeei.**
+
+Fora da mídia paga: bio 4 ped · R$2.235,75 · banner 1 · CRM 1 · **sem UTM
+6 ped · R$4.043,33**. Mídia paga = R$1.864,32 de R$8.911,03 = **20,9%**.
+
+### 34.7 SINAIS_01 religado — primeiro dia
+
+R$254,13 · CTR 1,89% · freq 1,14 · 66 LPV · **0 ATC · 0 compra**. Um dia não
+julga, mas não começou bem.
+
+### 34.8 Entrou mais coisa que não é minha
+
+- **Boost Live 06/10** — R$118,56, 1 compra no pixel
+- **VF | TESTE CRIATIVOS | QUIZ PARASITOSE | EDITADOS | OUT26 | ABO** —
+  R$209,69 (06/10) + R$128,57 (07/10). Família QUIZ, fora dos meus números
+  por §27.6.
+
+Verba sob gestão segue R$2.280/dia, não mexida.
+
+### 34.9 07/10 parcial (9h)
+
+```
+Shopify  234 sessoes · 0 pedidos
+Gasto    R$449,77
+```
+
+FRIO com CPM R$71,09 e QUENTE com R$70,56 — os dois bem acima do normal, mas
+é a primeira hora.
+
+### 34.10 Protocolo corrigido — obrigatório
+
+Toda consulta de atribuição passa a usar **contém**, nunca **igual**:
+
+```sql
+-- CERTO
+WHERE utm_content LIKE '%' || :ad_id || '%'
+-- e para agrupar por anuncio:
+split_part(split_part(utm_content,'|',2),'::',1)   -- quando vem nome|id
+split_part(utm_content,'::',1)                     -- quando vem id::fbclid
+```
+
+> **Regra: nenhum criativo é declarado morto antes de a consulta ser testada
+> contra um pedido conhecido dele.** Eu tinha o pedido #3784 disponível desde
+> 06/10 e não testei.
