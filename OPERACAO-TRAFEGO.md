@@ -3044,3 +3044,96 @@ receita esperada      : ~R$3.300 na janela de 12h (06/10 fez 6 pedidos, AOV R$55
 Nada editado na conta nem na loja. Mídia segue rodando por decisão do §38.6 item
 4: só pausar depois de confirmar o pagamento.
 
+
+---
+
+## §40 — DIA D 10-11/10: LEVANTAMENTO ANTES DE MONTAR (nada executado)
+
+O Gabriel: *"preciso deixar uma campanha do dia d da vermefree pronta (…) nao executa nada ainda antes do meu ok"*
+
+Tarefa no Alliance OS: **"DIA D — Subir e configurar a campanha de tráfego · QUI 08/10
+até 18h | VERMEFREE"** (`c-oct-diad-vermefree`), responsável **Pedro Lage**, prioridade
+alta, status **a fazer**. Verba R$8.000 → meta R$16.000, ROAS alvo 2,0. Metas do dia:
+**R$65 mil sábado, R$50 mil domingo** (campanha inteira R$115 mil, 12 canais; tráfego
+são R$16 mil e CRM R$44 mil).
+
+### 40.1 Confirmado ao vivo
+
+| Item | Resultado |
+|---|---|
+| **Pixel** | **`867430254699991` — "Pixel de 100 Verme"**. É o que está em `VF \| ESCALA FRIO \| ADV` e nos conjuntos `ABERTO ADV \| BIDCAP 100 \| DIA D` e `QUENTE \| BIDCAP 100 \| DIA D`. **Não** é o "Pixel - VermeFree" (`2239781696850189`), apesar do nome |
+| **Molde do ADV aberto** (FRIO ADV, conjunto `120251302956600323`) | OUTCOME_SALES · OFFSITE_CONVERSIONS/PURCHASE · billing IMPRESSIONS · BR (`frequently_in`+`home`+`recent`) · `advantage_audience: 1` · `targeting_optimization: expansion_all` · posicionamentos Advantage+ · **sem bid cap** |
+| **URLs de destino** | ambas existem e estão ACTIVE: `/products/protocolo-desparasitacao-adulto-vermefree` e `/products/antiparasitario-infantil-natural-vermefree-kids-2-a-4-anos` |
+| **Textos E1–E7 vs CLAUDE.md §4** | **passam**. Nenhum fala em cura, elimina, erradica, milagre, garantido, "+100 parasitas", cupom, ou cita médico. As artes também não |
+| **Descontos** | os automáticos (volume 10/15/20, 5% 2 adultos, order bump óleo) expiram 09/10 23h59 **por desenho do runbook**, e entram os de Dia D. Triggers de preço armados (`trig_01W5BC1...` sáb 00h, `trig_01YR8PY...` seg 00h) |
+
+**Bid cap: não vou usar.** O Dia D de setembro rodou com bid cap nos dois conjuntos, e
+o §13.5 mostra que bid cap nessa conta levou frequência a 2,77–3,58 contra 1,23–1,35
+sem. Em ação de 2 dias, saturar é o pior cenário. Custo mais baixo, orçamento vitalício.
+
+### 40.2 Cinco coisas que não batem com o prompt
+
+**1. Os criativos não têm os nomes nem os formatos do prompt.**
+
+```
+prompt  : E1-9x16, E1-4x5, E2-9x16, E2-4x5 ... ate E7   (14 arquivos)
+biblioteca: ad_vf_diad_01.png ... ad_vf_diad_07.png     (7 arquivos)
+            TODOS 1638 x 2048 = 4:5 exato. ZERO 9:16.
+```
+
+Sem 9:16 não existe a personalização por posicionamento que o prompt pede. E o prompt
+proíbe recorte automático. Sobram: pedir as 9:16 hoje, ou rodar 4:5 em tudo.
+
+**2. Não sei qual arquivo é qual peça — e isso é perigoso aqui.**
+
+Os nomes `01..07` não dizem qual é E1, E2… **E1 é antecipação e não pode mostrar preço
+nem oferta**, porque roda 08–09/10 com a página ainda a R$347. No print do Gabriel,
+**as sete artes trazem "10% OFF"**. Se não existir peça neutra, a campanha de
+AQUECIMENTO anuncia 10% OFF dois dias antes do preço cair — promessa que a página não
+cumpre. **Não vou adivinhar o mapa.**
+
+**3. Os vídeos do Ítalo ainda não existem.** Confirmado no Alliance OS:
+
+| Tarefa | Prazo | Status |
+|---|---|---|
+| DIA D — Gravar os vídeos dos criativos | TER 06/10 18h | **a fazer (atrasada)** |
+| DIA D — Criar os criativos em vídeo (edição do Ítalo) | QUA 07/10 18h | **a fazer** |
+
+Na videoteca não há nada de antecipação, "é amanhã" ou último dia de outubro. Pela
+regra do próprio prompt, ficam de fora e eu aviso. Se chegarem até quinta, entram.
+
+**4. Dois dos públicos de retargeting não existem como pedido.**
+
+| Pedido | O que existe |
+|---|---|
+| visitantes do site **14 dias** | **não existe 14D** — só `SITE \| TODOS \| 7D`, `30D`, `180D` e `VISITANTES DO SITE VERMEFREE 90D` |
+| engajou **Instagram ou Facebook** 30 dias | só Instagram: `ENG 30D \| IG VERMEFREE` (19,8–23,2 mil) e `[IG] Envolvimento - 30D` (18,7–22 mil). **Não há público de engajamento do Facebook** |
+| assistiu 50%+ de vídeo | `VIDEO VIEW +50%` ✅ 498,7–586,7 mil |
+| excluir compradores 30 dias | `COMPRADORES \| PURCHASE \| 30D` ✅ |
+
+**5. 🚨 Os públicos de pixel podem estar vazios.** Todo público de site volta com
+tamanho **20** (que é como o Meta diz "abaixo do limite"), enquanto os de engajamento
+voltam com número real:
+
+```
+SITE | TODOS | 30D ........ 20      <- com 1.400 sessoes/dia deveria ter dezenas de milhares
+VIU PRODUTO | 30D ......... 20
+CHECKOUT | INITIATE | 30D .. 20
+COMPRADORES | PURCHASE 30D . 20     <- e esse e a EXCLUSAO de todos os conjuntos
+ENG 30D | IG VERMEFREE .... 19.800 a 23.200
+VIDEO VIEW +50% ........... 498.700 a 586.700
+```
+
+Se os de pixel estiverem mesmo vazios, as campanhas 3 e 5 (R$1.400) não entregam **e a
+exclusão de compradores não exclui ninguém.** Conferir no Gerenciador antes de quinta —
+lá aparece o tamanho real.
+
+### 40.3 O elefante
+
+**A loja fez R$0 hoje** (§38, §39) e o pagamento segue sem teste completo. Montar e
+agendar tudo pausado é certo e não corre risco. **Ativar não.** Se sábado 00h a loja
+não cobrar, os R$3.200 da CONVERSAO SAB queimam em 24 horas contra zero receita.
+
+**Regra que eu proponho: nenhuma campanha do Dia D é ativada antes de um pagamento
+real ter sido confirmado na loja.**
+
