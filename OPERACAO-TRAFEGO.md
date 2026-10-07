@@ -2714,3 +2714,132 @@ consertaria.
 - [ ] **Teste manual do carrinho→checkout no celular** (§36.5) — é a única coisa que fecha o caso hoje.
 - [ ] Gatilho das 12h: se ATC→checkout continuar abaixo de 60% com 25+ ATC, é quebra confirmada e passa na frente de tudo.
 
+
+---
+
+## §37 — 07/10, TERCEIRA HIPÓTESE: O PAGAMENTO (leitura das 10h21)
+
+O Gabriel: *"testei no celular.. no pc e tudo abriu normal.. site e checkout"*
+
+**Isso elimina quebra dura de site/checkout.** E move o foco pro único passo que o
+teste dele não alcança: **o teste provou que o checkout ABRE, não que ele COBRA.**
+
+### 37.1 O número mais anômalo mudou de lugar
+
+Às 09h50 o pior número era ATC→checkout. Às 10h21, com o n maior, não é mais:
+
+| | 09h50 | **10h21** |
+|---|---|---|
+| Sessões | 290 | 326 |
+| ATC | 15 | 20 |
+| Chegaram ao checkout | 7 | **10** |
+| **Pedidos** | 0 | **0** |
+| ATC→checkout | 47% | 50% |
+| **checkout→venda** | 0 de 7 → **6,1%** | **0 de 10 → `0,67¹⁰` = 1,8%** |
+
+ATC→checkout subiu de 47% pra 50% — continua abaixo do piso de 17 dias (70%), mas
+está **convergindo pra faixa**. Já `checkout→venda` fez o contrário: cada checkout
+novo sem venda derruba a probabilidade. **0 de 10 é 1 em 55.**
+
+Por dispositivo (o teste dele cobre os dois, e os dois batem):
+
+| Hoje | Sessões | ATC | Checkout | Vendas |
+|---|---|---|---|---|
+| mobile | 300 | 18 | 8 | **0** |
+| desktop | 23 | 2 | 2 | **0** |
+
+Desktop fez 2 de 2 no ATC→checkout (100%). Não é problema de dispositivo.
+
+### 37.2 Ponto único de falha: um gateway só
+
+41 de 41 pedidos de 05 e 06/10 passaram pelo **mesmo provedor**:
+
+```
+Pagar.me - Cartão de Crédito   (app "Stone - Cartão", handle pagarme-v3-cartao)
+Pagar.me - PIX                 (app "Stone - Pix",    handle pagar-me-v3-pix)
+```
+
+Nenhum outro. **100% do faturamento depende de um provedor.**
+
+Por que isso encaixa com o que a gente vê hoje, passo a passo:
+
+| Fato observado | O que uma falha de cobrança produz |
+|---|---|
+| Site abre normal | ✅ o tema não tem nada a ver |
+| Checkout abre normal | ✅ a página é da Shopify, carrega antes de falar com o gateway |
+| 10 pessoas chegaram ao checkout | ✅ o contador da Shopify marca ao entrar na página |
+| **Zero pedidos criados** | ✅ **autorização que falha NÃO cria pedido na Shopify** — por isso `orders` de hoje volta lista vazia em qualquer status |
+| 2 carrinhos abandonados **com contato capturado** | ✅ preencheram o formulário e travaram no pagamento |
+
+**É a única hipótese que sobrou explicando 0 de 10.**
+
+### 37.3 O que eu não consigo provar daqui
+
+- O status público da Pagar.me/Stone **não reporta incidente** hoje. Mas problema
+  de conta (regra de antifraude, adquirente, config do app) **não aparece em
+  status público.**
+- Não consigo abrir `status.pagar.me` nem o site: a saída de rede deste ambiente
+  bloqueia (CONNECT 403).
+- A Admin API **não expõe autorização recusada** — pedido recusado simplesmente
+  não existe. É por isso que o buraco é invisível de dentro da Shopify.
+
+> **Terceira hipótese do dia, e estou narrando por eliminação, não por achado.**
+> CPM (§35) explicava volume, não o zero. Carrinho→checkout (§36) tinha os dois
+> sistemas apontando junto, e o teste manual dele mais o n maior enfraqueceram.
+> Pagamento é o que resta de pé — e segue **não testado**.
+
+### 37.4 O teste que fecha (2 minutos, só o Gabriel faz)
+
+Ir **um passo além** do que ele fez. Não basta abrir o checkout:
+
+- [ ] Óleo de Alho (R$67, o mais barato) → checkout → **escolher PIX** → o QR code gera?
+- [ ] Mesmo carrinho → **cartão de crédito** → passa ou recusa?
+- [ ] Se recusar: testar outro cartão, de outro banco
+
+**Se o QR do PIX não gerar, ou o cartão recusar um cartão que funciona em outro
+lugar: achamos.** Se os dois passarem, o pagamento está limpo e o dia é
+estatística ruim em dois passos ao mesmo tempo.
+
+### 37.5 A alavanca, se for o gateway
+
+Já existem provedores alternativos **instalados** na loja, sem uso:
+
+```
+PagBank - Cartão de Crédito     (pagbank-credit-card)
+Mercado Pago Cartões            (mp-credit-card-br)
+Mercado Pago Pix                (mercado-pago-pix-1)
+```
+
+Se a Stone/Pagar.me estiver com problema, **dá pra ativar um backup no checkout
+hoje** — e isso vale independente do diagnóstico, porque faltam 3 dias pro Dia D
+e a loja está com ponto único de falha no caixa.
+
+### 37.6 Risco achado de passagem: edição no tema publicado
+
+O tema MAIN (`VermeFree — TEMA OFICIAL`, id 167377207515) teve **um arquivo
+alterado hoje**:
+
+```
+templates/page.protocolos-kids.json    2026-10-07T12:54:53Z  = 09h54 BRT
+```
+
+Nenhum outro arquivo mudou hoje. **Não é a causa do zero** — a alteração é
+09h54, depois da janela morta (00h–09h50). Mas diz que **alguém edita o tema
+publicado direto, sem staging**, 3 dias antes do Dia D. Qualquer erro numa
+edição dessas vai ao ar na hora, pra todo mundo.
+
+### 37.7 Situação
+
+| Hipótese | Estado |
+|---|---|
+| Atraso de relatório, estoque, preço | descartada (§35.1) |
+| Descontos / frete grátis caídos | descartada (§36.5) |
+| CPM / mídia | descartada — volume normal (326 vs 326 sessões) |
+| Site ou checkout quebrado | **descartada pelo teste manual do Gabriel** |
+| Tema alterado na janela | descartada — único arquivo mudou 09h54, depois |
+| **Pagamento / gateway** | **em aberto — único que explica 0 de 10, não testado** |
+| Azar em dois passos | em aberto — 1,8% no último passo |
+
+Nada editado na conta de mídia. Releitura das 12h segue armada
+(`trig_01LNbj9s7H62gMDKFaMmH4PQ`).
+
