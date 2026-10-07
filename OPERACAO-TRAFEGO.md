@@ -2976,3 +2976,71 @@ Nada editado na conta nem na loja. O que precisa acontecer, por ordem:
    estiver confirmado quebrado, pausar FRIO e QUENTE até consertar.** Não pausar
    antes disso.
 
+
+---
+
+## §39 — O TESTE "NORMAL" NÃO LIMPA O GATEWAY (12h07)
+
+O Gabriel: *"tudo ficou normal"* — sobre o teste de pagamento.
+**Shopify às 12h07: `orders(created_at:>=2026-10-07)` continua lista vazia.**
+
+### 39.1 Erro meu de formulação
+
+Eu escrevi: *"o QR aparecer já é a prova de que o gateway respondeu."* **Forte
+demais.** O QR gerar prova que o gateway responde a um **pedido de QR**. Não prova
+que um pagamento **liquida**. São duas chamadas diferentes.
+
+### 39.2 O que acabei de verificar, e o que isso implica
+
+| Checagem | Resultado |
+|---|---|
+| Plano da loja | `Shopify`, ativo — sem bloqueio de conta |
+| Shopify Functions de validação de checkout | **nenhuma** instalada — não é função barrando |
+| Pedidos em `financial_status:pending` desde 25/09 | **zero, em 12 dias** |
+| Frete dos abandonados de hoje | R$3,09 a R$68,25 — **mesma faixa dos pagos de ontem** (#3796 R$5,56 · #3797 R$12,24 · #3789 R$68,25). Frete calcula normal |
+
+A linha que importa é a terceira. **Esta loja nunca tem pedido "pendente".** O
+pedido só nasce quando o pagamento **confirma**.
+
+Logo:
+
+```
+0 pedidos hoje  =  0 pagamentos confirmados hoje
+```
+
+**E isso inclui o teste do Gabriel.** Se o pagamento dele tivesse fechado, eu
+estaria olhando o pedido agora. Não existe. O teste dele validou as telas até a
+hora de pagar — **o passo de pagar segue sem um único teste completo.**
+
+### 39.3 O único teste que resolve
+
+**Pagar de verdade um PIX.** Óleo de Alho, R$89,91:
+`https://vermefree.com.br/cart/48968692891867:1`
+
+Dois desfechos, os dois informativos:
+
+| Desfecho | O que significa | Ação |
+|---|---|---|
+| **Pedido aparece na Shopify** | caminho de pagamento sadio ponta a ponta | eu volto pros dados com o gateway limpo e procuro em outro lugar |
+| **Dinheiro sai e nenhum pedido aparece** | **achamos — e é a versão ruim**: cliente paga e a loja não registra | urgente com a Stone, e tem cliente que pagou hoje sem pedido |
+
+O risco é R$89,91, e dá pra estornar.
+
+### 39.4 Em paralelo
+
+- **Painel da Stone/Pagar.me**: transação recusada ou com erro só aparece lá. A
+  Admin API não expõe recusa. Único lugar onde o log existe, e só o Gabriel entra.
+- **Provedor de backup** (Mercado Pago Pix / Cartões, PagBank — instalados, sem
+  uso): stop-loss, e vale de qualquer forma a 3 dias do Dia D.
+
+### 39.5 Placar enquanto isso
+
+```
+gasto de midia hoje   : R$979,47
+receita hoje          : R$0,00
+receita esperada      : ~R$3.300 na janela de 12h (06/10 fez 6 pedidos, AOV R$557)
+```
+
+Nada editado na conta nem na loja. Mídia segue rodando por decisão do §38.6 item
+4: só pausar depois de confirmar o pagamento.
+
