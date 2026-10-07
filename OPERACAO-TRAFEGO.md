@@ -2843,3 +2843,136 @@ edição dessas vai ao ar na hora, pra todo mundo.
 Nada editado na conta de mídia. Releitura das 12h segue armada
 (`trig_01LNbj9s7H62gMDKFaMmH4PQ`).
 
+
+---
+
+## §38 — RELEITURA DAS 12h: O ZERO É QUEBRA, E ESTÁ NO PAGAMENTO
+
+Releitura agendada (`trig_01LNbj9s7H62gMDKFaMmH4PQ`), disparada 12h00 BRT.
+**Shopify: `orders(created_at:>=2026-10-07)` ainda devolve lista vazia. Utmify: 0.**
+
+### 38.1 Janela de 12 horas, as três fontes
+
+Janela 00h–12h BRT (03:00–15:00 UTC), mesma faixa nos três dias:
+
+| Dia | Sessões | ATC | Chegaram ao checkout | **Vendas** | ATC→chk | **chk→venda** |
+|---|---|---|---|---|---|---|
+| 05/10 | 553 | 36 | 31 | **11** | 86% | 35% |
+| 06/10 | 545 | 24 | 23 | **6** | 96% | 26% |
+| **07/10** | **427** | **30** | **18** | **0** | **60%** | **0%** |
+
+```
+conversao checkout->venda dos dois dias : 17 / 54 = 31,5%
+P(zero | 18 checkouts, p = 0,315)       = 0,685^18 = 0,11%   -> 1 em 909
+P(zero | 18 checkouts, p = 0,26)        = 0,74^18  = 0,44%   -> 1 em 227
+```
+
+**Como a probabilidade andou ao longo do dia:**
+
+| Hora | Checkouts | Vendas | P(zero) |
+|---|---|---|---|
+| 09h50 | 7 | 0 | 6,1% |
+| 10h21 | 10 | 0 | 1,8% |
+| **12h00** | **18** | **0** | **0,11–0,44%** |
+
+**Azar está descartado.** Cada checkout novo sem venda derrubou a hipótese. Entre
+1 em 227 e 1 em 909 não é um dia ruim — é um passo quebrado.
+
+### 38.2 O gate que eu mesmo armei não disparou — e isso ajuda
+
+Eu havia escrito: *"se às 12h ATC→checkout continuar abaixo de 60% com 25+ ATC, é
+quebra confirmada no carrinho→checkout."*
+
+Com 30 ATC, deu **exatamente 60,0%** (18 de 30). **O gate não disparou.** E a série
+do dia subiu: **47% → 50% → 60%**, convergindo pra faixa histórica (piso 70%).
+
+Então o carrinho→checkout **não** é o problema principal — ele está voltando ao
+normal sozinho. Quem não voltou foi o passo seguinte. **O buraco é o pagamento.**
+
+Mesma coisa no pixel, independente: 23 ATC → 13 checkout iniciado (57%, subindo de
+36%) → **0 compras**.
+
+### 38.3 A prova nova: 7 checkouts abandonados, todos com contato capturado
+
+| Hora BRT | Valor | Produto |
+|---|---|---|
+| 07h59 | R$338,25 | Kids 2-4 |
+| 08h42 | R$736,00 | Adulto + Kids 5-9 |
+| **10h44** | **R$89,91** | **Óleo de Alho — este é o teste do Gabriel** |
+| 10h45 | R$395,02 | Kids 5-9 |
+| 11h40 | R$350,09 | Adulto |
+| 11h43 | R$397,90 | Adulto |
+| 11h48 | R$350,09 | Adulto |
+
+Comparação que fecha o argumento:
+
+```
+06/10, DIA INTEIRO : 9 abandonados  + 16 pedidos
+07/10, ate 12h     : 7 abandonados  +  0 pedidos
+```
+
+Contato capturado significa que a pessoa **preencheu o formulário e passou da
+etapa de entrega**. Sete pessoas chegaram até a hora de pagar e nenhuma fechou.
+Ontem, nessa mesma proporção, teriam saído ~5 pedidos.
+
+### 38.4 O CPM caiu e o zero continuou — thread encerrada
+
+| Campanha | 07/10 09h50 | **07/10 12h00** |
+|---|---|---|
+| ESCALA FRIO | CPM 71,77 | **65,86** |
+| ESCALA QUENTE | CPM 64,35 | **57,38** |
+| TESTE | CPM 48,61 | 49,68 |
+| TOPO (video view) | 2,57 | 2,58 |
+
+**O CPM recuou e as vendas continuaram em zero.** O §35 fica como registro do
+leilão de Dia das Crianças, mas está definitivamente fora da explicação do zero.
+
+Mídia hoje até 12h (site, sem QUIZ nem CTWA):
+
+| Campanha | Gasto | CPM | CTR | LPV | ATC | Checkout | Compras |
+|---|---|---|---|---|---|---|---|
+| ESCALA FRIO ADV | 344,12 | 65,86 | 3,29% | 69 | 9 | 4 | **0** |
+| ESCALA QUENTE | 289,27 | 57,38 | 3,77% | 58 | 9 | 8 | **0** |
+| TESTE | 129,07 | 49,68 | 1,31% | 25 | 5 | 1 | **0** |
+| TOPO video view | 35,66 | 2,58 | 0,41% | 33 | — | — | — |
+| **Total site** | **R$798,12** | | | **185** | **23** | **13** | **0** |
+
+Fora do total: QUIZ R$164,27 · CTWA R$17,08. **Gasto total do dia: R$979,47.**
+Utmify confirma 0 pedidos em 07/10 (os 5 do range 06–07/10 são todos de terça).
+
+**Conta nua: ~R$980 de mídia, R$0 de receita, e ~R$3.300 de receita esperada
+que não entrou** (06/10 fez 6 pedidos nessa janela, AOV R$557).
+
+### 38.5 Estado das hipóteses
+
+| Hipótese | Estado às 12h |
+|---|---|
+| Atraso de relatório, estoque, preço, descontos, frete | descartadas com teste (§35.1, §36.5) |
+| CPM / mídia | **descartada** — CPM caiu, zero continuou |
+| Site ou checkout quebrado | descartada — teste manual do Gabriel, celular e PC |
+| Carrinho→checkout | **enfraquecida** — 47%→50%→60%, voltando sozinha |
+| Tema alterado na janela | descartada — único arquivo mudou 09h54, depois |
+| Azar | **descartada** — 0 de 18 é 1 em 227 a 1 em 909 |
+| **Pagamento / gateway** | **único de pé. 100% do caixa na Stone/Pagar.me (§37.2)** |
+
+### 38.6 Ação — nada disso é decisão minha
+
+Nada editado na conta nem na loja. O que precisa acontecer, por ordem:
+
+1. **O que o Gabriel viu no teste de 10h44.** O carrinho do Óleo (R$89,91) virou
+   checkout abandonado, então ele chegou na tela de pagamento. **Gerou o QR do
+   PIX? O cartão aprovou ou recusou? Qual a mensagem?** Isso resolve em 30
+   segundos o que eu não consigo ver daqui.
+2. **Painel da Stone/Pagar.me.** É o único lugar onde transação recusada aparece —
+   a Admin API da Shopify não expõe recusa, pedido recusado simplesmente não
+   existe. Só ele tem acesso.
+3. **Ativar provedor de backup no checkout.** Já instalados e sem uso:
+   `Mercado Pago Pix`, `Mercado Pago Cartões`, `PagBank - Cartão`. É o stop-loss,
+   e vale de qualquer forma a 3 dias do Dia D com o caixa num provedor só.
+4. **Decisão de mídia, dele:** se o pagamento estiver quebrado, cada real gasto
+   hoje é jogado fora — R$2.280/dia de verba levando gente pra uma loja que não
+   cobra. O contra é que pausar reinicia aprendizado na véspera do Dia D.
+   **Recomendação: esperar a confirmação do item 1 (minutos), e se o pagamento
+   estiver confirmado quebrado, pausar FRIO e QUENTE até consertar.** Não pausar
+   antes disso.
+
