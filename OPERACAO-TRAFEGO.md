@@ -3137,3 +3137,86 @@ não cobrar, os R$3.200 da CONVERSAO SAB queimam em 24 horas contra zero receita
 **Regra que eu proponho: nenhuma campanha do Dia D é ativada antes de um pagamento
 real ter sido confirmado na loja.**
 
+
+---
+
+## §41 — DIA D 10-11/10 MONTADO (rascunho, nada ativo)
+
+Montado com as respostas do Gabriel: **4:5 em todos os posicionamentos**,
+**`utm_content={{ad.id}}`**, **montar agora pausado**. Checkout voltou ao normal
+(pedidos #3799 a #3803 a partir de 13h26 BRT), então a trava de ativação do §38.6
+cai.
+
+**22 objetos criados, todos em `EDITING` (rascunho do Ads Manager). Nada no ar.**
+
+### 41.1 Estrutura
+
+| # | Campanha | Conjunto | Verba | Janela (Brasília) | Anúncios |
+|---|---|---|---|---|---|
+| 1 | `VF \| DIA D 1011 \| AQUECIMENTO \| ADV`<br>`120251938468030323` | `AQUECIMENTO \| ADV ABERTO \| BR 25-55`<br>`120251938478030323` | R$600 | qui 08/10 00h00 → sex 09/10 23h59 | **nenhum** |
+| 2 | `VF \| DIA D 1011 \| CONVERSAO SAB \| ADV`<br>`120251938468260323` | `CONVERSAO SAB \| ADV ABERTO`<br>`120251938478130323` | R$3.200 | sáb 10/10 00h00 → 23h59 | E2, E3, E4, E5, E6 |
+| 3 | `VF \| DIA D 1011 \| RETARGETING SAB \| ABO`<br>`120251938468690323` | `RETARGETING SAB \| SITE 30D + ENG IG 30D + VIDEO 50%`<br>`120251938478310323` | R$600 | sáb 10/10 18h00 → 23h59 | E3, E5 |
+| 4 | `VF \| DIA D 1011 \| CONVERSAO DOM \| ADV`<br>`120251938468800323` | `CONVERSAO DOM \| ADV ABERTO`<br>`120251938478450323` | R$2.800 | dom 11/10 00h00 → 23h59 | E7, E2, E3, E6 |
+| 5 | `VF \| DIA D 1011 \| RETARGETING DOM \| ABO`<br>`120251938468880323` | `RETARGETING DOM \| SITE 30D + ENG IG 30D + VIDEO 50%`<br>`120251938478490323` | R$800 | dom 11/10 00h00 → 23h59 | E7 |
+
+**Soma: R$8.000** ✅
+
+Config comum: Vendas / Compra · pixel **`867430254699991`** · orçamento **vitalício**
+no conjunto (ABO) · **custo mais baixo, sem bid cap** (§13.5) · posicionamentos
+Advantage+ · CTA Comprar agora · exclusão `COMPRADORES | PURCHASE | 30D`
+(`120251480379400323`) nos cinco conjuntos.
+
+ADV aberto (1, 2, 4): BR, `advantage_audience: 1`, 25–55 — a Meta converteu em
+`age_min_suggestion/age_max_suggestion`, ou seja **sugestão, não teto**, igual ao
+molde da FRIO ADV.
+Retargeting (3, 5): `advantage_audience: 0` (público fixo), sem recorte de idade,
+somando `SITE | TODOS | 30D` + `ENG 30D | IG VERMEFREE` + `VIDEO VIEW +50%`.
+
+### 41.2 Criativos e anúncios
+
+| Peça | Criativo | Arte (dedução) | Destino |
+|---|---|---|---|
+| E2 Adulto | `3443917212613856` | `ad_vf_diad_04` | Adulto |
+| E3 Oferta geral | `926760270236520` | `ad_vf_diad_05` | Adulto |
+| E4 Óleo de Alho | `950850274748367` | `ad_vf_diad_01` | Adulto |
+| E5 2 presentes | `4612409625705658` | `ad_vf_diad_03` | Adulto |
+| E6 Kids | `1864988244470850` | `ad_vf_diad_07` | **Kids 2-4** |
+| E7 Último dia | `1419139152995302` | `ad_vf_diad_02` | Adulto |
+
+Sobrou sem uso: `ad_vf_diad_06`.
+
+URL de todos:
+`...?utm_source=meta&utm_medium=paid&utm_campaign=diad_1011&utm_content={{ad.id}}`
+
+### 41.3 O que ficou de fora e por quê
+
+| Item | Motivo |
+|---|---|
+| **Anúncio da Campanha 1** | nenhuma das 7 artes serve: **todas mostram "10% OFF"** e em 08–09/10 a página ainda está a R$347. O conjunto está montado e agendado, só sem anúncio |
+| **Vídeos do Ítalo** | não existem — as duas tarefas de vídeo no Alliance OS estão "a fazer", a de gravação atrasada |
+| **Versões 9:16** | não existem na biblioteca; roda 4:5 em tudo, por decisão do Gabriel |
+| **App VermeFree no texto** | o Alliance OS fala em **três bônus** (Óleo + Guia + App), o prompt e as artes em **dois**. Mantive dois: a entrega do App está em aberto no próprio Alliance OS, e contradizer a arte é pior |
+
+### 41.4 Por que NÃO publiquei
+
+O `spec` de cada objeto do rascunho carrega `"status":"ACTIVE"`. O
+`ads_activate_entity` publica **"exatamente como foi preparado"**, então publicar
+agora colocaria tudo **no ar**, e a Campanha 1 começa **amanhã 00h**. O Gabriel
+escreveu: *"Crie tudo PAUSADO e com agendamento. Não ative nada."*
+
+**Deixei no rascunho do Ads Manager.** Ele abre, revisa (principalmente as artes)
+e publica — e na publicação tem que garantir PAUSADO, ou pausar em seguida.
+
+### 41.5 Conferência final
+
+- [x] Soma das verbas = R$8.000
+- [x] Horários em Brasília, orçamento vitalício com início e fim em todos
+- [x] Pixel `867430254699991`, o mesmo da FRIO ADV e do Dia D de setembro
+- [x] UTM em todos, com `{{ad.id}}`
+- [x] Compradores 30D excluídos nos cinco conjuntos
+- [x] Nenhum anúncio leva pra home; E6 é o único que vai pro Kids
+- [x] Textos sem cupom, sem "elimina", "cura" ou "+100 parasitas" — CLAUDE.md §4 ok
+- [x] Nenhuma campanha existente alterada
+- [ ] **Artes conferidas uma a uma** — pendente, é dedução minha
+- [ ] **Públicos de site conferidos no Gerenciador** (§40.2 item 5): todos reportam tamanho 20 pela API
+
