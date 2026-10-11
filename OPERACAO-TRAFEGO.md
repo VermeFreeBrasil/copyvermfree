@@ -3354,3 +3354,42 @@ Não é motivo para não ativar. É motivo para não tirar conclusão cedo.
 ~R$2.280/dia das campanhas de venda que seguem rodando → a conta vai a
 **~R$5.200/dia** nesses 3 dias.
 
+
+### 42.7 Ativação em 11/10 — publicou pela metade
+
+O Gabriel: *"sao essas artes mesmo, pode ativar"*. Publiquei via
+`ads_activate_entity` com os 21 ids e `publish_as_active: true`.
+
+**Resultado: campanha e conjuntos foram ao ar. Os 18 anúncios não.**
+
+| Objeto | Estado verificado ao vivo |
+|---|---|
+| `VF \| DIA D 1510 \| CAPTACAO GRUPO \| LEADS` | **ACTIVE** |
+| `... \| CAPTACAO \| ABERTO ADV` | **ACTIVE** · R$7.000 · 11/10 14h → 14/10 23h59 · OFFSITE_CONVERSIONS · pixel 867430254699991 · evento LEAD |
+| `... \| CAPTACAO \| QUENTE` | **ACTIVE** · R$3.000 · mesma janela · mesmo evento |
+| 18 anúncios C01–C09 | **seguem `EDITING` no rascunho** |
+
+Os anúncios estão `validation_status: VALIDATED` e `active_errors: []` — não há
+erro neles. **Três tentativas de publicação**, todas devolveram `PUBLISHING`, e
+nas três o `time_updated` do rascunho mudou (1791735358 → 735474 → 735565) sem
+sair do estado `EDITING`:
+
+1. os 21 ids juntos, `publish_as_active: true`
+2. só os 18 anúncios, `publish_as_active: true`
+3. só os 18 anúncios, sem `publish_as_active` (publica como preparado)
+
+**Lição: `ads_activate_entity` publica campanha e conjunto, mas não levou
+anúncio com `asset_feed_spec` nesta conta.** `PUBLISHING` é entrega ao
+publicador, nunca confirmação — e aqui o publicador devolveu sem publicar, sem
+reportar motivo (o próprio tool avisa que isso pode acontecer e que nada reporta).
+
+**Risco nesse meio-tempo: nenhum.** Campanha e conjuntos ativos sem anúncio não
+entregam e não gastam. Mas também não começam às 14h.
+
+**Saída:** publicar os 18 do rascunho **pela interface do Gerenciador**
+("Revisar e publicar"). Estão lá, validados, com tudo certo. Os pais já estão no
+ar, então entram direto como ACTIVE e a entrega começa às 14h — ou na hora, se
+já tiver passado.
+
+**Se quiser adiar**, pausar os dois conjuntos antes de publicar os anúncios.
+
