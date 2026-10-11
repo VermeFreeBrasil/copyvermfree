@@ -3320,3 +3320,37 @@ no ar. Fica no rascunho do Ads Manager.
 **Pendência antiga:** as 5 campanhas do Dia D 10-11/10 (§41) seguem no rascunho e
 **as datas já passaram**. Valem ser descartadas na mesma visita ao Gerenciador.
 
+
+### 42.6 Checagem do evento Lead antes de ativar (11/10 13h12)
+
+Puxei o histórico de eventos do pixel `867430254699991`, 7 dias:
+
+```
+Lead  ->  aparece UMA vez em toda a janela:
+          11/10 as 12h00 BRT, count = 2
+```
+
+**Duas leituras, as duas importantes.**
+
+✅ **A LP existe e está instrumentada.** O `Lead` disparou hoje ao meio-dia — o
+que prova, por outro caminho, que a página está no ar e que o botão "Entrar no
+grupo" está mesmo mandando o evento. Fecha a dúvida da URL do §42.3.
+
+⚠️ **Mas o pixel tem 2 Leads de histórico, e só.** Todo o resto do volume é
+PageView, ViewContent, AddToCart, InitiateCheckout, Purchase e BioClick. A Meta
+vai otimizar para um evento do qual não tem modelo nenhum.
+
+Consequência prática, e isso muda como a campanha deve ser lida:
+
+- O **CPL das primeiras 24h vai ser ruim** — é o custo de ensinar o algoritmo.
+- Com **R$10.000 em 3,4 dias** (~R$2.940/dia), os conjuntos provavelmente **não
+  saem do aprendizado** antes de a campanha acabar.
+- **Não matar nem mexer em conjunto por CPL alto na segunda-feira.** Seria o erro
+  do §13.1 outra vez, agora numa campanha que nem tem gate.
+
+Não é motivo para não ativar. É motivo para não tirar conclusão cedo.
+
+**Pacing:** R$10.000 de 11/10 14h a 14/10 23h59 ≈ R$2.940/dia, em cima dos
+~R$2.280/dia das campanhas de venda que seguem rodando → a conta vai a
+**~R$5.200/dia** nesses 3 dias.
+
