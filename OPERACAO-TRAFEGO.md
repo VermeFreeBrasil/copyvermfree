@@ -3393,3 +3393,80 @@ já tiver passado.
 
 **Se quiser adiar**, pausar os dois conjuntos antes de publicar os anúncios.
 
+
+---
+
+## §42.8 — POR QUE OS 18 ANÚNCIOS NÃO PUBLICAVAM: FALTAVA O `link_data`
+
+**Diagnóstico fechado em 11/10 13h30.** O Pedro viu antes de mim: *"voce nao
+colocou o link da LP em nenhum anuncio"*. Ele está certo, e isso explica as
+três tentativas de publicação do §42.7 que voltaram `PUBLISHING` e deixaram
+tudo em `EDITING`.
+
+### O defeito
+
+O `object_story_spec` que eu mandei nos 18 criativos tinha só isso:
+
+```json
+{"object_story_spec": {"page_id": "...", "instagram_user_id": "..."},
+ "asset_feed_spec": {"images": [...], "bodies": [...], "titles": [...],
+   "link_urls": [{"website_url": "https://diad.vermefree.com.br/?utm_..."}],
+   "call_to_action_types": ["LEARN_MORE"], "optimization_type": "DEGREES_OF_FREEDOM"}}
+```
+
+A URL existia — mas **só dentro do `asset_feed_spec.link_urls`**. O
+Gerenciador de Anúncios lê o destino do anúncio em
+**`object_story_spec.link_data.link`**. Sem esse campo, o campo "Site" da
+interface aparece vazio, a validação do publicador reprova e o anúncio
+volta pro rascunho sem mensagem de erro nenhuma.
+
+### A regra, pra nunca mais
+
+> **`asset_feed_spec.link_urls` NÃO substitui `object_story_spec.link_data.link`.**
+> Todo criativo com `asset_feed_spec` (múltiplas opções de texto) precisa
+> dos DOIS: o `link_data` com `link` + `call_to_action`, e o `link_urls`
+> dentro do feed. Se faltar o `link_data`, o anúncio não publica — e o
+> erro não aparece em `active_errors`, que continua vazio.
+
+Corolário do §42.7 que fica mais forte: **`validation_status: VALIDATED` e
+`active_errors: []` não querem dizer que o anúncio publica.** Os 18 estavam
+VALIDATED e sem erro durante as três tentativas falhas.
+
+### Como o Pedro corrigiu
+
+Ele adicionou na mão, nos 18:
+
+```json
+"link_data": {"link": "https://diad.vermefree.com.br",
+              "call_to_action": {"type": "SEE_DETAILS", "value": []}}
+```
+
+### Conferência dos 18 depois da correção (11/10, 13h35)
+
+| Item | Resultado |
+|---|---|
+| Anúncios no rascunho | 18 (C01–C09 × ABERTO + C01–C09 × QUENTE) |
+| `link_data.link` | presente em 18/18 — `https://diad.vermefree.com.br` |
+| Arte por anúncio | 1 hash único por C0x, igual nos dois conjuntos ✅ |
+| Textos | 3 corpos + 3 títulos em 18/18 ✅ |
+| `validation_status` | VALIDATED em 18/18 · `active_errors: []` |
+| Sigilo da oferta | varredura de desconto/%/R$/preço/frete/brinde/cupom/verme/parasita/elimina/cura: **zero ocorrência** ✅ |
+| Campanha + 2 conjuntos | ACTIVE e publicados (R$7.000 ABERTO + R$3.000 QUENTE) |
+
+### Duas divergências que sobraram (não impedem ativar)
+
+1. **CTA diverge entre as duas camadas.** `link_data.call_to_action.type` =
+   `SEE_DETAILS` ("Ver mais") contra `asset_feed_spec.call_to_action_types`
+   = `LEARN_MORE` ("Saiba mais"). O briefing pediu "Saiba mais". Com
+   `DEGREES_OF_FREEDOM` quem normalmente manda é o feed, mas não vale
+   depender disso — padronizar nos dois.
+2. **UTM só existe no `link_urls`.** O `link_data.link` está limpo, sem
+   parâmetro. Se a entrega usar o `link_data`, a venda/lead chega sem UTM e
+   o Utmify não enxerga de qual arte veio. **Correção certa: preencher
+   `url_tags` (campo "Parâmetros de URL" da interface)** com
+   `utm_source=meta&utm_medium=paid&utm_campaign=diad_1510_captacao&utm_content={{ad.name}}`
+   — o `url_tags` é anexado a QUALQUER URL que entregar, então resolve nos
+   dois caminhos de uma vez. Hoje está `AUSENTE` nos 18.
+
+> **Lição de atribuição:** em criativo com `asset_feed_spec`, UTM em
+> `link_urls` é frágil. O lugar robusto é o `url_tags` do anúncio.
