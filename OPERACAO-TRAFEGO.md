@@ -3220,3 +3220,103 @@ e publica — e na publicação tem que garantir PAUSADO, ou pausar em seguida.
 - [ ] **Artes conferidas uma a uma** — pendente, é dedução minha
 - [ ] **Públicos de site conferidos no Gerenciador** (§40.2 item 5): todos reportam tamanho 20 pela API
 
+
+---
+
+## §42 — DIA D 15/10: CAMPANHA DE CAPTAÇÃO MONTADA (rascunho, nada ativo)
+
+Campanha de **captação para o grupo de WhatsApp** do Dia D de quinta 15/10.
+Não vende: leva pra LP, onde o clique em "Entrar no grupo" dispara o evento
+**Lead** do pixel. Oferta é segredo até quarta 14/10 12h.
+
+**21 objetos criados, todos em `EDITING` (rascunho). Nada no ar.**
+
+### 42.1 Estrutura
+
+`VF | DIA D 1510 | CAPTACAO GRUPO | LEADS` — `120251996933040323`
+Cadastros (Leads) · conversão no Site · evento **Lead** · pixel
+**`867430254699991`** (o mesmo da FRIO ADV) · ABO · custo mais baixo, sem bid cap
+· posicionamentos Advantage+ · janela **11/10 14h → 14/10 23h59** nos dois.
+
+| Conjunto | ID | Verba | Público |
+|---|---|---|---|
+| `VF \| DIA D 1510 \| CAPTACAO \| ABERTO ADV` | `120251996936170323` | **R$7.000** | Advantage+ aberto · BR · 25–60 · mulheres |
+| `VF \| DIA D 1510 \| CAPTACAO \| QUENTE` | `120251996936400323` | **R$3.000** | 4 públicos personalizados, `advantage_audience: 0`, **sem exclusões** |
+
+**Soma: R$10.000** ✅
+
+Públicos do QUENTE:
+
+| Público | ID | Tamanho |
+|---|---|---|
+| VISITANTES DO SITE VERMEFREE 90D | `120247720163930323` | ~20 (pixel, ver §40.2) |
+| [IG] Envolvimento - 90D | `120245358278760323` | 52.300–61.500 |
+| VIDEO VIEW +50% | `120248677434920323` | 445.500–524.100 |
+| [LISTA] Clientes - 100verme | `120245318780530323` | 12.800–15.000 |
+
+### 42.2 Anúncios — 9 por conjunto, 18 no total
+
+Cada um com **3 textos principais + 3 títulos** via `asset_feed_spec`
+(`optimization_type: DEGREES_OF_FREEDOM`) — as opções múltiplas de texto do Meta.
+CTA **Saiba mais**. URL única com
+`?utm_source=meta&utm_medium=paid&utm_campaign=diad_1510_captacao&utm_content={{ad.name}}`.
+
+| Anúncio | Arquivo na biblioteca | Hash |
+|---|---|---|
+| C01 | `Premium-static-Meta-ad-creative-3-4-ver.png` | 64aba0d8… |
+| C02 | `...ver (1).png` | b0b8cb4d… |
+| C03 | `...ver (2).png` | 8457763b… |
+| C04 | `...ver (3).png` | 3ad84c3c… |
+| C05 | `...ver (4).png` | 03ea2745… ← **(5)** |
+| C06 | `...ver (5).png` | 03ea2745… |
+| C07 | `...ver (6).png` | 65bce9db… |
+| C08 | `...ver (7).png` | 74ff15ab… |
+| C09 | `...ver (8).png` | 004ca348… |
+
+Todos 1529×2048 = 3:4, sem recorte automático, sem imagem gerada.
+
+### 42.3 Três divergências com o briefing
+
+**1. 🔴 O destino do briefing não existe.** O briefing manda para
+`https://vermefree.com.br/pages/dia-d`. **A Shopify tem 10 páginas e nenhuma com
+handle `dia-d`** — esse link é 404 hoje. Usei o **"Link da LP" que o Gabriel
+mandou no fim da mensagem: `https://diad.vermefree.com.br`**. Não consegui abrir
+nenhum dos dois daqui (egresso bloqueado), e o Vercel não lista projeto "diad"
+nesse escopo. **É o item nº 1 a confirmar antes de ativar.**
+
+**2. São 9 artes, não 10.** A biblioteca tem `Premium-static-...-3-4-ver.png` mais
+`(1)` a `(8)` — nove arquivos. Não existe C10, e nenhum arquivo se chama C01–C10.
+Nomeei os anúncios C01–C09 na ordem de upload.
+
+**3. Dois públicos não existem como pedidos.** Não há janela de **60 dias** de
+site (só 7D/30D/180D e um de 90D — usei o de 90D) nem **público de engajamento do
+Facebook** (só Instagram). O `VIDEO VIEW +50%` é público único, sem janela de 60
+dias.
+
+### 42.4 Conferências
+
+- [x] Verba 7.000 + 3.000 = **R$10.000**
+- [x] Evento de conversão **Lead**, destino Site, pixel da FRIO ADV
+- [x] Orçamento vitalício nos dois conjuntos, início e fim em Brasília
+- [x] Sem exclusão de compradores no QUENTE, como pedido
+- [x] **Textos limpos**: nenhum fala em desconto, %, preço, frete, brinde, cupom,
+      vermes, parasitas, "elimina" ou "cura". Também passam no CLAUDE.md §4
+- [x] Nenhuma campanha existente alterada
+- [ ] **As ARTES não consegui conferir** — não dá pra baixar imagem daqui. A regra
+      de sigilo vale pra elas também; alguém precisa bater o olho nas 9
+- [ ] Confirmar a URL de destino
+
+### 42.5 Observações
+
+**Idade e gênero viraram sugestão.** Com Advantage+ Audience ligado, a Meta
+converteu 25–60 em `age_min_suggestion`/`age_max_suggestion`. O briefing pedia
+intervalo 25–60 **e** sugestão de mulheres 28–50 — a Meta só expressa um dos dois,
+então ficou 25–60 + mulheres como sugestão, e o sistema expande além disso.
+
+**Não publiquei**, mesma razão do §41.4: o `spec` do rascunho carrega
+`"status":"ACTIVE"` e o publicador sobe como preparado, o que colocaria R$10.000
+no ar. Fica no rascunho do Ads Manager.
+
+**Pendência antiga:** as 5 campanhas do Dia D 10-11/10 (§41) seguem no rascunho e
+**as datas já passaram**. Valem ser descartadas na mesma visita ao Gerenciador.
+
