@@ -3267,7 +3267,7 @@ CTA **Saiba mais**. URL única com
 | C02 | `...ver (1).png` | b0b8cb4d… |
 | C03 | `...ver (2).png` | 8457763b… |
 | C04 | `...ver (3).png` | 3ad84c3c… |
-| C05 | `...ver (4).png` | 03ea2745… ← **(5)** |
+| C05 | `...ver (4).png` | 8d91e7a2… |
 | C06 | `...ver (5).png` | 03ea2745… |
 | C07 | `...ver (6).png` | 65bce9db… |
 | C08 | `...ver (7).png` | 74ff15ab… |
