@@ -3470,3 +3470,98 @@ Ele adicionou na mão, nos 18:
 
 > **Lição de atribuição:** em criativo com `asset_feed_spec`, UTM em
 > `link_urls` é frágil. O lugar robusto é o `url_tags` do anúncio.
+
+---
+
+## §42.9 — REFEITO DO ZERO EM 12/10: O ERRO ERA `asset_feed_spec`
+
+**O Pedro acordou dia 12/10 e a campanha não tinha rodado.** Duplicou pra
+entender, e a cópia veio com os anúncios **sem mídia nenhuma**. Ele está
+certo nas duas coisas, e o §42.8 só acertou metade do diagnóstico.
+
+### O que realmente aconteceu
+
+O §42.8 culpou a falta do `object_story_spec.link_data` — correto, mas
+incompleto. A causa raiz é anterior: **eu montei os 18 criativos com
+`asset_feed_spec` (`optimization_type: DEGREES_OF_FREEDOM`) em vez do
+formato simples de imagem única.** Consequências em cadeia:
+
+1. A imagem morava em `asset_feed_spec.images[]`, não em
+   `link_data.image_hash`. O Gerenciador lê a mídia do anúncio no
+   `link_data` → **campo de mídia vazio na interface.**
+2. O link morava em `asset_feed_spec.link_urls[]`, não em
+   `link_data.link` → **campo de site vazio.**
+3. Com os dois campos vazios onde a interface lê, o publicador recusava
+   calado. Daí as três tentativas do §42.7 que voltaram `PUBLISHING` e
+   deixaram tudo em `EDITING`.
+4. Quando o Pedro adicionou o `link_data` na mão, ele preencheu só o
+   `link` e o `call_to_action`. **O `image_hash` continuou faltando** — por
+   isso a cópia dele publicou (já tinha link) mas saiu sem mídia.
+
+### A regra, agora completa
+
+> **Para anúncio de imagem única, NÃO usar `asset_feed_spec`.**
+> Usar `ads_create_creative` com `image_hash` + `link_url` + `message` +
+> `headline` + `call_to_action_type`. A ferramenta monta o
+> `object_story_spec.link_data` completo — com imagem, link e CTA nos
+> campos que o Gerenciador lê. É o caminho que publica.
+>
+> `asset_feed_spec` serve pra múltiplas variações de texto, mas custa o
+> preço de a interface não enxergar mídia nem link. **Não vale o preço.**
+> Para variar texto, criar um criativo por variação e rotacionar.
+
+### Como validar que um criativo tem mídia de verdade
+
+Dois sinais, nessa ordem:
+
+1. **`ads_create_ad` ecoa o `spec`.** Procurar
+   `object_story_spec.link_data` e confirmar que tem `link`, `image_hash`
+   E `call_to_action` juntos. Se faltar qualquer um, não publica certo.
+2. **`ads_get_creatives` retorna `effective_object_story_id` e
+   `effective_instagram_media_id`.** Isso significa que a Meta renderizou
+   o post com a imagem. Só aparece depois que o criativo virou post.
+
+> **Pegadinha do campo `link_url`:** ele aparece em `ads_get_creatives`
+> ANTES do criativo virar post e **desaparece depois**. Ver `link_url`
+> ausente num criativo que já tem `effective_object_story_id` é normal,
+> não é defeito. Confirmei nos 9: o C09 mostrava `link_url` e os outros
+> 8 não; minutos depois o C09 também parou de mostrar, e todos tinham
+> ganhado `effective_object_story_id`. **O teste válido é o `link_data`
+> no eco do `ads_create_ad`, não o `link_url` da leitura.**
+
+### O que está no ar agora (12/10, 10h45)
+
+| Objeto | ID | Estado |
+|---|---|---|
+| `VF \| DIA D 1510 \| CAPTACAO GRUPO \| LEADS v2` | `120252009350290323` | **ACTIVE** |
+| ↳ `CAPTACAO \| ABERTO ADV` | `120252009359110323` | ACTIVE · R$7.000 vitalício |
+| ↳ `CAPTACAO \| QUENTE` | `120252009361580323` | ACTIVE · R$3.000 vitalício |
+| ↳ 18 anúncios (C01–C09 × 2) | — | ACTIVE, publicados, com mídia |
+| `... LEADS — Cópia` (do Pedro, sem mídia) | `120252009172460323` | PAUSADA |
+| `... LEADS` (a original) | `120251996933040323` | PAUSADA |
+
+Janela **12/10 11h → 14/10 23h59** · otimização **Lead** no pixel
+`867430254699991` · CTA "Saiba mais" (`LEARN_MORE`) nos 18 · 9 artes 3:4
+(1529×2048) · 3 textos rotacionados (C01/C04/C07 · C02/C05/C08 ·
+C03/C06/C09).
+
+**UTM agora vive no próprio link do criativo**, não no `asset_feed_spec`:
+`?utm_source=meta&utm_medium=paid&utm_campaign=diad_1510_captacao&utm_content=c0X&utm_term={{adset.id}}`
+— `utm_content` identifica a arte, `utm_term` separa ABERTO de QUENTE.
+
+### Mudanças de configuração em relação à versão anterior
+
+- **Expansão de público desligada no QUENTE** (`advantage_audience: 0` +
+  `targeting_relaxation_types` zerado). A versão anterior tinha expansão
+  ligada e 4 semelhantes entrando sozinhos — ou seja, o "quente" não era
+  quente. Agora entrega só nas 4 listas do briefing.
+- **Um dia de janela perdido.** O plano era 11/10 14h → 14/10. Começou
+  12/10 11h. R$10.000 em ~2,5 dias em vez de 3,5.
+
+### Lição de processo
+
+Em 11/10 eu disse "pode ativar, nada bloqueia a entrega" com base em
+`validation_status: VALIDATED` e `active_errors: []`. Os dois campos
+estavam limpos e o anúncio não tinha mídia. **Nenhum campo de validação
+da API detecta mídia ou link ausente no lugar que a interface lê.** A
+única prova é inspecionar o `link_data` e exigir os três campos.
