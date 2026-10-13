@@ -3565,3 +3565,125 @@ Em 11/10 eu disse "pode ativar, nada bloqueia a entrega" com base em
 estavam limpos e o anúncio não tinha mídia. **Nenhum campo de validação
 da API detecta mídia ou link ausente no lugar que a interface lê.** A
 única prova é inspecionar o `link_data` e exigir os três campos.
+
+---
+
+## §43 — PANORAMA OUT26 (01–13/10) E A CAUSA REAL DA PARADA
+
+Leitura das quatro fontes na mesma janela, 13/10. **A loja está sem vender
+desde 08/10 às 16h08 e a causa é estoque, não pagamento.**
+
+### 43.1 — A correção do diagnóstico de 07–11/10
+
+Os §37, §38 e §39 culparam o gateway de pagamento. **Estava errado para a
+parada dura.** O mecanismo real:
+
+> Os 4 SKUs principais estão com **`available = 0` e `inventoryPolicy: DENY`**,
+> logo `availableForSale: false`. O visitante abre a página e não consegue
+> adicionar ao carrinho.
+
+E o estoque não acabou de verdade. Em cada SKU, **`on_hand` é igual a
+`committed`**:
+
+| SKU | on_hand | committed | available |
+|---|---|---|---|
+| Protocolo Adulto | 76 | 76 | **0** |
+| Kids 2–4 | 16 | 16 | **0** |
+| Kids 5–9 | 13 | 13 | **0** |
+| Kit Família | 10 | 10 | **0** |
+| Óleo de Alho | 4 | 3 | 1 |
+
+`committed` é estoque reservado para pedido não faturado. Há **80 pedidos
+não faturados** acumulados desde 20/05, e **58 deles estão `EXPIRED`** —
+PIX/boleto que nunca foram pagos. Cada um segue reservando unidade para
+sempre. O `committed` subiu até comer o `available` inteiro.
+
+> **Regra nova: pedido não pago que expira precisa ser cancelado.**
+> Sem isso o estoque vaza para `committed` e um dia a loja para sozinha,
+> sem erro nenhum aparecendo em lugar algum. Nem Shopify, nem Meta, nem
+> Utmify, nem o Supabase acusam — todos reportam "ok".
+
+A prova no funil: em 08/10, 614 sessões → 41 carrinhos. Em 09/10, 236
+sessões → **1 carrinho**. De 10/10 a 13/10: 706 sessões → **0 carrinhos**.
+Tráfego orgânico continuou chegando e nenhum conseguiu comprar.
+
+### 43.2 — Os números do mês (01–13/10)
+
+**Shopify (verdade da loja)** — 112 pedidos · bruto R$65.136,00 ·
+descontos −R$4.822,55 · devoluções −R$1.943,20 · frete R$1.916,74 ·
+**total R$60.286,99** · ticket médio R$538,51 · 9.980 sessões.
+Tudo isso foi feito entre 01 e 08/10. De 09 a 13/10: **zero**.
+
+**Supabase `compra_aprovada` (Shopify + Guru)** — 150 pedidos ·
+R$69.894,58. A diferença contra o Shopify é o Guru (~38 pedidos,
+~R$9.600). O Guru também parou: último registro 09/10.
+
+**Meta** — gasto **R$20.683,62** no mês, sendo R$16.895,51 na janela de
+venda (01–08/10) e R$3.788,11 na captação do Dia D (12–13/10).
+Imposto sobre mídia **R$2.865,47** → custo real **R$23.549,09**.
+Pixel: 75 compras / R$42.498,87 na janela de venda.
+
+**Utmify** — gasto R$20.689,32. **Bate com o Meta com R$5,70 de
+diferença** — reconciliação limpa. Google Ads: **R$0** (não roda).
+
+**Indicadores da janela que vendeu (01–08/10)**
+- ROAS blended = 60.286,99 ÷ 16.895,51 = **3,57**
+- ROAS blended com imposto de mídia = **3,13**
+- CPA blended = 16.895,51 ÷ 112 = **R$150,85**
+- Funil: 9.038 sessões → 432 carrinhos (4,8%) → 368 checkouts (85%) →
+  113 vendas (30,7%)
+
+**Captação Dia D (12–13/10)** — R$3.670,56 → **1.119 leads** →
+**CPL R$3,28**. É o melhor número do mês.
+
+### 43.3 — Atribuição: decidimos o mês olhando 1/3 do dado
+
+| Fonte | Pedidos com origem Meta | Observação |
+|---|---|---|
+| Pixel Meta | 75 | infla |
+| Utmify | 33 (90 não rastreados) | |
+| Supabase | 29 com `utm_source=FB` | 94 de 150 **sem UTM nenhuma** |
+
+**62,7% dos pedidos do mês não têm UTM.** Pelo §12, cobertura baixa torna
+o Utmify inutilizável para decisão — e o pixel reporta **2,3× mais**
+compras do que a UTM atribui (75 contra 33). Então todo CPA por criativo
+deste mês está inflado e nenhum anúncio teve leitura limpa contra o gate
+do §13.
+
+### 43.4 — Duas cegueiras internas
+
+- **Tabela `meta_ads` do Supabase está vazia para outubro.** O sync roda
+  a cada 15 min e grava `status: ok, registros: 0`. Os painéis internos
+  estão sem dado de mídia o mês inteiro.
+- **`vw_metas_vigentes` está vazia.** Não há meta cadastrada, então não
+  existe alvo para comparar o realizado.
+
+### 43.5 — O que estava ligado
+
+As 4 campanhas de venda (ESCALA FRIO, ESCALA QUENTE, TESTE SET26, TOPO DE
+FUNIL) foram **pausadas em massa em 08/10 às 11h28** — as quatro têm
+`updated_time` idêntico ao segundo. Desde então a única coisa ativa na
+conta é a captação do Dia D. O quiz também parou de captar em 08/10
+(51 leads no mês, nada depois).
+
+Desempenho das 4 na janela (Meta, CPA Meta × ~0,6 ≈ blended):
+
+| Campanha | Gasto | Compras pixel | CPA Meta | ≈ blended | Freq | CTR |
+|---|---|---|---|---|---|---|
+| ESCALA FRIO ADV | R$6.788,75 | 38 | R$178,65 | ~R$107 | 1,90 | 3,24% |
+| ESCALA QUENTE | R$4.229,48 | 18 | R$234,97 | ~R$141 | 2,54 | 2,77% |
+| TESTE SET26 ABO | R$2.740,05 | 15 | R$182,67 | ~R$110 | **3,71** | **1,21%** |
+| TOPO DE FUNIL | R$908,51 | 0 | — | — | 1,15 | 0,48% |
+
+ESCALA FRIO é a mais saudável e a maior. TESTE SET26 está saturada
+(frequência 3,71 e CTR 1,21% — o §13.5 descreve exatamente esse quadro).
+
+### 43.6 — O custo da parada
+
+Média diária na janela que vendeu: R$7.535,87. Cinco dias parados
+(09 a 13/10) ≈ **R$37.700 de faturamento não realizado** — estimativa pela
+média, não medição.
+
+E o risco maior é à frente: **1.119 leads captados para o Dia D de 15/10 e
+a loja não consegue fechar pedido.** Se o estoque não destravar, a lista
+queima.
